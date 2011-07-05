@@ -1,0 +1,16 @@
+[user]
+	name = yukihiro hara
+	email = yukihr@gmail.com
+
+[color]
+	ui = true
+
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+	br = branch
+	lo = log --oneline
+
+[core]
+  pger = lv -c -Ou8

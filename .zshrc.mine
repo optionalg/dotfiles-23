@@ -1,0 +1,92 @@
+alias diff="diff -u"
+alias grep="grep --exclude='tags' --exclude='*.svn-*' --exclude='*.git*' --exclude='entries'"
+alias lv="lv -Ou8 -c"
+
+# ls after cd
+function chpwd() { ls }
+
+# plugins
+source ~/.zsh/plugin/incr-0.2.zsh
+
+if [ $TERM = 'screen' ]; then
+	preexec() {
+		echo -ne "\ek#${1%% *}\e\\"
+	}
+	precmd() {
+		echo -ne "\ek$(basename $(pwd))\e\\"
+	}
+fi
+
+case "$HOST" in
+	"sid" | "sie")
+		#Ruby Version Manager
+		[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+		fpath=(~/.rvm/scripts/zsh/Completion ${fpath})
+		autoload -U compinit; compinit
+		;;
+esac
+
+case "$HOST" in
+	"sid")
+		export EDITOR=vim
+		export DISPLAY=192.168.107.1:0.0
+		export PATH=/home/yhara/bin/:$PATH
+		export PAGER='lv -Ou8 -c'
+		export GIT_PAGER=${PAGER}
+		;;
+	"sie")
+		export EDITOR=vim
+		export DISPLAY=192.168.236.1:0.0
+		export PATH=/home/yukihr/bin/:$PATH
+		alias ta="tmux attach -t"
+		;;
+	yhmba.local)
+		export PATH=/Users/yukihr/bin/:$PATH
+		;;
+esac
+
+
+fortune
+
+###-begin-npm-completion-###
+#
+# npm command completion script
+#
+# Installation: npm completion >> ~/.bashrc  (or ~/.zshrc)
+# Or, maybe: npm completion > /usr/local/etc/bash_completion.d/npm
+#
+
+COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
+COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}
+export COMP_WORDBREAKS
+
+if complete &>/dev/null; then
+  _npm_completion () {
+    local si="$IFS"
+    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$COMP_CWORD" \
+                           COMP_LINE="$COMP_LINE" \
+                           COMP_POINT="$COMP_POINT" \
+                           npm completion -- "${COMP_WORDS[@]}" \
+                           2>/dev/null)) || return $?
+    IFS="$si"
+  }
+  complete -F _npm_completion npm
+elif compctl &>/dev/null; then
+  _npm_completion () {
+    local cword line point words si
+    read -Ac words
+    read -cn cword
+    let cword-=1
+    read -l line
+    read -ln point
+    si="$IFS"
+    IFS=$'\n' reply=($(COMP_CWORD="$cword" \
+                       COMP_LINE="$line" \
+                       COMP_POINT="$point" \
+                       npm completion -- "${words[@]}" \
+                       2>/dev/null)) || return $?
+    IFS="$si"
+  }
+  compctl -K _npm_completion npm
+fi
+###-end-npm-completion-###
