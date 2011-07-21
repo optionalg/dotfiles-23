@@ -102,3 +102,4 @@
 (global-set-key "\C-c\C-t" 'my-get-time)
 (global-set-key "\C-c\ed" 'my-get-dtime)
 
+(require 'vimpulse)
