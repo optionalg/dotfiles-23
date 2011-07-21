@@ -10,8 +10,9 @@
 (global-font-lock-mode t)
 (line-number-mode t)
 (column-number-mode t)
-;; (add-to-list 'load-path "~/.emacs.d")
-;; (add-to-list 'load-path "~/.emacs.d/elisp/")
+(add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d/elisp")
+(add-to-list 'load-path "~/.emacs.d/vimpulse")
 
 ;; Key Mapping
 (global-set-key "\C-h" 'delete-backward-char)

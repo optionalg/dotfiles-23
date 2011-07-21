@@ -146,7 +146,11 @@ set list
 set listchars=tab:\ \ ,trail:~
 
 " ハイライトを有効にする
-if &t_Co > 2 || has('gui_running')
+syntax on
+
+" ターミナルで bold になるのを防ぐ
+if !has('gui_running')
+  set t_Co=8 t_md=
   syntax on
 endif
 
