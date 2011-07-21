@@ -44,6 +44,8 @@ endif
 "source $VIMRUNTIME/mswin.vim
 "behave mswin
 
+call pathogen#runtime_append_all_bundles()
+
 "ファイルの上書きの前にバックアップを作る/作らない
 "set writebackupを指定してもオプション 'backup' がオンでない限り、
 "バックアップは上書きに成功した後に削除される。
