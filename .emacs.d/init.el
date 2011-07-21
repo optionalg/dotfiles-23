@@ -12,7 +12,6 @@
 (column-number-mode t)
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/elisp")
-(add-to-list 'load-path "~/.emacs.d/vimpulse")
 (menu-bar-mode -1)
 
 ;; Key Mapping
@@ -105,4 +104,9 @@
 (global-set-key "\C-c\C-t" 'my-get-time)
 (global-set-key "\C-c\ed" 'my-get-dtime)
 
+;; setting elisps
+(add-to-list 'load-path "~/.emacs.d/vimpulse")
 (require 'vimpulse)
+
+(add-to-list 'load-path "~/.emacs.d/vendor/coffee-mode")
+(require 'coffee-mode)
