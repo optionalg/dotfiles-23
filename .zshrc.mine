@@ -1,6 +1,8 @@
 alias diff="diff -u"
 alias grep="grep --exclude='tags' --exclude='*.svn-*' --exclude='*.git*' --exclude='entries'"
 alias lv="lv -Ou8 -c"
+alias g="hub"
+alias e="emacs -nw"
 
 # ls after cd
 function chpwd() { ls }
