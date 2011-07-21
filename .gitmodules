@@ -4,6 +4,6 @@
 [submodule ".vim/bundle/vim-coffee-script"]
 	path = .vim/bundle/vim-coffee-script
 	url = git://github.com/kchmck/vim-coffee-script.git
-[submodule ".emacs.d/vender/coffee-mode"]
-	path = .emacs.d/vender/coffee-mode
+[submodule ".emacs.d/vendor/coffee-mode"]
+	path = .emacs.d/vendor/coffee-mode
 	url = git://github.com/defunkt/coffee-mode.git
