@@ -13,9 +13,11 @@
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/elisp")
 (add-to-list 'load-path "~/.emacs.d/vimpulse")
+(menu-bar-mode -1)
 
 ;; Key Mapping
-(global-set-key "\C-h" 'delete-backward-char)
+;; (global-set-key "\C-h" 'delete-backward-char)
+(keyboard-translate ?\C-h ?\C-?)
 ;(global-set-key "\C-[" 'ESC) ;cause "M-x is undefined"
 (global-set-key "\C-m" 'newline-and-indent)
 (global-set-key "\C-z" 'undo)
