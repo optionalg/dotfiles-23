@@ -5,14 +5,15 @@
 ;;=============================
 ;; Basic settings
 (setq initial-major-mode 'lisp-interaction-mode)
-(setq-default tab-width 4)
+(setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
 (global-font-lock-mode t)
 (line-number-mode t)
 (column-number-mode t)
 (add-to-list 'load-path "~/.emacs.d")
-(add-to-list 'load-path "~/.emacs.d/elisp")
-(menu-bar-mode -1)
+(add-to-list 'load-path "~/.emacs.d/vendor")
+(unless window-system
+    (menu-bar-mode -1))
 
 ;; Key Mapping
 ;; (global-set-key "\C-h" 'delete-backward-char)
@@ -32,7 +33,7 @@
 ;; Edit
 (show-paren-mode 1)
 (which-function-mode 1)
-(global-auto-revert-mode 1)		;auto-reload the changed file
+(global-auto-revert-mode 1) ;auto-reload the changed file
 ; Scroll
 (setq scroll-conservatively 35
       scroll-margin 0
@@ -43,9 +44,9 @@
 (setq highlight-nonselected-windows t)
 ; Auto BR
 (add-hook 'text-mode-hook
-	   '(lambda ()
-	      (refill-mode 1)
-	      ))
+          '(lambda ()
+             (refill-mode 1)
+             ))
 ; fold always
 (setq truncate-lines nil)
 (setq truncate-partial-width-windows nil)
@@ -87,14 +88,16 @@
     (unless (file-exists-p backup-dir)
       (make-directory-internal backup-dir))
     (if (file-directory-p backup-dir)
-	(let*
-	    ((file-path (expand-file-name file))
-	     (chars-alist '((?/ . (?#))(?# . (?# ?#))(?: . (?\;))(?\; . (?\; ?\;))))
-	     (mapchars(lambda (c) (or (cdr (assq c chars-alist)) (list c)))))
-	  (setq ad-return-value
-		(concat backup-dir "/" (mapconcat 'char-to-string
-						  (apply 'append (mapcar mapchars file-path)) "")))) ad-do-it)))
- 	
+        (let*
+            ((file-path (expand-file-name file))
+             (chars-alist '((?/ . (?#))(?# . (?# ?#))(?: . (?\;))(?\; . (?\; ?\;))))
+             (mapchars(lambda (c) (or (cdr (assq c chars-alist)) (list c)))))
+          (setq ad-return-value
+                (concat backup-dir "/" (mapconcat 'char-to-string
+                                                  (apply 'append
+                                                         (mapcar mapchars file-path)) ""))))
+      ad-do-it)))
+
 ;; original commands
 (defun my-get-date-gen (form) (insert (format-time-string form)))
 (defun my-get-date () (interactive) (my-get-date-gen "%Y-%m-%d"))
@@ -104,9 +107,6 @@
 (global-set-key "\C-c\C-t" 'my-get-time)
 (global-set-key "\C-c\ed" 'my-get-dtime)
 
-;; setting elisps
-(add-to-list 'load-path "~/.emacs.d/vimpulse")
-(require 'vimpulse)
-
-(add-to-list 'load-path "~/.emacs.d/vendor/coffee-mode")
-(require 'coffee-mode)
+;; setting for elisps
+(require 'init-loader)
+(init-loader-load "~/.emacs.d/inits")
