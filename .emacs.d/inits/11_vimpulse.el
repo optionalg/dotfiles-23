@@ -8,9 +8,11 @@
 (vimpulse-map [?\C-p] 'viper-previous-line)
 
 ;; h l は行頭/行末を超えられるようにする
-(vimpulse-map "h" 'backward-char)
-(vimpulse-map "l" 'forward-char)
+;; (vimpulse-map "h" 'backward-char)
+;; (vimpulse-map "l" 'forward-char)
 
 ;; deleteと backspaceキーは文字削除
 (vimpulse-map [delete] 'vimpulse-delete)
 (vimpulse-map [backspace] 'backward-delete-char-untabify)
+
+(setq-default viper-auto-indent t)
