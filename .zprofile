@@ -13,4 +13,3 @@ case $HOST in
     yhmba.local)
         echo '';;
 esac
-
