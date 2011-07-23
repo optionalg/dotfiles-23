@@ -1,9 +1,9 @@
-[submodule ".emacs.d/vimpulse"]
-	path = .emacs.d/vimpulse
-	url = git://gitorious.org/vimpulse/vimpulse.git
 [submodule ".vim/bundle/vim-coffee-script"]
 	path = .vim/bundle/vim-coffee-script
 	url = git://github.com/kchmck/vim-coffee-script.git
 [submodule ".emacs.d/vendor/coffee-mode"]
 	path = .emacs.d/vendor/coffee-mode
 	url = git://github.com/defunkt/coffee-mode.git
+[submodule ".emacs.d/vendor/vimpulse"]
+	path = .emacs.d/vendor/vimpulse
+	url = git://gitorious.org/vimpulse/vimpulse.git
