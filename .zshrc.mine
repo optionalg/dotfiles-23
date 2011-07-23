@@ -44,6 +44,7 @@ case "$HOST" in
 		;;
 	yhmba.local)
 		export PATH=/Users/yukihr/bin/:$PATH
+    alias emacs=/usr/local/Cellar/emacs/23.3/Emacs.app/Contents/MacOS/Emacs
 		;;
 esac
 
