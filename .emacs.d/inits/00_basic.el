@@ -6,11 +6,20 @@
 (setq initial-major-mode 'lisp-interaction-mode)
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
+(setq auto-save-default nil)
 (global-font-lock-mode t)
 (line-number-mode t)
 (column-number-mode t)
-(unless window-system
+(unless (boundp 'window-system)
     (menu-bar-mode -1))
+(if (boundp 'window-system)
+    (progn
+      (setq initial-frame-alist
+            (append (list
+                     '(width . 124) ;; ウィンドウ幅
+                     '(height . 48) ;; ウィンドウの高さ
+                     )))
+      (toggle-scroll-bar nil)))
 
 ;; Key Mapping
 ;; (global-set-key "\C-h" 'delete-backward-char)
