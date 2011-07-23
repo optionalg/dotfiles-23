@@ -7,3 +7,6 @@
 [submodule ".emacs.d/vendor/vimpulse"]
 	path = .emacs.d/vendor/vimpulse
 	url = git://gitorious.org/vimpulse/vimpulse.git
+[submodule ".emacs.d/vendor/auto-complete"]
+	path = .emacs.d/vendor/auto-complete
+	url = https://github.com/m2ym/auto-complete.git
