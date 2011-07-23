@@ -2,7 +2,7 @@ alias diff="diff -u"
 alias grep="grep --exclude='tags' --exclude='*.svn-*' --exclude='*.git*' --exclude='entries'"
 alias lv="lv -Ou8 -c"
 alias g="hub"
-alias e="env TERM=xterm-256color emacs -nw"
+alias e="env TERM=xterm-256color emacs --reverse"
 
 # ls after cd
 function chpwd() { ls }
@@ -40,11 +40,11 @@ case "$HOST" in
 		export EDITOR=vim
 		export DISPLAY=192.168.236.1:0.0
 		export PATH=/home/yukihr/bin/:$PATH
-		alias ta="tmux attach -t"
 		;;
 	yhmba.local)
 		export PATH=/Users/yukihr/bin/:$PATH
-    alias emacs=/usr/local/Cellar/emacs/23.3/Emacs.app/Contents/MacOS/Emacs
+    alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -rv"
+    alias e="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n"
 		;;
 esac
 

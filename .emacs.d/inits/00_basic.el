@@ -3,7 +3,6 @@
 ;;=============================
 ;; global settings
 ;;=============================
-;; Basic settings
 (setq initial-major-mode 'lisp-interaction-mode)
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
@@ -105,3 +104,8 @@
 (global-set-key "\C-c\C-d" 'my-get-date)
 (global-set-key "\C-c\ed" 'my-get-dtime)
 (global-set-key "\C-xt" (term "/usr/bin/zsh"))
+
+;; start server
+(require 'server)
+(unless (server-running-p)
+  (server-start))
