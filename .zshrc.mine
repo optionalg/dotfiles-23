@@ -8,7 +8,7 @@ alias e="env TERM=xterm-256color emacs --reverse"
 function chpwd() { ls }
 
 # plugins
-source ~/.zsh/plugin/incr-0.2.zsh
+# source ~/.zsh/plugin/incr-0.2.zsh
 
 if [ $TERM = 'screen' ]; then
 	preexec() {
