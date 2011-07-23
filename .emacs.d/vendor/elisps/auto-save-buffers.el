@@ -49,7 +49,7 @@
 		 (string-match include-regexp buffer-file-name)
                  (not (string-match exclude-regexp buffer-file-name))
 		 (file-writable-p buffer-file-name))
-	    (save-buffer))
+	    (basic-save-buffer))
 	(setq buffers (cdr buffers))))))
 
 ;; auto-save-buffers の on/off をトグルで切り替える

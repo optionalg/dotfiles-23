@@ -3,4 +3,4 @@
 (eval-after-load "color-theme"
                  '(progn
                     (color-theme-initialize)
-                    (color-theme-arjen)))
+                    (color-theme-billw)))

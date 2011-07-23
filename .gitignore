@@ -1,3 +1,5 @@
 .zsh_history
 .vim/.netrwhist
 .emacs.d/auto-save-list
+.emacs.d/tramp
+.DS_Store
