@@ -9,7 +9,6 @@
     '(lambda() (coffee-custom)))
 
 ;; flymake for coffee script, form: http://d.hatena.ne.jp/antipop/20110508/1304838383
-(require 'flymake)
 (setq flymake-coffeescript-err-line-patterns
       '(("\\(Error: In \\([^,]+\\), .+ on line \\([0-9]+\\).*\\)" 2 3 nil 1)))
 
@@ -49,13 +48,12 @@
   (if buffer-file-name
       (progn
         (save-buffer)
-        (unless (comint-check-proc "*CoffeeRun*")
-          (set-buffer
-           (apply 'make-comint "CoffeeRun"
-                  coffee-command nil (cons buffer-file-name '()))))
+        (set-buffer
+         (apply 'make-comint "CoffeeRun"
+                coffee-command nil (cons buffer-file-name '())))
 
         (display-buffer "*CoffeeRun*")
-        (read-string "coffee-run-buffer-file finished..")
+        (read-string "press some key to close..")
         (kill-buffer "*CoffeeRun*"))
 
     (message "Please save buffer first.")))
