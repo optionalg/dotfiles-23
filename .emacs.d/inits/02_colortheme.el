@@ -3,4 +3,6 @@
 (eval-after-load "color-theme"
                  '(progn
                     (color-theme-initialize)
-                    (color-theme-dark-laptop)))
+                    ;; (color-theme-dark-laptop)
+                    (color-theme-ld-dark)
+                    ))
