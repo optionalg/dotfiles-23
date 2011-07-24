@@ -10,9 +10,9 @@
 (global-font-lock-mode t)
 (line-number-mode t)
 (column-number-mode t)
-(unless (boundp 'window-system)
+(unless window-system
     (menu-bar-mode -1))
-(if (boundp 'window-system)
+(if window-system
     (progn
       (setq initial-frame-alist
             (append (list
@@ -141,7 +141,7 @@
 ;; fonts
 (when (and
        (>= emacs-major-version 23)
-       (boundp 'window-system)
+       window-system
        (eq system-type 'darwin))
   (set-face-attribute 'default nil
                       :family "monaco"
