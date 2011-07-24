@@ -42,12 +42,13 @@ case "$HOST" in
 		export PATH=/home/yukihr/bin/:$PATH
 		;;
 	yhmba.local)
-		export PATH=/Users/yukihr/bin/:$PATH
+		export PATH=/Users/yukihr/bin:$PATH
     if [ $EMACS ]; then
        export TERM=xterm-256color
     fi
     alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -rv"
     alias e="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n"
+    nave use 0.4.9
 		;;
 esac
 
