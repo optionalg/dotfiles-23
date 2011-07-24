@@ -3,3 +3,4 @@
 .emacs.d/auto-save-list
 .emacs.d/tramp
 .DS_Store
+.emacs.d/ac-comphist.dat
