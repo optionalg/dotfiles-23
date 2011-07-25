@@ -21,6 +21,13 @@
                      )))
       (toggle-scroll-bar nil)))
 
+;; Key
+(when (eq system-type 'darwin)         ; もし、システムが Mac のとき
+  (setq mac-command-key-is-meta nil)   ; コマンドキーをメタにしない
+  (setq mac-option-modifier 'meta)     ; オプションキーをメタに
+  (setq mac-command-modifier 'super)   ; コマンドキーを Super に
+  (setq mac-pass-control-to-system t)) ; コントロールキーを Mac ではなく Emacs に渡す
+
 ;; Key Mapping
 ;; (global-set-key "\C-h" 'delete-backward-char)
 (keyboard-translate ?\C-h ?\C-?)
@@ -35,6 +42,7 @@
 (global-set-key "\C-xm" 'browse-url-at-point)
 (global-set-key "\C-x." 'find-file-at-point)
 (global-set-key [C-tab] 'other-window)
+(global-set-key [(super p)] nil)
 
 ;; Edit
 (show-paren-mode 1)
