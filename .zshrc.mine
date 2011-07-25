@@ -4,6 +4,12 @@ alias lv="lv -Ou8 -c"
 alias g="hub"
 alias e="env TERM=xterm-256color emacs --reverse"
 
+# when fired in emacs, TERM is set to eterm-color but its not in terminfo
+# so, we have to set TERM to exisisting one in terminfo to have correct face
+if [ $EMACS ]; then
+  export TERM=xterm-256color
+fi
+
 # ls after cd
 function chpwd() { ls }
 
@@ -35,6 +41,11 @@ case "$HOST" in
 		export PATH=/home/yhara/bin/:$PATH
 		export PAGER='lv -Ou8 -c'
 		export GIT_PAGER=${PAGER}
+    alias emacs="emacs -nw"
+    alias e="emacsclient -n"
+    if [ $EMACS ]; then
+      alias vim="emacsclient -n"
+    fi
 		;;
 	"sie")
 		export EDITOR=vim
@@ -43,9 +54,6 @@ case "$HOST" in
 		;;
 	yhmba.local)
 		export PATH=/Users/yukihr/bin:$PATH
-    if [ $EMACS ]; then
-       export TERM=xterm-256color
-    fi
     alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -rv"
     alias e="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n"
     nave use 0.4.9
