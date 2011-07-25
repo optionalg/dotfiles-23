@@ -3,10 +3,14 @@ alias grep="grep --exclude='tags' --exclude='*.svn-*' --exclude='*.git*' --exclu
 alias lv="lv -Ou8 -c"
 alias g="hub"
 
+if [ $EMACS ]; then
 # when fired in emacs, TERM is set to eterm-color but its not in terminfo
 # so, we have to set TERM to exisisting one in terminfo to have correct face
-if [ $EMACS ]; then
   export TERM=xterm-256color
+
+# dont use vim anymore!
+  alias vim="emacsclient -n"
+  export EDITOR="emacsclient -n"
 fi
 
 # ls after cd
@@ -24,14 +28,6 @@ if [ $TERM = 'screen' ]; then
 	}
 fi
 
-case "$HOST" in
-	"sid" | "sie")
-		#Ruby Version Manager
-		[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
-		fpath=(~/.rvm/scripts/zsh/Completion ${fpath})
-		autoload -U compinit; compinit
-		;;
-esac
 
 case "$HOST" in
 	"sid")
@@ -42,10 +38,6 @@ case "$HOST" in
 		export GIT_PAGER=${PAGER}
     alias emacs="emacs -nw"
     alias e="emacsclient -n"
-    if [ $EMACS ]; then
-      alias vim="emacsclient -n"
-      export EDITOR=emacsclient -n
-    fi
 		;;
 	"sie")
 		export EDITOR=vim
@@ -60,8 +52,14 @@ case "$HOST" in
 		;;
 esac
 
-
 fortune
+
+
+## Ruby Version Manager
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+fpath=(~/.rvm/scripts/zsh/Completion ${fpath})
+autoload -U compinit; compinit
+
 
 ###-begin-npm-completion-###
 #
@@ -105,3 +103,33 @@ elif compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
+
+
+### VC info on RPROMPT ###
+autoload -Uz add-zsh-hook
+autoload -Uz colors
+colors
+autoload -Uz vcs_info
+
+zstyle ':vcs_info:*' enable git svn hg bzr
+zstyle ':vcs_info:*' formats '%s/%b'
+zstyle ':vcs_info:*' actionformats '%s/%b|%a'
+zstyle ':vcs_info:(svn|bzr):*' branchformat '%b:r%r'
+zstyle ':vcs_info:bzr:*' use-simple true
+
+autoload -Uz is-at-least
+if is-at-least 4.3.10; then
+  zstyle ':vcs_info:git:*' check-for-changes true
+  zstyle ':vcs_info:git:*' stagedstr "+"
+  zstyle ':vcs_info:git:*' unstagedstr "-"
+  zstyle ':vcs_info:git:*' formats '%s/%b%c%u'
+  zstyle ':vcs_info:git:*' actionformats '%s/%b|%a%c%u'
+fi
+
+function _update_vcs_info_msg() {
+    psvar=()
+    LANG=en_US.UTF-8 vcs_info
+    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+}
+add-zsh-hook precmd _update_vcs_info_msg
+RPROMPT="%1(v|%F{green}%1v%f|)""$RPROMPT"
