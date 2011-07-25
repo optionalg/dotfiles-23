@@ -5,3 +5,7 @@
 
 (require 'popwin)
 (setq display-buffer-function 'popwin:display-buffer);
+
+(require 'recentf)
+(setq recentf-max-saved-items 1000)
+(recentf-mode 1)
