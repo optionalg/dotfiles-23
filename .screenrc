@@ -26,6 +26,8 @@ startup_message off
 autodetach on
 shelltitle '% |sh'
 
+maptimeout 0
+
 logfile "$HOME/.screen/screen-%Y%m%d-%n.log"
 log on
 deflog on

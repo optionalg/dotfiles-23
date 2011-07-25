@@ -16,3 +16,7 @@
 (vimpulse-map [backspace] 'backward-delete-char-untabify)
 
 (setq-default viper-auto-indent t)
+
+;; supress delay on ESC
+;; set "maptimeout" 0 to screenrc using with screen
+(setq viper-fast-keyseq-timeout 0)
