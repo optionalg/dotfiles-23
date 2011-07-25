@@ -2,7 +2,6 @@ alias diff="diff -u"
 alias grep="grep --exclude='tags' --exclude='*.svn-*' --exclude='*.git*' --exclude='entries'"
 alias lv="lv -Ou8 -c"
 alias g="hub"
-alias e="env TERM=xterm-256color emacs --reverse"
 
 # when fired in emacs, TERM is set to eterm-color but its not in terminfo
 # so, we have to set TERM to exisisting one in terminfo to have correct face
@@ -53,7 +52,7 @@ case "$HOST" in
 		export DISPLAY=192.168.236.1:0.0
 		export PATH=/home/yukihr/bin/:$PATH
 		;;
-	yhmba.local)
+	yhmba.local | *plala.or.jp)
 		export PATH=/Users/yukihr/bin:$PATH
     alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -rv"
     alias e="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n"
