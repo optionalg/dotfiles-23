@@ -45,6 +45,7 @@ case "$HOST" in
     alias e="emacsclient -n"
     if [ $EMACS ]; then
       alias vim="emacsclient -n"
+      export EDITOR=emacsclient -n
     fi
 		;;
 	"sie")
