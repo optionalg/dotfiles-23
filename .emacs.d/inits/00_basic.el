@@ -10,6 +10,7 @@
 (global-font-lock-mode t)
 (line-number-mode t)
 (column-number-mode t)
+(tool-bar-mode -1)
 (unless window-system
     (menu-bar-mode -1))
 (if window-system
@@ -20,6 +21,25 @@
                      '(height . 48) ;; ウィンドウの高さ
                      )))
       (toggle-scroll-bar nil)))
+(defun toggle-fullscreen (&optional f)
+  "toggle full screen or normal window"
+  (interactive)
+  (let ((current-value (frame-parameter nil 'fullscreen)))
+    (set-frame-parameter nil 'fullscreen
+                         (if (equal 'fullboth current-value)
+                             (if (boundp 'old-fullscreen) old-fullscreen nil)
+                           (progn (setq old-fullscreen current-value)
+                                  'fullboth)))))
+(if (eq system-type 'darwin)
+    (global-set-key [C-f11] 'ns-toggle-fullscreen)
+  (progn
+    ;; Make new frames fullscreen by default. Note: this hook doesn't do
+    ;; anything to the initial frame if it's in your .emacs, since that file is
+    ;; read _after_ the initial frame is created.
+    ;; (add-hook 'after-make-frame-functions 'toggle-fullscreen)
+    (global-set-key [f11] 'toggle-fullscreen)
+    ))
+
 
 ;; Key
 (when (eq system-type 'darwin)         ; もし、システムが Mac のとき
@@ -43,6 +63,7 @@
 (global-set-key "\C-x." 'find-file-at-point)
 (global-set-key [C-tab] 'other-window)
 (global-set-key [(super p)] nil)
+(global-set-key "\M-\C-f" 'ns-toggle-fullscreen)
 
 ;; Edit
 (show-paren-mode 1)
@@ -120,7 +141,6 @@
 (global-set-key "\C-c\C-t" 'my-get-time)
 (global-set-key "\C-c\C-d" 'my-get-date)
 (global-set-key "\C-c\ed" 'my-get-dtime)
-(global-set-key "\C-xt" (term "/usr/bin/zsh"))
 
 ;; start server
 (require 'server)
@@ -145,32 +165,3 @@
  (when (and (file-exists-p dir) (not (member dir exec-path)))
    (setenv "PATH" (concat dir ":" (getenv "PATH")))
    (setq exec-path (append (list dir) exec-path))))
-
-;; fonts
-(when (and
-       (>= emacs-major-version 23)
-       window-system
-       (eq system-type 'darwin))
-  (set-face-attribute 'default nil
-                      :family "monaco"
-                      :height 120)
-  (set-fontset-font
-   (frame-parameter nil 'font)
-   'japanese-jisx0208
-   '("Hiragino Maru Gothic Pro" . "iso10646-1"))
-  (set-fontset-font
-   (frame-parameter nil 'font)
-   'japanese-jisx0212
-   '("Hiragino Maru Gothic Pro" . "iso10646-1"))
-  (set-fontset-font
-   (frame-parameter nil 'font)
-   'mule-unicode-0100-24ff
-   '("monaco" . "iso10646-1"))
-  (setq face-font-rescale-alist
-        '(("^-apple-hiragino.*" . 1.1)
-          (".*osaka-bold.*" . 1.2)
-          (".*osaka-medium.*" . 1.2)
-          (".*courier-bold-.*-mac-roman" . 1.0)
-          (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
-          (".*monaco-bold-.*-mac-roman" . 0.9)
-          ("-cdac$" . 1.3))))
