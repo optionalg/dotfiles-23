@@ -21,7 +21,7 @@
          (local-file (file-relative-name
                       temp-file
                       (file-name-directory buffer-file-name))))
-    (list "coffee" (list local-file))))
+    (list "coffee" (list "--compile" "--bare" local-file))))
 
 (defun flymake-coffeescript-load ()
   (interactive)
@@ -59,3 +59,4 @@
     (message "Please save buffer first.")))
 
 (define-key coffee-mode-map (kbd "C-c r") 'coffee-run-buffer-file-saving)
+(define-key coffee-mode-map [(super r)] 'coffee-compile-buffer)
