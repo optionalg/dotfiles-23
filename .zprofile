@@ -1,6 +1,6 @@
 #platform specific
 case $HOST in
-    sid)
+    sid | ubuntu)
         # sshfs -o y-hara@192.168.71.1: ~/win/
         screen -U -D -RR
         ;;
@@ -11,5 +11,9 @@ case $HOST in
         #sudo aptitude update
         ;;
     yhmba.local)
-        echo '';;
+        echo ''
+        ;;
+    staff04001*)
+        screen -U -D -RR
+        ;;
 esac

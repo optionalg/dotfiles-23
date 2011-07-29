@@ -8,7 +8,7 @@ if [ $EMACS ]; then
 # so, we have to set TERM to exisisting one in terminfo to have correct face
   export TERM=xterm-256color
 
-# dont use vim anymore!
+# dont use vim in emacs!
   alias vim="emacsclient -n"
   export EDITOR="emacsclient -n"
 fi
@@ -30,14 +30,15 @@ fi
 
 
 case "$HOST" in
-	"sid")
+	"sid" | "ubuntu")
 		export EDITOR=vim
 		export DISPLAY=192.168.107.1:0.0
 		export PATH=/home/yhara/bin/:$PATH
 		export PAGER='lv -Ou8 -c'
 		export GIT_PAGER=${PAGER}
-    alias emacs="emacs -nw"
+    alias emacs="emacs -rv"
     alias e="emacsclient -n"
+    nave use 0.4.9
 		;;
 	"sie")
 		export EDITOR=vim
@@ -49,6 +50,11 @@ case "$HOST" in
     alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -rv"
     alias e="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n"
     nave use 0.4.9
+		;;
+	staff04001*)
+		export PATH=/Users/yhara/.nave/installed/0.4.9/bin:/Users/yhara/bin:$PATH
+    alias emacs="/Users/yhara/Applications/Emacs.app/Contents/MacOS/Emacs -rv"
+    alias e="/Users/yhara/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n"
 		;;
 esac
 
