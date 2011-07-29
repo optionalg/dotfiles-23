@@ -3,4 +3,6 @@
 .emacs.d/auto-save-list
 .emacs.d/tramp
 .DS_Store
-.emacs.d/ac-comphist.dat
+.emacs.d/ac-comphist*
+.emacs.d/session*
+.ssh
