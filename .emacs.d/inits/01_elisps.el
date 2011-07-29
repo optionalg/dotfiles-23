@@ -4,7 +4,9 @@
 (run-with-idle-timer 5 t 'auto-save-buffers)
 
 (require 'popwin)
-(setq display-buffer-function 'popwin:display-buffer);
+(setq display-buffer-function 'popwin:display-buffer)
+(setq anything-samewindow nil)
+(push '("*anything*" :height 20) popwin:special-display-config)
 
 (require 'recentf)
 (setq recentf-max-saved-items 1000)
