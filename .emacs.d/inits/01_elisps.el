@@ -11,3 +11,5 @@
 (require 'recentf)
 (setq recentf-max-saved-items 1000)
 (recentf-mode 1)
+
+(autoload 'ac-mode "ac-mode" "Minor mode for advanced completion." t nil)
