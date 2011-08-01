@@ -6,6 +6,7 @@
 (vimpulse-map "k" 'previous-line)
 (vimpulse-map [?\C-n] 'viper-next-line)
 (vimpulse-map [?\C-p] 'viper-previous-line)
+(vimpulse-map (kbd "C-w o") nil)
 
 ;; (vimpulse-map ";" 'viper-ex)
 ;; (vimpulse-map ":" 'anything-M-x)
@@ -136,3 +137,9 @@
 (vimpulse-define-key 'my-anything-minibuffer-mode 'vi-state "/" 'anything-isearch)
 
 
+;; for auto-complete
+;; <ESC> once to normal mode
+;; from: https://sites.google.com/site/fudist/Home/vimpulse
+(setq ac-use-quick-help nil)
+(setq ac-use-menu-map t)
+(define-key ac-completing-map "\C-[" 'viper-exit-insert-state)
