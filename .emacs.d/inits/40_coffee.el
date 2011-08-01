@@ -8,6 +8,11 @@
 (add-hook 'coffee-mode-hook
     '(lambda() (coffee-custom)))
 
+;; avoid to show escape charactors in REPL
+(setenv "NODE_NO_READLINE" "1")
+
+(define-key coffee-mode-map [(super r)] 'coffee-compile-buffer)
+
 ;; flymake for coffee script, form: http://d.hatena.ne.jp/antipop/20110508/1304838383
 (setq flymake-coffeescript-err-line-patterns
       '(("\\(Error: In \\([^,]+\\), .+ on line \\([0-9]+\\).*\\)" 2 3 nil 1)))
@@ -59,4 +64,3 @@
     (message "Please save buffer first.")))
 
 (define-key coffee-mode-map (kbd "C-c r") 'coffee-run-buffer-file-saving)
-(define-key coffee-mode-map [(super r)] 'coffee-compile-buffer)
