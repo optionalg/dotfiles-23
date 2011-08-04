@@ -10,3 +10,9 @@
 [submodule ".emacs.d/vendor/auto-complete"]
 	path = .emacs.d/vendor/auto-complete
 	url = git://github.com/m2ym/auto-complete.git
+[submodule ".emacs.d/vendor/anything-config"]
+	path = .emacs.d/vendor/anything-config
+	url = git://repo.or.cz/anything-config.git
+[submodule ".emacs.d/vendor/html5-el"]
+	path = .emacs.d/vendor/html5-el
+	url = https://github.com/hober/html5-el.git
