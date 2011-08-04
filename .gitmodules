@@ -19,3 +19,6 @@
 [submodule ".emacs.d/vendor/zencoding"]
 	path = .emacs.d/vendor/zencoding
 	url = https://github.com/rooney/zencoding.git
+[submodule ".emacs.d/vendor/jade-mode"]
+	path = .emacs.d/vendor/jade-mode
+	url = https://github.com/brianc/jade-mode.git
