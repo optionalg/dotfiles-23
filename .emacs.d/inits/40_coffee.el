@@ -15,18 +15,18 @@
 
 ;; flymake for coffee script, form: http://d.hatena.ne.jp/antipop/20110508/1304838383
 (setq flymake-coffeescript-err-line-patterns
-      '(("\\(Error: In \\([^,]+\\), .+ on line \\([0-9]+\\).*\\)" 2 3 nil 1)))
+      '())
 
 (defconst flymake-allowed-coffeescript-file-name-masks
   '(("\\.coffee$" flymake-coffeescript-init)))
 
 (defun flymake-coffeescript-init ()
-  (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                     'flymake-create-temp-inplace))
+  (let* ((local-dir (file-name-directory buffer-file-name))
          (local-file (file-relative-name
-                      temp-file
-                      (file-name-directory buffer-file-name))))
-    (list "coffee" (list "--compile" "--bare" local-file))))
+                      buffer-file-name
+                      local-dir)))
+    (list "coffee" (list "--compile" "--output" local-dir "--bare" local-file)))
+  )
 
 (defun flymake-coffeescript-load ()
   (interactive)
@@ -36,7 +36,9 @@
   (setq flymake-allowed-file-name-masks
         (append flymake-allowed-file-name-masks
                 flymake-allowed-coffeescript-file-name-masks))
-  (setq flymake-err-line-patterns flymake-coffeescript-err-line-patterns)
+  (setq flymake-err-line-patterns (cons
+                                   '("\\(Error: In \\([^,]+\\), .+ on line \\([0-9]+\\).*\\)" 2 3 nil 1)
+                                   flymake-err-line-patterns))
   (flymake-mode t))
 
 (add-hook 'coffee-mode-hook 'flymake-coffeescript-load)

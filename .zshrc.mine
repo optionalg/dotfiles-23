@@ -11,6 +11,8 @@ if [ $EMACS ]; then
 # dont use vim in emacs!
   alias vim="emacsclient -n"
   export EDITOR="emacsclient -n"
+# for term-toggle
+  alias ~cd="cd"
 fi
 
 # ls after cd
