@@ -4,6 +4,7 @@
 ;; global settings
 ;;=============================
 (setq initial-major-mode 'lisp-interaction-mode)
+(setq inhibit-startup-screen t)
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
 (setq auto-save-default nil)
