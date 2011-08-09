@@ -1,4 +1,5 @@
 ;; タブ, 全角スペース、改行直前の半角スペースを表示する
+(setq load-path (cons (expand-file-name "~/.emacs.d/vendor/elisps") load-path))
 (when (require 'jaspace nil t)
   (when (boundp 'jaspace-modes)
     (setq jaspace-modes (append jaspace-modes
