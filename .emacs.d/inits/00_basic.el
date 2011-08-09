@@ -3,6 +3,12 @@
 ;;=============================
 ;; global settings
 ;;=============================
+
+;; start server
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+
 (setq initial-major-mode 'lisp-interaction-mode)
 (setq inhibit-startup-screen t)
 (setq-default tab-width 2)
@@ -18,7 +24,7 @@
     (progn
       (setq initial-frame-alist
             (append (list
-                     '(width . 124) ;; ウィンドウ幅
+                     '(width . 164) ;; ウィンドウ幅
                      '(height . 48) ;; ウィンドウの高さ
                      )))
       (toggle-scroll-bar nil)))
@@ -41,6 +47,8 @@
     (global-set-key [f11] 'toggle-fullscreen)
     ))
 
+;; display EOF
+(setq-default indicate-empty-lines t)
 
 ;; Key
 (when (eq system-type 'darwin)         ; もし、システムが Mac のとき
@@ -143,10 +151,21 @@
 (global-set-key "\C-c\C-d" 'my-get-date)
 (global-set-key "\C-c\ed" 'my-get-dtime)
 
-;; start server
-(require 'server)
-(unless (server-running-p)
-  (server-start))
+;; insert day with calender
+(eval-after-load "calendar"
+  '(progn
+     (define-key calendar-mode-map
+       "\C-m" 'my-insert-day)
+     (defun my-insert-day ()
+       (interactive)
+       (let ((day nil)
+             (calendar-date-display-form
+         '("[" year "-" (format "%02d" (string-to-int month))
+           "-" (format "%02d" (string-to-int day)) "]")))
+         (setq day (calendar-date-string
+                    (calendar-cursor-to-date t)))
+         (exit-calendar)
+         (insert day)))))
 
 ;; path
 ;; より下に記述した物が PATH の先頭に追加されます
