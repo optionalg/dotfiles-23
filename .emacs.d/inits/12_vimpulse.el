@@ -1,4 +1,5 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/vimpulse")
+(add-to-list 'load-path "~/.emacs.d/vendor/elisps")
 (require 'vimpulse)
 
 ;; 物理行移動を基本にする
