@@ -1,7 +1,12 @@
+autoload predict-on
+predict-on
+
+setopt completealiases # complete as original command
 alias diff="diff -u"
 alias grep="grep --exclude='tags' --exclude='*.svn-*' --exclude='*.git*' --exclude='entries'"
 alias lv="lv -Ou8 -c"
-alias g="hub"
+alias g=git
+git() { hub $@ }
 
 if [ $EMACS ]; then
 # when fired in emacs, TERM is set to eterm-color but its not in terminfo
