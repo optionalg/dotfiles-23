@@ -10,7 +10,9 @@
 	ci = commit
 	co = checkout
 	br = branch
+  sm = submodule
 	lo = log --oneline
+  gr = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
 
 [core]
-  pger = lv -c -Ou8
+  pager = lv -c -Ou8
