@@ -15,3 +15,4 @@ cnoremap <M-n> <C-n>
 cnoremap <M-p> <C-p>
 cnoremap <C-n> <Tab>
 cnoremap <C-p> <S-Tab>
+unmap <C-;>
