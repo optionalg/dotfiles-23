@@ -1,3 +1,4 @@
+(add-to-list 'load-path "~/.emacs.d/vendor/elisps")
 (require 'multi-term)
 (setq multi-term-program shell-file-name)
 (global-set-key (kbd "C-c t") '(lambda ()
