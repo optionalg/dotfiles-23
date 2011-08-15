@@ -20,6 +20,7 @@
 (global-set-key [M-f1] 'term-toggle)
 (global-set-key (kbd "C-x t") 'term-toggle-cd)
 
+(require 'savekill)
 ;; auto-complete に同じ機能
 ;; (autoload 'ac-mode "~/.emacs.d/vendor/elisps/ac-mode" "Minor mode for advanced completion." t nil)
 ;; (load "~./.emacs.d/vendor/elisps/ac-mode")
