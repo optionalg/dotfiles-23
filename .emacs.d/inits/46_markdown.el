@@ -6,7 +6,7 @@
             (cons '("\\.howm" . markdown-mode) auto-mode-alist)
             ))
 
-(setq markdown-command "markdown.php")
+(setq markdown-command "multimarkdown")
 
 (add-hook 'markdown-mode-hook
           '(lambda ()
