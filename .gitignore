@@ -7,3 +7,4 @@
 .emacs.d/ac-comphist*
 .emacs.d/session*
 .emacs.d/inits-disabled*
+/.emacs.d/kill-ring-saved.el
