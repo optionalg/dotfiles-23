@@ -25,7 +25,7 @@
          (local-file (file-relative-name
                       buffer-file-name
                       local-dir)))
-    (list "coffee" (list "--compile" "--output" local-dir "--bare" local-file)))
+    (list "coffee" (list "--compile" "--output" local-dir local-file)))
   )
 
 (defun flymake-coffeescript-load ()
