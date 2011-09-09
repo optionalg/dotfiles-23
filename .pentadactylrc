@@ -1,8 +1,12 @@
 set guioptions=bCrsB
 set hintkeys="aoeuidhtns"
+" start completion with TAB
+set autocomplete=
 set altwildmode=list:longest,full
 set complete=lS
 set hlfind
+set editor='emacsclient -c'
+set defsearch=googleen
 
 noremap  j 4j
 noremap  k 4k
@@ -16,3 +20,20 @@ cnoremap <M-p> <C-p>
 cnoremap <C-n> <Tab>
 cnoremap <C-p> <S-Tab>
 unmap <C-;>
+
+set passkeys+=mail\.google\.(com|co\.jp):jk<CR>,gi
+set passkeys+=www\.google\.com\/search:jk<CR>,gi
+set passkeys+=www\.google\.(com|co\.jp)\/reader\/view:jknp<CR><Space>,g
+
+" Show the Feed and Bookmark buttons on the statusbar
+javascript <<EOF
+(function(){
+    var statusPanel = document.createElement("statusbarpanel");
+    statusPanel.setAttribute("id", "buttons-panel-clone");
+    //statusPanel.appendChild(document.getElementById("feed-button"));
+    statusPanel.appendChild(document.getElementById("star-button"));
+    statusPanel.firstChild.setAttribute("style", "padding: 0; max-height: 16px;");
+    document.getElementById("status-bar")
+            .insertBefore(statusPanel, document.getElementById("security-button"));
+})();
+EOF
