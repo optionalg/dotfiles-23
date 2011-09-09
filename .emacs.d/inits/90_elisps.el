@@ -1,4 +1,3 @@
-;; 設定されてないように見える・・ → autoload が失敗
 (setq load-path (cons (expand-file-name "~/.emacs.d/vendor/elisps") load-path))
 
 (require 'auto-save-buffers)
@@ -13,9 +12,9 @@
 (setq recentf-max-saved-items 1000)
 (recentf-mode 1)
 
-(autoload 'term-toggle "~/.emacs.d/vendor/elisps/term-toggle"
+(autoload 'term-toggle "term-toggle"
   "Toggles between the *terminal* buffer and whatever buffer you are editing." t)
-(autoload 'term-toggle-cd "~/.emacs.d/vendor/elisps/term-toggle"
+(autoload 'term-toggle-cd "term-toggle"
   "Pops up a shell-buffer and insert a \"cd <file-dir>\" command." t)
 (global-set-key [M-f1] 'term-toggle)
 (global-set-key (kbd "C-x t") 'term-toggle-cd)
@@ -26,3 +25,5 @@
 ;; (load "~./.emacs.d/vendor/elisps/ac-mode")
 ;; (load "ac-mode")
 ;; (ac-mode) ;; enable
+
+(require 'moccur-edit)
