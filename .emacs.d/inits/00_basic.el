@@ -38,14 +38,21 @@
                            (progn (setq old-fullscreen current-value)
                                   'fullboth)))))
 (if (eq system-type 'darwin)
-    (global-set-key [C-f11] 'ns-toggle-fullscreen)
+    (progn
+      (global-set-key [C-f11] 'ns-toggle-fullscreen)
+      (mac-set-input-method-parameter `roman `cursor-color "green")
+      (mac-set-input-method-parameter `japanese-zenkaku `cursor-color "yellow")
+      ;; prevent many frames to be opened
+      (setq ns-pop-up-frames nil)
+      )
   (progn
     ;; Make new frames fullscreen by default. Note: this hook doesn't do
     ;; anything to the initial frame if it's in your .emacs, since that file is
     ;; read _after_ the initial frame is created.
     ;; (add-hook 'after-make-frame-functions 'toggle-fullscreen)
     (global-set-key [f11] 'toggle-fullscreen)
-    ))
+    )
+  )
 
 ;; display EOF
 (setq-default indicate-empty-lines t)
@@ -87,10 +94,11 @@
 (setq transient-mark-mode t) ;highlight region
 (setq highlight-nonselected-windows t)
 ; Auto BR
-(add-hook 'text-mode-hook
-          '(lambda ()
-             (refill-mode 1)
-             ))
+;; its so annoying..
+;; (add-hook 'text-mode-hook
+;;           '(lambda ()
+;;              (refill-mode 1)
+;;              ))
 ; fold always
 (setq truncate-lines nil)
 (setq truncate-partial-width-windows nil)
