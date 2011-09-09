@@ -10,6 +10,8 @@
       (ibus-define-common-key ?\C-\s nil)
       ;; C-/ は Undo に使う
       (ibus-define-common-key ?\C-/ nil)
+      (ibus-define-common-key ?\C-p nil)
+      (ibus-define-common-key ?\C-n nil)
       ;; IBusの状態によってカーソル色を変化させる
       (setq ibus-cursor-color '("yellow" "limegreen" "limegreen"))
       ;; C-; で半角英数モードをトグルする(iBus 側の設定も必要）
