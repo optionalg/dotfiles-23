@@ -1,3 +1,5 @@
+(load "dired-x")
+
 ;; (define-key dired-mode-map "v" 'dired-x-find-file)
 ;; (define-key dired-mode-map "V" 'dired-view-file)
 ;; (define-key dired-mode-map "j" 'dired-next-line)
