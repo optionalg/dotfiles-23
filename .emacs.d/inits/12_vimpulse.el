@@ -1,6 +1,11 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/vimpulse")
 (add-to-list 'load-path "~/.emacs.d/vendor/elisps")
+(setq viper-toggle-key "\C-q")
+
 (require 'vimpulse)
+
+;; (define-key global-map "\C-z" nil) ;;for elscreen
+;; (define-key global-map "\C-x\C-z" 'toggle-viper-mode)
 
 ;; 物理行移動を基本にする
 (vimpulse-map "j" 'next-line)
