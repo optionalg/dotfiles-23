@@ -8,7 +8,7 @@
 
 (setq markdown-command "multimarkdown")
 
-(add-hook 'markdown-mode-hook
-          '(lambda ()
-             (refill-mode nil)
-             ))
+;; (add-hook 'markdown-mode-hook
+;;           '(lambda ()
+;;              (refill-mode -1)
+;;              ))
