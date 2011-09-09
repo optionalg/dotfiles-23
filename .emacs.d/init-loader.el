@@ -116,7 +116,9 @@ e.x, 00_hoge.el, 01_huga.el ... 99_keybind.el"
     (if s (and (stringp s) (push s err-logs)) (mapconcat 'identity (reverse err-logs) "\n"))))
 
 (defun init-loader-re-load (re dir &optional sort)
-  (let ((load-path (cons dir load-path)))
+  ;; (let ((load-path (cons dir load-path))) ;; load-path will be in dynamic scope
+  (progn
+    (add-to-list 'load-path dir)
     (dolist (el (init-loader--re-load-files re dir sort))
       (condition-case e
           (let ((time (car (benchmark-run (load (file-name-sans-extension el))))))
