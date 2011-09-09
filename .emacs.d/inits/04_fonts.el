@@ -1,4 +1,5 @@
 ;; fonts
+;; Mac
 (when (and
        (>= emacs-major-version 23)
        window-system
@@ -26,3 +27,17 @@
           (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
           (".*monaco-bold-.*-mac-roman" . 0.9)
           ("-cdac$" . 1.3))))
+
+;; Ubuntu
+(when (and
+       (>= emacs-major-version 23)
+       window-system
+       (string= system-name 'ubuntu))
+  (set-face-attribute 'default nil
+                      :family "ricty"
+                      :height 110)
+  ;; (set-default-font "ricty-11:spacing=1")
+  ;; (set-face-font 'variable-pitch "ricty-11:spacing=1")
+  (set-fontset-font (frame-parameter nil 'font)
+                    'japanese-jisx0208
+                    '("ricty" . "unicode-bmp")))
