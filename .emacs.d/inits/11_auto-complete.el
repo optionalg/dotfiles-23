@@ -3,8 +3,8 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/vendor/auto-complete/dict")
 (ac-config-default)
+(global-auto-complete-mode t)
 
-;; other than default
 (add-to-list 'ac-modes 'coffee-mode)
 (add-to-list 'ac-modes 'jade-mode)
 (add-to-list 'ac-modes 'sws-mode)
