@@ -42,6 +42,8 @@ case "$HOST" in
 		export GIT_PAGER=${PAGER}
     alias emacs="emacs -rv"
     alias e="emacsclient -n"
+    # node settings
+    export NODE_PATH=~/.nave/installed/0.4.9/lib/node_modules/:$NODE_PATH
     nave use 0.4.9
 		;;
 	"sie")
@@ -53,6 +55,8 @@ case "$HOST" in
 		export PATH=/Users/yukihr/bin:$PATH
     alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -rv"
     alias e="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n"
+    # node settings
+    export NODE_PATH=~/lib/node_modules:$NODE_PATH
     nave use 0.4.9
 		;;
 	staff04001*)
