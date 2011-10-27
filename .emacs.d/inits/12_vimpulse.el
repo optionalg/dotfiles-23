@@ -1,6 +1,6 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/vimpulse")
 (add-to-list 'load-path "~/.emacs.d/vendor/elisps")
-(setq viper-toggle-key "\C-q")
+(setq viper-toggle-key [?\C-'])
 
 (require 'vimpulse)
 
