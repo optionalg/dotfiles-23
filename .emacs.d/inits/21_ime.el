@@ -15,7 +15,7 @@
       ;; IBusの状態によってカーソル色を変化させる
       (setq ibus-cursor-color '("yellow" "limegreen" "limegreen"))
       ;; C-; で半角英数モードをトグルする(iBus 側の設定も必要）
-      (ibus-define-common-key ?\C-; t)
+      (ibus-define-common-key (kbd "C-;") t)
       ;; すべてのバッファで入力状態を共有
       ;; (setq ibus-mode-local nil)
       ;; isearch-mode 検索中にカーソル形状が変わるように
@@ -24,3 +24,4 @@
       (setq ibus-prediction-window-position t)
 
       ))
+
