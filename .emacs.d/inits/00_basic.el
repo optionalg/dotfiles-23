@@ -28,6 +28,7 @@
                      '(height . 48) ;; ウィンドウの高さ
                      )))
       (toggle-scroll-bar nil)))
+
 (defun toggle-fullscreen (&optional f)
   "toggle full screen or normal window"
   (interactive)
@@ -37,11 +38,14 @@
                              (if (boundp 'old-fullscreen) old-fullscreen nil)
                            (progn (setq old-fullscreen current-value)
                                   'fullboth)))))
+
 (if (eq system-type 'darwin)
     (progn
-      (global-set-key [C-f11] 'ns-toggle-fullscreen)
+      ;; (global-set-key [C-f11] 'ns-toggle-fullscreen)
+      (setq default-input-method "MacOSX")
+      ;; (mac-add-ignore-shortcut '(control))
+      (mac-set-input-method-parameter `japanese `cursor-color "yellow")
       (mac-set-input-method-parameter `roman `cursor-color "green")
-      (mac-set-input-method-parameter `japanese-zenkaku `cursor-color "yellow")
       ;; prevent many frames to be opened
       (setq ns-pop-up-frames nil)
       )
@@ -53,6 +57,24 @@
     (global-set-key [f11] 'toggle-fullscreen)
     )
   )
+
+(defun region-string-or-currnet-word ()
+  "Get region string if region is set, else get current word."
+  (if mark-active
+      (buffer-substring (region-beginning) (region-end))
+    (current-word)))
+
+(defun search-google ()
+  (interactive)
+  (browse-url (format "http://google.com/search?q=%s"
+                      (region-string-or-currnet-word))))
+(global-set-key (kbd "C-x w") 'search-google)
+
+(defun search-eowp ()
+  (interactive)
+  (browse-url (format "http://eowp.alc.co.jp/search?q=%s"
+                      (region-string-or-currnet-word))))
+(global-set-key (kbd "C-x p") 'search-eowp)
 
 ;; display EOF
 (setq-default indicate-empty-lines t)
@@ -142,9 +164,7 @@
     (if (file-directory-p backup-dir)
         (let*
             ((file-path (expand-file-name file))
-             (chars-alist '((?/ . (?#))(?# . (?# ?#))(?: . (?\;))(?\; . (?\; ?\;))))
-             (mapchars(lambda (c) (or (cdr (assq c chars-alist)) (list c)))))
-          (setq ad-return-value
+             (chars-alist '((?/ . (?#))(?# . (?# ?#))(?: . (?\;))(?\; . (?\; ?\;)))) (mapchars(lambda (c) (or (cdr (assq c chars-alist)) (list c))))) (setq ad-return-value
                 (concat backup-dir "/" (mapconcat 'char-to-string
                                                   (apply 'append
                                                          (mapcar mapchars file-path)) ""))))
@@ -193,3 +213,4 @@
  (when (and (file-exists-p dir) (not (member dir exec-path)))
    (setenv "PATH" (concat dir ":" (getenv "PATH")))
    (setq exec-path (append (list dir) exec-path))))
+
