@@ -10,3 +10,5 @@
 (add-to-list 'ac-modes 'sws-mode)
 (add-to-list 'ac-modes 'markdown-mode)
 (add-to-list 'ac-modes 'js2-mode)
+(add-to-list 'ac-modes 'jde-mode)
+
