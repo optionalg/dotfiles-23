@@ -12,12 +12,12 @@
 (setq recentf-max-saved-items 1000)
 (recentf-mode 1)
 
-(autoload 'term-toggle "term-toggle"
-  "Toggles between the *terminal* buffer and whatever buffer you are editing." t)
-(autoload 'term-toggle-cd "term-toggle"
-  "Pops up a shell-buffer and insert a \"cd <file-dir>\" command." t)
-(global-set-key [M-f1] 'term-toggle)
-(global-set-key (kbd "C-x t") 'term-toggle-cd)
+;; (autoload 'term-toggle "term-toggle"
+;;   "Toggles between the *terminal* buffer and whatever buffer you are editing." t)
+;; (autoload 'term-toggle-cd "term-toggle"
+;;   "Pops up a shell-buffer and insert a \"cd <file-dir>\" command." t)
+;; (global-set-key [M-f1] 'term-toggle)
+;; (global-set-key (kbd "C-x t") 'term-toggle-cd)
 
 (require 'savekill)
 ;; auto-complete に同じ機能

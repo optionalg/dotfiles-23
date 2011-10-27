@@ -2,29 +2,35 @@
 
 (setq-default c-basic-offset 2)
 
-(when (load "js2" t)
-  (setq js2-cleanup-whitespace t
-        js2-mirror-mode t
-        js2-bounce-indent-flag nil
-        js2-mode-show-parse-errors nil
-        js2-mode-escape-quotes nil
-        )
+(add-hook 'js2-mode-hook
+          '(lambda ()
+             (setq js2-cleanup-whitespace t
+                   js2-mirror-mode nil
+                   js2-bounce-indent-flag nil
+                   js2-mode-show-parse-errors nil
+                   js2-mode-escape-quotes nil
+                   js2-mode-show-strict-warnings nil
+                   js2-strict-missing-semi-warning nil
+                   js2-strict-inconsistent-return-warning nil
+                   js2-skip-preprocessor-directives t
+                   js2-include-browser-externs t
+                   js2-highlight-external-variables nil
+                   )
+             (defun indent-and-back-to-indentation ()
+               (interactive)
+               (indent-for-tab-command)
+               (let ((point-of-indentation
+                      (save-excursion
+                        (back-to-indentation)
+                        (point))))
+                 (skip-chars-forward "\s " point-of-indentation)))
+             (define-key js2-mode-map "\C-i" 'indent-and-back-to-indentation)
+             (define-key js2-mode-map "\C-m" nil)))
 
-  (defun indent-and-back-to-indentation ()
-    (interactive)
-    (indent-for-tab-command)
-    (let ((point-of-indentation
-           (save-excursion
-             (back-to-indentation)
-             (point))))
-      (skip-chars-forward "\s " point-of-indentation)))
-  (define-key js2-mode-map "\C-i" 'indent-and-back-to-indentation)
+(autoload 'js2-mode "js2" nil t)
+(add-to-list 'auto-mode-alist '("\\.\\(js\\|json\\)$" . js2-mode))
 
-  (define-key js2-mode-map "\C-m" nil)
 
-  (add-to-list 'auto-mode-alist '("\\.\\(js\\|json\\)$" . js2-mode)))
-
-;; (autoload 'js2-mode "js2" nil t)
 ;; (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 ;; (defun js-custom ()
@@ -54,7 +60,6 @@
 
 ;; (add-hook 'js2-mode-hook 'my-flymake-minor-mode) ;; keybindings for flymake
 
-
 ;; flymake for javascript using jshint
 (add-to-list 'flymake-allowed-file-name-masks '("\\.\\(js\\|json\\)\\'" flymake-js-init))
 (defun flymake-js-init ()
@@ -77,3 +82,4 @@
 (add-hook 'js2-mode-hook '(lambda () (flymake-js-load)))
 
 (add-hook 'js2-mode-hook 'my-flymake-minor-mode) ;; keybindings for flymake
+
