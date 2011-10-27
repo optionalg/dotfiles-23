@@ -3,8 +3,10 @@
 
 (require 'anything-config)
 (add-to-list 'anything-sources 'anything-c-source-emacs-commands)
+(add-to-list 'anything-sources 'anything-c-source-man-pages)
 
 (define-key global-map [(super a)] 'anything)
+(define-key global-map [(super i)] 'anything-imenu)
 
 (setq anything-idle-delay 0.4) ; 候補を作って描写するまでのタイムラグ。デフォルトで 0.3
 (setq anything-input-idle-delay 0.3) ; 文字列を入力してから検索するまでのタイムラグ。デフォルトで 0
@@ -68,3 +70,4 @@
 ;; (define-key anything-map "\M-]" 'anything-next-visible-mark)
 
 (define-key anything-map "\C-a" 'beginning-of-line)
+
