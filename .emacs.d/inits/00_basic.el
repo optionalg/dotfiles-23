@@ -58,6 +58,11 @@
     )
   )
 
+(if (equal system-name "ubuntu")
+    (progn
+      (setq x-meta-keysym 'super)
+      (setq x-super-keysym 'meta)))
+
 (defun region-string-or-currnet-word ()
   "Get region string if region is set, else get current word."
   (if mark-active
