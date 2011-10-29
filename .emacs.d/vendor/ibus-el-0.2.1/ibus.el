@@ -1014,8 +1014,9 @@ use either \\[customize] or the function `ibus-mode'."
       (ibus-log1 " 4th: %S" (list (nth 3 buffer-undo-list))))))
 
 (defun ibus-message (format-string &rest args)
-  (apply 'ibus-log (concat "message: " format-string) args)
-  (apply 'message (concat "IBus: " format-string) args))
+  ;; (apply 'ibus-log (concat "message: " format-string) args)
+  ;; (apply 'message (concat "IBus: " format-string) args))
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Miscellaneous
