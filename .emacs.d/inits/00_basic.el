@@ -18,15 +18,19 @@
 (line-number-mode t)
 (column-number-mode t)
 (tool-bar-mode -1)
+(custom-set-variables
+ '(split-width-threshold 80)
+)
 (unless window-system
     (menu-bar-mode -1))
 (if window-system
     (progn
       (setq initial-frame-alist
-            (append (list
-                     '(width . 164) ;; ウィンドウ幅
-                     '(height . 48) ;; ウィンドウの高さ
-                     )))
+            (append
+             (if (eq system-type 'darwin)
+                 (list '(width . 164) '(height . 48))
+               (list '(width . 80) '(height . 48))
+               )))
       (toggle-scroll-bar nil)))
 
 (defun toggle-fullscreen (&optional f)
