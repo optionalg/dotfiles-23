@@ -6,29 +6,39 @@
 
 (require 'multi-term)
 
-;; BUGS:
-;;   * elscreen 使用時：dedicated開く → 別スクリーンへ移動 → dedicated開き閉じる → もとのスクリーンへ → dedicated 閉じる
-;;   と新しく dedicated を開く。閉じるのが期待される挙動。
-(defun my-term-cd-cmd (dir) (concat "cd " dir "\n"))
-;; 標準の物はたまに違う値を返すので試しにこっちを使う
-;; ウィンドウの参照を中で持っているのが変な値になっているっぽい
-(defun my-multi-term-dedicated-exist-p ()
-  (if
-      (member "*MULTI-TERM-DEDICATED*"
-              (mapcar '(lambda (w) (buffer-name (window-buffer w)))
-                      (window-list))) t
+;; BUG: elscreen で他のスクリーンに遷移するとpopwinのウィンドウが閉じなくなる
+(defun my-term-cd-cmd-for-dir (dir) (concat "cd " dir "\n"))
+
+(defun my-term-cd-cmd ()
+  (cond (buffer-file-name (my-term-cd-cmd-for-dir (file-name-directory buffer-file-name)))
+        (list-buffers-directory (my-term-cd-cmd-for-dir list-buffers-directory))
+        ("")))
+
+(defun my-multi-term-popwin-exist-p ()
+  (if (member "*MULTI-TERM-DEDICATED*"
+              (mapcar '(lambda (win) (buffer-name (window-buffer win))) (window-list))) t
     nil))
+
+(defun my-multi-term-popwin-open-cd ()
+  (interactive)
+  (let ((cd-cmd (my-term-cd-cmd)))
+    (if (not (multi-term-buffer-exist-p multi-term-dedicated-buffer))
+        (setq multi-term-dedicated-buffer (multi-term-get-buffer current-prefix-arg t))
+      (set-buffer (multi-term-dedicated-get-buffer-name)))
+    (popwin:popup-buffer multi-term-dedicated-buffer :height 70 :position :right)
+    (term-send-raw-string cd-cmd)))
+
+(defun my-multi-term-popwin-close ()
+  (interactive)
+  (popwin:close-popup-window-if-necessary t))
+
+; C-x t で multi-term-dedicated-window をトグル
 (global-set-key (kbd "C-x t")
                 '(lambda ()
                    (interactive)
-                   (let ((cd-cmd (cond (buffer-file-name (my-term-cd-cmd (file-name-directory buffer-file-name)))
-                                       (list-buffers-directory (my-term-cd-cmd list-buffers-directory))
-                                       (""))))
-                     (if (my-multi-term-dedicated-exist-p)
-                         (multi-term-dedicated-close)
-                       (multi-term-dedicated-open)
-                       (if multi-term-dedicated-select-after-open-p
-                           (term-send-raw-string cd-cmd))))))
+                   (if (not (my-multi-term-popwin-exist-p))
+                       (my-multi-term-popwin-open-cd)
+                     (my-multi-term-popwin-close))))
 
 (global-set-key (kbd "C-c t") 'multi-term)
 (global-set-key (kbd "C-c n") 'multi-term-next)
