@@ -7,14 +7,12 @@ alias g=hub
 
 if [ $EMACS ]; then
 # when fired in emacs, TERM is set to eterm-color but its not in terminfo
-# so, we have to set TERM to exisisting one in terminfo to have correct face
+# so, we have to set manually TERM to exisisting one in terminfo to have correct face
   export TERM=xterm-256color
 
 # dont use vim in emacs!
   alias vim="emacsclient -n"
-  export EDITOR="emacsclient -n"
-# for term-toggle
-  alias ~cd="cd"
+  export EDITOR="emacsclient"
 fi
 
 # ls after cd
@@ -35,7 +33,7 @@ fi
 
 case "$HOST" in
 	"sid" | "ubuntu")
-		export EDITOR="emacsclient -n"
+		export EDITOR="emacsclient"
 		# export DISPLAY=192.168.107.1:0.0
 		export PATH=/home/yhara/bin/:$PATH
 		export PAGER='lv -Ou8 -c'
