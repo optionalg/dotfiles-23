@@ -3,10 +3,20 @@
 (require 'auto-save-buffers)
 (run-with-idle-timer 5 t 'auto-save-buffers)
 
+;; popwin.el
+;; https://github.com/m2ym/popwin-el#readme
+(setq popwin:popup-window-position 'bottom)
+(setq popwin:popup-window-height 15)
+(setq popwin:adjust-other-windows nil)
 (require 'popwin)
 (setq display-buffer-function 'popwin:display-buffer)
 (setq anything-samewindow nil)
-(push '("*anything*" :height 20) popwin:special-display-config)
+(push '("*anything*" :height 50 :position :left) popwin:special-display-config)
+(push '("*anything imenu*" :height 40 :position :left) popwin:special-display-config)
+;; (push '("*Moccur*" :height 50 :position :left) popwin:special-display-config)
+(define-key global-map [(super o)] 'dired-jump-other-window)
+(push '(dired-mode :height 80 :position :left) popwin:special-display-config)
+(push '("Mew: \\+draft/" :height 120 :position :left) popwin:special-display-config)
 
 (require 'recentf)
 (setq recentf-max-saved-items 1000)
@@ -27,3 +37,9 @@
 ;; (ac-mode) ;; enable
 
 (require 'moccur-edit)
+
+;; remember line
+(setq-default save-place t)
+(require 'saveplace)
+
+(autoload 'html-fold-mode "html-fold" "Minor mode for hiding and revealing elements." t)
