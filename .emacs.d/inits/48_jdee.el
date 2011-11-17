@@ -4,9 +4,6 @@
 (autoload 'jde-mode "jde" "Java Development Environment for Emacs." t)
 (setq auto-mode-alist (cons '("\.java$" . jde-mode) auto-mode-alist))
 
-(setq semantic-load-turn-useful-things-on t)
-(unless (featurep 'cedet) (load "cedet"))
-
 (setq
  jde-sourcepath '("~/proj/jdee")
  ;; jde-db-option-connect-socket '(nil "28380")
