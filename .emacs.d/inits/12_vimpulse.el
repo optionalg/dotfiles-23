@@ -1,8 +1,12 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/vimpulse")
 (add-to-list 'load-path "~/.emacs.d/vendor/elisps")
-(setq viper-toggle-key [?\C-'])
+(setq viper-toggle-key [?\C-']
+      vimpulse-want-quit-like-Vim nil
+      viper-auto-indent t
+      )
 
 (require 'vimpulse)
+(add-to-list 'viper-vi-state-mode-list 'dired-mode)
 
 ;; (define-key global-map "\C-z" nil) ;;for elscreen
 ;; (define-key global-map "\C-x\C-z" 'toggle-viper-mode)
@@ -69,7 +73,6 @@
 (vimpulse-map [delete] 'vimpulse-delete)
 (vimpulse-map [backspace] 'backward-delete-char-untabify)
 
-(setq-default viper-auto-indent t)
 
 ;; supress delay on ESC
 ;; set "maptimeout" 0 to screenrc using with screen
@@ -143,9 +146,3 @@
 (vimpulse-define-key 'my-anything-minibuffer-mode 'vi-state "/" 'anything-isearch)
 
 
-;; for auto-complete
-;; <ESC> once to normal mode
-;; from: https://sites.google.com/site/fudist/Home/vimpulse
-(setq ac-use-quick-help nil)
-(setq ac-use-menu-map t)
-(define-key ac-completing-map "\C-[" 'viper-exit-insert-state)
