@@ -28,3 +28,6 @@
 [submodule ".emacs.d/vendor/yasnippet"]
 	path = .emacs.d/vendor/yasnippet
 	url = https://github.com/capitaomorte/yasnippet.git
+[submodule ".emacs.d/lib/emacs-deferred"]
+	path = .emacs.d/lib/emacs-deferred
+	url = https://github.com/kiwanami/emacs-deferred.git
