@@ -4,15 +4,16 @@
 (require 'anything-config)
 (add-to-list 'anything-sources 'anything-c-source-emacs-commands)
 (add-to-list 'anything-sources 'anything-c-source-man-pages)
+;; (add-to-list 'anything-sources 'anything-c-source-yasnippet) ;; need anything-c-yasnippet.el
 
 (define-key global-map [(super a)] 'anything)
 (define-key global-map [(super i)] 'anything-imenu)
 
 (setq anything-idle-delay 0.4) ; 候補を作って描写するまでのタイムラグ。デフォルトで 0.3
-(setq anything-input-idle-delay 0.3) ; 文字列を入力してから検索するまでのタイムラグ。デフォルトで 0
+(setq anything-input-idle-delay 0.3) ; 文字列を入力しから検索するまでのタイムラグ。デフォルトで 0
 (setq anything-candidate-number-limit 100) ; 表示する最大候補数。デフォルトで 50
 
-;; keybindings
+;; keybinding
 ;; from: http://www.emacswiki.org/emacs/RubikitchAnythingConfiguration
 ;; (define-key anything-map "\C-k" (lambda () (interactive) (delete-minibuffer-contents)))
 ;; (setq anything-map-C-j-binding 'anything-select-3rd-action)
