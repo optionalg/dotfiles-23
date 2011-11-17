@@ -9,7 +9,9 @@
             (setq nxml-slash-auto-complete-flag t)
             (setq nxml-child-indent 2)
             (setq indent-tabs-mode nil)
-            (setq tab-width 2)))
+            (setq tab-width 2)
+            ;(html-fold-mode)
+            ))
 
 (custom-set-faces
   ;; custom-set-faces was added by Custom -- don't edit or cut/paste it!
