@@ -26,6 +26,10 @@ startup_message off
 autodetach on
 shelltitle '% |sh'
 
+# dont leave fulscreen apps' buffer on term
+altscreen on
+termcapinfo xterm* ti@:te@  # not for self
+
 maptimeout 0
 
 logfile "$HOME/.screen/screen-%Y%m%d-%n.log"
