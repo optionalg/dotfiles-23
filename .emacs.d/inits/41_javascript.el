@@ -83,3 +83,11 @@
 
 (add-hook 'js2-mode-hook 'my-flymake-minor-mode) ;; keybindings for flymake
 
+;; for imenu
+;; donot use semantic one
+(add-hook 'js2-mode-hook
+          (lambda ()
+            (setq imenu-create-index-function 'js2-mode-create-imenu-index)
+            (imenu-add-menubar-index)
+            ))
+
