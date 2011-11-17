@@ -1,5 +1,5 @@
 (add-to-list 'load-path
-              "~/.emacs.d/vendor/yasnippet-0.6.1c")
+              "~/.emacs.d/vendor/yasnippet")
 
 (require 'yasnippet) ;; not yasnippet-bundle
 ;; (require 'anything-c-yasnippet)
