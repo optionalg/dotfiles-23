@@ -67,3 +67,11 @@
 
 (define-key coffee-mode-map (kbd "C-c r") 'coffee-run-buffer-file-saving)
 
+;; for imenu
+;; donot use semantic one
+(add-hook 'coffee-mode-hook
+          (lambda ()
+            (setq imenu-create-index-function 'coffee-imenu-create-index)
+            (imenu-add-menubar-index)
+            ))
+
