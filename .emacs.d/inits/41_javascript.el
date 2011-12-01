@@ -12,9 +12,15 @@
                    js2-mode-show-strict-warnings nil
                    js2-strict-missing-semi-warning nil
                    js2-strict-inconsistent-return-warning nil
-                   js2-skip-preprocessor-directives t
+                   js2-strict-trailing-comma-warning nil
+                   js2-strict-cond-assign-warning nil
+                   js2-strict-var-redeclaration-warning nil
+                   js2-strict-var-hides-function-arg-warning nil
+                   ;js2-skip-preprocessor-directives t
                    js2-include-browser-externs t
                    js2-highlight-external-variables nil
+                   ;js2-idle-timer-delay 0.4
+                   ;js2-dynamic-idle-timer-adjust t
                    )
              (defun indent-and-back-to-indentation ()
                (interactive)
@@ -30,35 +36,6 @@
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.\\(js\\|json\\)$" . js2-mode))
 
-
-;; (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-
-;; (defun js-custom ()
-;;   "js-mode-hook"
-;;    (set (make-local-variable 'tab-width) 2))
-
-;; (add-hook 'js2-mode-hook '(lambda () (js-custom)))
-
-;; flymake for javascript using jslint
-;; (add-to-list 'flymake-allowed-file-name-masks '("\\.js\\'" flymake-js-init))
-;; (defun flymake-js-init ()
-;;   (let* ((temp-file (flymake-init-create-temp-buffer-copy
-;;                      'flymake-create-temp-inplace))
-;;          (local-file (file-relative-name
-;;                       temp-file
-;;                       (file-name-directory buffer-file-name))))
-;;     (list "jslint" (list "--no-es5" local-file))))
-;; (defun flymake-js-load ()
-;;   (interactive)
-;;   (setq flymake-err-line-patterns
-;;         (cons '("^ *[[:digit:]] \\([[:digit:]]+\\),\\([[:digit:]]+\\)\: \\(.+\\)$"
-;;                 nil 1 2 3)
-;;               flymake-err-line-patterns))
-;;   (flymake-mode t))
-
-;; (add-hook 'js2-mode-hook '(lambda () (flymake-js-load)))
-
-;; (add-hook 'js2-mode-hook 'my-flymake-minor-mode) ;; keybindings for flymake
 
 ;; flymake for javascript using jshint
 (add-to-list 'flymake-allowed-file-name-masks '("\\.\\(js\\|json\\)\\'" flymake-js-init))
