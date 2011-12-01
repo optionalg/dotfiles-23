@@ -12,8 +12,8 @@
                           ("1.6" . "~/lib/jdk1.7.0/")
                           )
                          )
- jde-jdk `("1.6")
- )
+ jde-jdk `("1.6"))
+
 (setq jde-jdk-doc-url "http://download.oracle.com/javase/7/docs/api/")
 (setq jde-help-docsets '(("JDK API" "http://download.oracle.com/javase/7/docs/api/" nil)))
 (defun my-jde-mode-hook ()
