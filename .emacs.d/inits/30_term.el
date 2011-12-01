@@ -25,6 +25,7 @@
     (if (not (multi-term-buffer-exist-p multi-term-dedicated-buffer))
         (setq multi-term-dedicated-buffer (multi-term-get-buffer current-prefix-arg t))
       (set-buffer (multi-term-dedicated-get-buffer-name)))
+    ; 他のウィンドウにフォーカスしたときに閉じたくないなら :stick t を追加で渡す
     (popwin:popup-buffer multi-term-dedicated-buffer :height 70 :position :right)
     (term-send-raw-string cd-cmd)))
 
