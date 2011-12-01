@@ -7,6 +7,7 @@
 
 (require 'vimpulse)
 (add-to-list 'viper-vi-state-mode-list 'dired-mode)
+(add-to-list 'viper-emacs-state-mode-list 'term-mode)
 
 ;; (define-key global-map "\C-z" nil) ;;for elscreen
 ;; (define-key global-map "\C-x\C-z" 'toggle-viper-mode)
