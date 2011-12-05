@@ -3,7 +3,7 @@ set hintkeys="aoeuidhtns"
 " start completion with <Tab>
 set autocomplete=
 set altwildmode=list:longest,full
-set complete=lS
+set complete=lsS
 set hlfind
 set editor='emacsclient -c'
 set defsearch=googleen
