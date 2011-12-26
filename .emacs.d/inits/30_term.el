@@ -28,7 +28,7 @@
         (set-buffer (multi-term-dedicated-get-buffer-name))
       )
     ; 他のウィンドウにフォーカスしたときに閉じたくないなら :stick t を追加で渡す
-    (popwin:popup-buffer multi-term-dedicated-buffer :width 70 :position right)
+    (popwin:popup-buffer multi-term-dedicated-buffer :width 70 :position :right)
     (term-char-mode)
     (term-send-raw-string cd-cmd)
     ))

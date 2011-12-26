@@ -11,12 +11,12 @@
 (require 'popwin)
 (setq display-buffer-function 'popwin:display-buffer)
 (setq anything-samewindow nil)
-(push '("*anything*" :height 50 :position :left) popwin:special-display-config)
-(push '("*anything imenu*" :height 40 :position :left) popwin:special-display-config)
+(push '("*anything*" :width 50 :position :left) popwin:special-display-config)
+(push '("*anything imenu*" :width 40 :position :left) popwin:special-display-config)
 ;; (push '("*Moccur*" :height 50 :position :left) popwin:special-display-config)
 (define-key global-map [(super o)] 'dired-jump-other-window)
-(push '(dired-mode :height 80 :position :left) popwin:special-display-config)
-(push '("Mew: \\+draft/" :height 120 :position :left) popwin:special-display-config)
+(push '(dired-mode :width 80 :position :left) popwin:special-display-config)
+(push '("Mew: \\+draft/" :width 120 :position :left) popwin:special-display-config)
 
 (require 'recentf)
 (setq recentf-max-saved-items 1000)
@@ -49,5 +49,5 @@
 ;; direx:direx-modeのバッファをウィンドウ左辺に幅25でポップアップ
 ;; :dedicatedにtを指定することで、direxウィンドウ内でのバッファの切り替えが
 ;; ポップアップ前のウィンドウに移譲される
-(push '(direx:direx-mode :position left :width 25 :dedicated t)
+(push '(direx:direx-mode :position left :width 50 :dedicated t)
       popwin:special-display-config)
