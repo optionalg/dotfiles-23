@@ -23,15 +23,20 @@
   (interactive)
   (let ((cd-cmd (my-term-cd-cmd)))
     (if (not (multi-term-buffer-exist-p multi-term-dedicated-buffer))
-        (setq multi-term-dedicated-buffer (multi-term-get-buffer current-prefix-arg t))
-      (set-buffer (multi-term-dedicated-get-buffer-name)))
+        ;(setq multi-term-dedicated-buffer (multi-term-get-buffer current-prefix-arg t))
+        (setq multi-term-dedicated-buffer (multi-term-get-buffer nil t))
+        (set-buffer (multi-term-dedicated-get-buffer-name))
+      )
     ; 他のウィンドウにフォーカスしたときに閉じたくないなら :stick t を追加で渡す
     (popwin:popup-buffer multi-term-dedicated-buffer :height 70 :position :right)
-    (term-send-raw-string cd-cmd)))
+    (term-char-mode)
+    (term-send-raw-string cd-cmd)
+    ))
 
 (defun my-multi-term-popwin-close ()
   (interactive)
-  (popwin:close-popup-window-if-necessary t))
+  ;(popwin:close-popup-window-if-necessary t))
+  (popwin:close-popup-window))
 
 ; C-x t で multi-term-dedicated-window をトグル
 (global-set-key (kbd "C-x t")
