@@ -13,7 +13,8 @@
       ;; Optional setup (e.g. C-xm for sending a message):
       (autoload 'mew-user-agent-compose "mew" nil t)
       (if (boundp 'mail-user-agent)
-          (setq mail-user-agent 'mew-user-agent))
+          (setq mail-user-agent 'mew-user-agent)
+          (setq mew-use-header-veil nil))
       (if (fboundp 'define-mail-user-agent)
           (define-mail-user-agent
             'mew-user-agent
