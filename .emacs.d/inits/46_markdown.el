@@ -6,7 +6,7 @@
             (cons '("\\.howm" . markdown-mode) auto-mode-alist)
             ))
 
-(setq markdown-command "multimarkdown")
+(setq markdown-command "sundown")
 
 (defun outline-imenu-create-index ()
   (let (index)
@@ -15,9 +15,14 @@
       (push (cons (match-string 1) (match-beginning 1)) index))
     (nreverse index)))
 
-(add-hook 'markdown-mode (lambda () (setq imenu-create-index-function 'outline-imenu-create-index)))
+(add-hook 'markdown-mode
+          (lambda ()
+            (setq imenu-create-index-function 'outline-imenu-create-index)
+            (auto-fill-mode)
+            ))
 
 ;; (add-hook 'markdown-mode-hook
 ;;           '(lambda ()
 ;;              (refill-mode -1)
 ;;              ))
+
