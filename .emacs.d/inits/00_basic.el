@@ -21,6 +21,7 @@
 (custom-set-variables
  '(split-width-threshold 80)
 )
+(setq gc-cons-threshold 40960000)        ; 40M(default: 400K)
 (unless window-system
     (menu-bar-mode -1))
 (if window-system
