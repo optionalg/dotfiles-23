@@ -55,7 +55,7 @@ case "$HOST" in
     alias e="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n"
     # node settings
     export NODE_PATH=~/lib/node_modules:$NODE_PATH
-    nave use 0.4.9
+    nave use 0.6.6
 		;;
 	staff04001*)
 		export PATH=/Users/yhara/.nave/installed/0.4.9/bin:/Users/yhara/bin:$PATH
