@@ -22,46 +22,48 @@ function chpwd() { ls }
 # source ~/.zsh/plugin/incr-0.2.zsh
 
 if [ $TERM = 'screen' ]; then
-	preexec() {
-		echo -ne "\ek#${1%% *}\e\\"
-	}
-	precmd() {
-		echo -ne "\ek$(basename $(pwd))\e\\"
-	}
+  preexec() {
+    echo -ne "\ek#${1%% *}\e\\"
+  }
+  precmd() {
+    echo -ne "\ek$(basename $(pwd))\e\\"
+  }
 fi
 
 
 case "$HOST" in
-	"sid" | "ubuntu")
-		export EDITOR="emacsclient"
-		# export DISPLAY=192.168.107.1:0.0
-		export PATH=/home/yhara/bin/:$PATH
-		export PAGER='lv -Ou8 -c'
-		export GIT_PAGER=${PAGER}
+  "sid" | "ubuntu")
+    export EDITOR="emacsclient"
+    # export DISPLAY=192.168.107.1:0.0
+    export PATH=/home/yhara/bin/:$PATH
+    export PAGER='lv -Ou8 -c'
+    export GIT_PAGER=${PAGER}
     alias emacs="emacs -rv"
     alias e="emacsclient -n"
+    alias o="xdg-open"
     # node settings
     export NODE_PATH=~/.nave/installed/0.6.5/lib/node_modules/:$NODE_PATH
     nave use 0.6.5
-		;;
-	"sie")
-		export EDITOR=vim
-		export DISPLAY=192.168.236.1:0.0
-		export PATH=/home/yukihr/bin/:$PATH
-		;;
-	yhmba.local | *plala.or.jp)
-		export PATH=/Users/yukihr/bin:$PATH
+    ;;
+  "sie")
+    export EDITOR=vim
+    export DISPLAY=192.168.236.1:0.0
+    export PATH=/home/yukihr/bin/:$PATH
+    ;;
+  yhmba.local | *plala.or.jp)
+    export PATH=/Users/yukihr/bin:$PATH
     alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -rv"
     alias e="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n"
+    alias o="open"
     # node settings
     export NODE_PATH=~/lib/node_modules:$NODE_PATH
     nave use 0.6.6
-		;;
-	staff04001*)
-		export PATH=/Users/yhara/.nave/installed/0.4.9/bin:/Users/yhara/bin:$PATH
+    ;;
+  staff04001*)
+    export PATH=/Users/yhara/.nave/installed/0.4.9/bin:/Users/yhara/bin:$PATH
     alias emacs="/Users/yhara/Applications/Emacs.app/Contents/MacOS/Emacs -rv"
     alias e="/Users/yhara/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n"
-		;;
+    ;;
 esac
 
 fortune
