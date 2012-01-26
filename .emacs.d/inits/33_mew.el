@@ -4,7 +4,7 @@
       (autoload 'mew "mew" nil t)
       (autoload 'mew-send "mew" nil t)
       (define-key global-map [(super m)] 'mew)
-      (define-key global-map [(super n)] 'mew-send)
+      ; (define-key global-map [(super n)] 'mew-send)
 
       ;; Optional setup (Read Mail menu for Emacs 21):
       (if (boundp 'read-mail-command)
