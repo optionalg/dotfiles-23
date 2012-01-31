@@ -21,7 +21,7 @@
   (c-set-offset 'substatement-open 0)
   (c-set-offset 'statement-case-open 0)
   (c-set-offset 'case-label '+)
-  (add-to-list 'ac-sources 'ac-source-semantic)
+;;  (add-to-list 'ac-sources 'ac-source-semantic)
   ;; (wisent-java-default-setup)
   ;; (flymake-mode)
   (setq

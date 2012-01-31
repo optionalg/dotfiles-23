@@ -1,8 +1,8 @@
-;(require 'imenu)
-(require 'semantic-imenu)
+(require 'imenu)
+;(require 'semantic-imenu)
 
 (defcustom imenu-modes
-  '(emacs-lisp-mode c-mode c++-mode makefile-mode js2-mode coffee-mode)
+  '(emacs-lisp-mode c-mode c++-mode makefile-mode js-mode coffee-mode)
   "List of major modes for which Imenu mode should be used."
   :group 'imenu
   :type '(choice (const :tag "All modes" t)
