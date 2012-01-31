@@ -21,7 +21,9 @@
 (custom-set-variables
  '(split-width-threshold 80)
 )
+;; Avoid re-building of display buffer
 (setq gc-cons-threshold 40960000)        ; 40M(default: 400K)
+(setq frame-title-format (format "emacs@%s : %%f" (system-name)))
 (unless window-system
     (menu-bar-mode -1))
 (if window-system
@@ -111,7 +113,8 @@
 (global-set-key "\C-x." 'find-file-at-point)
 (global-set-key [C-tab] 'other-window)
 (global-set-key [(super p)] nil)
-(global-set-key "\M-\C-f" 'ns-toggle-fullscreen)
+;(global-set-key "\M-\C-f" 'ns-toggle-fullscreen)
+(global-set-key [(super n)] 'make-frame)
 
 ;; Edit
 (show-paren-mode 1)
