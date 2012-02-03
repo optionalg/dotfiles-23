@@ -41,9 +41,6 @@ case "$HOST" in
     alias emacs="emacs -rv"
     alias e="emacsclient -n"
     alias o="xdg-open"
-    # node settings
-    export NODE_PATH=~/.nave/installed/0.6.5/lib/node_modules/:$NODE_PATH
-    nave use 0.6.5
     ;;
   "sie")
     export EDITOR=vim
@@ -55,9 +52,6 @@ case "$HOST" in
     alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -rv"
     alias e="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n"
     alias o="open"
-    # node settings
-    export NODE_PATH=~/lib/node_modules:$NODE_PATH
-    nave use 0.6.6
     ;;
   staff04001*)
     export PATH=/Users/yhara/.nave/installed/0.4.9/bin:/Users/yhara/bin:$PATH
