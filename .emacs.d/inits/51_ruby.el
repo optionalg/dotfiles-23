@@ -55,3 +55,7 @@ and source-file directory for your debugger." t)
 
 ;; Without this, viper-mode will be disabled in ruby-mode.
 (add-to-list 'viper-vi-state-mode-list 'ruby-mode)
+
+;; use rvm ruby
+(require 'rvm)
+(rvm-use-default) ;; use rvm's default ruby for the current Emacs session 
