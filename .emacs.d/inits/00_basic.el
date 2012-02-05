@@ -51,8 +51,8 @@
       ;; (global-set-key [C-f11] 'ns-toggle-fullscreen)
       (setq default-input-method "MacOSX")
       ;; (mac-add-ignore-shortcut '(control))
-      (mac-set-input-method-parameter `japanese `cursor-color "yellow")
-      (mac-set-input-method-parameter `roman `cursor-color "green")
+      ;; (mac-set-input-method-parameter `japanese `cursor-color "yellow")
+      ;; (mac-set-input-method-parameter `roman `cursor-color "green")
       ;; prevent many frames to be opened
       (setq ns-pop-up-frames nil)
       )
