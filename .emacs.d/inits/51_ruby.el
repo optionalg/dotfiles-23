@@ -59,3 +59,19 @@ and source-file directory for your debugger." t)
 ;; use rvm ruby
 (require 'rvm)
 (rvm-use-default) ;; use rvm's default ruby for the current Emacs session 
+
+
+;; Rails
+;; Interactively Do Things (highly recommended, but not strictly required)
+(require 'ido)
+(ido-mode t)
+;; Rinari
+(add-to-list 'load-path "~/.emacs.d/vendor/rinari")
+(require 'rinari)
+;; rhtml-mode
+(add-to-list 'load-path "~/.emacs.d/vendor/rhtml")
+(require 'rhtml-mode)
+(add-hook 'rhtml-mode-hook
+          (lambda () (rinari-launch)))
+;; set Tags
+(setq rinari-tags-file-name "TAGS")
