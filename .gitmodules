@@ -34,3 +34,6 @@
 [submodule ".emacs.d/vendor/navi2ch"]
 	path = .emacs.d/vendor/navi2ch
 	url = git://navi2ch.git.sourceforge.net/gitroot/navi2ch/navi2ch
+[submodule ".emacs.d/vendor/rinari"]
+	path = .emacs.d/vendor/rinari
+	url = https://github.com/eschulte/rinari.git
