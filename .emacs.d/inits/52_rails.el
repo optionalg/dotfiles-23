@@ -77,10 +77,11 @@
 
 
 (add-hook 'ruby-mode-hook
-          (lambda () (
-                      (define-key ruby-mode-map (kbd "C-s-h") 'rails-search-doc-at-point)
-                      )))
+          (lambda ()
+            (define-key ruby-mode-map (kbd "C-s-h") 'rails-search-doc-at-point)))
+(add-hook 'rhtml-mode-hook
+          (lambda ()
+            (define-key rhtml-mode-map (kbd "C-s-h") 'rails-search-doc-at-point)))
 (add-hook 'rinari-mode-hook
-          (lambda () (
-                      (define-key rinari-minor-mode-map "\C-c\C-t" 'rails-create-tags)
-                      )))
+          (lambda ()
+            (define-key rinari-minor-mode-map "\C-c\C-t" 'rails-create-tags)))
