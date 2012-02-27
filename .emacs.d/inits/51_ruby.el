@@ -58,5 +58,4 @@ and source-file directory for your debugger." t)
 
 ;; use rvm ruby
 (require 'rvm)
-(rvm-use-default) ;; use rvm's default ruby for the current Emacs session 
-
+(rvm-use-default) ;; use rvm's default ruby for the current Emacs session

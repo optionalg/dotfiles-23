@@ -23,4 +23,3 @@
 (add-to-list 'ac-modes 'js2-mode)
 (add-to-list 'ac-modes 'jde-mode)
 (add-to-list 'ac-modes 'nxml-mode)
-
