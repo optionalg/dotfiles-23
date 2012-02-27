@@ -169,7 +169,7 @@
   (define-key ruby-mode-map "\e\C-n" 'ruby-end-of-block)
   (define-key ruby-mode-map "\e\C-h" 'ruby-mark-defun)
   (define-key ruby-mode-map "\e\C-q" 'ruby-indent-exp)
-  (define-key ruby-mode-map "\t" 'ruby-indent-command)
+  ;(define-key ruby-mode-map "\t" 'ruby-indent-command)
   (define-key ruby-mode-map "\C-c\C-e" 'ruby-insert-end)
   (define-key ruby-mode-map "\C-j" 'ruby-reindent-then-newline-and-indent)
   (define-key ruby-mode-map "\C-m" 'newline)
