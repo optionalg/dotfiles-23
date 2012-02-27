@@ -21,3 +21,5 @@
               (viper-change-state-to-vi)) ; back to normal state
             (viper-modify-major-mode    ; back to dired map
              'dired-mode 'vi-state dired-mode-map))))))
+
+(define-key global-map [(super d)] 'dired)
