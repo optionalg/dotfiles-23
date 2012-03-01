@@ -70,12 +70,6 @@
       (setq x-meta-keysym 'super)
       (setq x-super-keysym 'meta)))
 
-(defun region-string-or-currnet-word ()
-  "Get region string if region is set, else get current word."
-  (if mark-active
-      (buffer-substring (region-beginning) (region-end))
-    (current-word)))
-
 (defun search-google ()
   (interactive)
   (browse-url (format "http://google.com/search?q=%s"
@@ -208,7 +202,18 @@
          (exit-calendar)
          (insert day)))))
 
+
 ;; path
+(load-file (expand-file-name "~/.emacs.d/lib/mylib.el"))
+
+;; When opened from Dock or Finder, PATH won't be set to shell's value.
+(if (eq system-type 'darwin)
+    (let ((path-str
+           (replace-regexp-in-string
+            "\n+$" "" (exec-shell-command-sync "echo" "$PATH"))))
+     (setenv "PATH" path-str)
+     (setq exec-path (nconc (split-string path-str ":") exec-path))))
+
 ;; より下に記述した物が PATH の先頭に追加されます
 (dolist (dir (list
               "/sbin"
@@ -220,10 +225,8 @@
               "/usr/local/bin"
               (expand-file-name "~/bin")
               (expand-file-name "~/.emacs.d/bin")
-              (expand-file-name "~/.nave/installed/0.4.9/bin")
               ))
- ;; PATH と exec-path に同じ物を追加します
- (when (and (file-exists-p dir) (not (member dir exec-path)))
-   (setenv "PATH" (concat dir ":" (getenv "PATH")))
-   (setq exec-path (append (list dir) exec-path))))
-
+  ;; PATH と exec-path に同じ物を追加します
+  (when (and (file-exists-p dir) (not (member dir exec-path)))
+    (setenv "PATH" (concat dir ":" (getenv "PATH")))
+    (setq exec-path (append (list dir) exec-path))))
