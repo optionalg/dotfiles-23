@@ -21,6 +21,7 @@
 (custom-set-variables
  '(split-width-threshold 80)
 )
+(setq vc-follow-symlinks t)
 ;; Avoid re-building of display buffer
 (setq gc-cons-threshold 40960000)        ; 40M(default: 400K)
 (setq frame-title-format (format "emacs@%s : %%f" (system-name)))
@@ -203,30 +204,3 @@
          (insert day)))))
 
 
-;; path
-(load-file (expand-file-name "~/.emacs.d/lib/mylib.el"))
-
-;; When opened from Dock or Finder, PATH won't be set to shell's value.
-(if (eq system-type 'darwin)
-    (let ((path-str
-           (replace-regexp-in-string
-            "\n+$" "" (exec-shell-command-sync "echo" "$PATH"))))
-     (setenv "PATH" path-str)
-     (setq exec-path (nconc (split-string path-str ":") exec-path))))
-
-;; より下に記述した物が PATH の先頭に追加されます
-(dolist (dir (list
-              "/sbin"
-              "/usr/sbin"
-              "/bin"
-              "/usr/bin"
-              "/opt/local/bin"
-              "/sw/bin"
-              "/usr/local/bin"
-              (expand-file-name "~/bin")
-              (expand-file-name "~/.emacs.d/bin")
-              ))
-  ;; PATH と exec-path に同じ物を追加します
-  (when (and (file-exists-p dir) (not (member dir exec-path)))
-    (setenv "PATH" (concat dir ":" (getenv "PATH")))
-    (setq exec-path (append (list dir) exec-path))))

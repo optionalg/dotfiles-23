@@ -1,3 +1,9 @@
+;;; platforms ;;;
+(setq darwin-p  (eq system-type 'darwin)
+      ns-p      (eq window-system 'ns)
+      linux-p   (eq system-type 'gnu/linux))
+
+
 ;;; utilities ;;;
 (defun exec-shell-command-sync (command &rest args)
   (let (ret
@@ -18,4 +24,9 @@
   (if mark-active
       (buffer-substring (region-beginning) (region-end))
     (current-word)))
+
+
+(defun join (lst &optional delim)
+  (mapconcat 'identity lst
+             (if (null delim) "" delim)))
 
