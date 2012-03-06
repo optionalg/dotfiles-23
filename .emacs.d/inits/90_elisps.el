@@ -17,6 +17,7 @@
 (define-key global-map [(super o)] 'dired-jump-other-window)
 (push '(dired-mode :width 80 :position :left) popwin:special-display-config)
 (push '("Mew: \\+draft/" :width 120 :position :left) popwin:special-display-config)
+(push '("*ri*" :width 78 :position :right :stick t) popwin:special-display-config)
 
 (require 'recentf)
 (setq recentf-max-saved-items 1000)
@@ -51,3 +52,4 @@
 ;; ポップアップ前のウィンドウに移譲される
 (push '(direx:direx-mode :position left :width 50 :dedicated t)
       popwin:special-display-config)
+
