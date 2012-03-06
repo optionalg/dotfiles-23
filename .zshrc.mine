@@ -35,26 +35,18 @@ case "$HOST" in
   "sid" | "ubuntu")
     export EDITOR="emacsclient"
     # export DISPLAY=192.168.107.1:0.0
-    export PATH=/home/yhara/bin/:$PATH
     export PAGER='lv -Ou8 -c'
     export GIT_PAGER=${PAGER}
     alias emacs="emacs -rv"
     alias e="emacsclient -n"
     alias o="xdg-open"
     ;;
-  "sie")
-    export EDITOR=vim
-    export DISPLAY=192.168.236.1:0.0
-    export PATH=/home/yukihr/bin/:$PATH
-    ;;
   yhmba.local | *plala.or.jp)
-    export PATH=/Users/yukihr/bin:$PATH
     alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -rv"
     alias e="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n"
     alias o="open"
     ;;
   staff04001*)
-    export PATH=/Users/yhara/.nave/installed/0.4.9/bin:/Users/yhara/bin:$PATH
     alias emacs="/Users/yhara/Applications/Emacs.app/Contents/MacOS/Emacs -rv"
     alias e="/Users/yhara/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n"
     ;;
@@ -141,3 +133,4 @@ function _update_vcs_info_msg() {
 }
 add-zsh-hook precmd _update_vcs_info_msg
 RPROMPT="%1(v|%F{green}%1v%f|)""$RPROMPT"
+
