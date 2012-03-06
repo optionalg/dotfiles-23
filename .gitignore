@@ -11,3 +11,4 @@
 .emacs.d/.woman-cache.el
 .emacs.d/abbrev_defs
 .emacs.d/vendor/php-mode-1.5.0/php-manual
+.emacs.d/src
