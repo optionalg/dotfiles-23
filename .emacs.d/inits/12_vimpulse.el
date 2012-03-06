@@ -13,8 +13,12 @@
 ;; (define-key global-map "\C-x\C-z" 'toggle-viper-mode)
 
 ;; 物理行移動を基本にする
-(vimpulse-map "j" 'next-line)
-(vimpulse-map "k" 'previous-line)
+;; For use with Dvorak key map
+(vimpulse-map "h" 'next-line)
+(vimpulse-map "t" 'previous-line)
+(vimpulse-map "d" 'viper-backward-char)
+(vimpulse-map "n" 'viper-forward-char)
+(vimpulse-map "k" 'vimpulse-delete)
 (vimpulse-map [?\C-n] 'viper-next-line)
 (vimpulse-map [?\C-p] 'viper-previous-line)
 (vimpulse-map (kbd "C-w o") nil)

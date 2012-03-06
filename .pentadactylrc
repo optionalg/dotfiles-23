@@ -9,8 +9,10 @@ set editor='emacsclient -c'
 set defsearch=googleen
 set activate+=links
 
-noremap  j 10j
-noremap  k 10k
+noremap  p t
+noremap  h 10j
+noremap  t 10k
+noremap  n 10l
 noremap  <C-g> <Esc>
 vnoremap <C-g> <Esc>
 inoremap <C-g> <Esc>
