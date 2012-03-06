@@ -39,7 +39,7 @@
   (popwin:close-popup-window))
 
 ; C-x t で multi-term-dedicated-window をトグル
-(global-set-key (kbd "C-x t")
+(global-set-key [(super t)]
                 '(lambda ()
                    (interactive)
                    (if (not (my-multi-term-popwin-exist-p))
