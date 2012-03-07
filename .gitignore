@@ -14,3 +14,4 @@
 .emacs.d/src
 .emacs.d/vendor/elpa/archives
 .emacs.d/trash
+.emacs.d/url
