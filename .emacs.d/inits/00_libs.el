@@ -1,6 +1,6 @@
 ; (add-to-list 'load-path "~/.emacs.d/lib/apel")
-(add-to-load-path "lib")
 (load-file (concat user-emacs-directory "lib/mylib.el"))
+(add-to-load-path "lib")
 
 ;; path
 ;; When opened from Desktep entry, PATH won't be set to shell's value.
