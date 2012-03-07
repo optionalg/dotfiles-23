@@ -12,3 +12,5 @@
 .emacs.d/abbrev_defs
 .emacs.d/vendor/php-mode-1.5.0/php-manual
 .emacs.d/src
+.emacs.d/vendor/elpa/archives
+.emacs.d/trash
