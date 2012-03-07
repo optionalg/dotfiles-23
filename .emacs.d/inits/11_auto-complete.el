@@ -11,7 +11,7 @@
 
 ;; for vimpulse
 ;; ESC が先立つキーバインドが無効になる・・
-(define-key ac-complete-mode-map "\C-[" 'viper-intercept-ESC-key)
+(define-key ac-complete-mode-map "\C-[" 'evil-esc)
 (ac-config-default)
 (global-auto-complete-mode t)
 (define-key ac-mode-map (kbd "TAB") 'auto-complete)
