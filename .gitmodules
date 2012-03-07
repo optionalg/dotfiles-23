@@ -40,3 +40,6 @@
 [submodule ".emacs.d/vendor/rhtml"]
 	path = .emacs.d/vendor/rhtml
 	url = https://github.com/eschulte/rhtml.git
+[submodule ".emacs.d/vendor/evil"]
+	path = .emacs.d/vendor/evil
+	url = git://gitorious.org/evil/evil.git
