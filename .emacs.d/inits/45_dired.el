@@ -9,17 +9,20 @@
 (define-key dired-mode-map "e" 'wdired-change-to-wdired-mode)
 
 ;; A way to activate and deactivate vi-state when toggling the wdired-mode
-(eval-after-load "wdired"
-  '(progn
-     (eval-after-load "viper"
-       '(progn
-          (defadvice wdired-change-to-wdired-mode (after viper activate)
-            (unless (eq viper-current-state 'emacs-state)
-              (viper-change-state 'vi-state)))
-          (defadvice wdired-finish-edit (after viper activate)
-            (unless (eq viper-current-state 'emacs-state)
-              (viper-change-state-to-vi)) ; back to normal state
-            (viper-modify-major-mode    ; back to dired map
-             'dired-mode 'vi-state dired-mode-map))))))
+;; (eval-after-load "wdired"
+;;   '(progn
+;;      (eval-after-load "viper"
+;;        '(progn
+;;           (defadvice wdired-change-to-wdired-mode (after viper activate)
+;;             (unless (eq viper-current-state 'emacs-state)
+;;               (viper-change-state 'vi-state)))
+;;           (defadvice wdired-finish-edit (after viper activate)
+;;             (unless (eq viper-current-state 'emacs-state)
+;;               (viper-change-state-to-vi)) ; back to normal state
+;;             (viper-modify-major-mode    ; back to dired map
+;;              'dired-mode 'vi-state dired-mode-map))))))
 
-(define-key global-map [(super d)] 'dired)
+(custom-set-variables
+ '(delete-by-moving-to-trash t)
+ '(trash-directory "~/.Trash")
+ '(dired-dwim-target t))
