@@ -79,5 +79,3 @@
 
 (define-key anything-map "\C-a" 'beginning-of-line)
 
-(add-to-list 'load-path "~/.emacs.d/vendor/anything-config/extensions/")
-(require 'anything-css)
