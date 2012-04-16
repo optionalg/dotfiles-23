@@ -1,17 +1,24 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/anything-config")
-;;(require 'anything-startup)
-
 (require 'anything-config)
-(add-to-list 'anything-sources 'anything-c-source-emacs-commands)
-(add-to-list 'anything-sources 'anything-c-source-man-pages)
-;; (add-to-list 'anything-sources 'anything-c-source-yasnippet) ;; need anything-c-yasnippet.el
 
-(define-key global-map [(super a)] 'anything)
+(defun my-anything ()
+  (interactive)
+  (anything-other-buffer
+   '(anything-c-source-buffers-list
+     anything-c-source-bookmarks
+     anything-c-source-recentf
+     anything-c-source-files-in-current-dir+
+     anything-c-source-imenu
+     anything-c-source-man-pages
+     )
+  "*anything*"))
+
+(define-key global-map [(super a)] 'my-anything)
 (define-key global-map [(super i)] 'anything-imenu)
 
-(setq anything-idle-delay 0.4) ; 候補を作って描写するまでのタイムラグ。デフォルトで 0.3
-(setq anything-input-idle-delay 0.3) ; 文字列を入力しから検索するまでのタイムラグ。デフォルトで 0
-(setq anything-candidate-number-limit 100) ; 表示する最大候補数。デフォルトで 50
+(setq anything-idle-delay 0.3) ; 候補を作って描写するまでのタイムラグ。デフォルトで 0.3
+(setq anything-input-idle-delay 0.2) ; 文字列を入力しから検索するまでのタイムラグ。デフォルトで 0
+(setq anything-candidate-number-limit 50) ; 表示する最大候補数。デフォルトで 50
 
 ;; keybinding
 ;; from: http://www.emacswiki.org/emacs/RubikitchAnythingConfiguration
@@ -21,8 +28,8 @@
 ;; (define-key anything-map "\C-e" 'anything-select-2nd-action-or-end-of-line)
 ;; (define-key anything-map "\M-N" 'anything-next-source)
 ;; (define-key anything-map "\M-P" 'anything-previous-source)
-(define-key anything-map "\C-\M-n" 'anything-next-source)
-(define-key anything-map "\C-\M-p" 'anything-previous-source)
+; (define-key anything-map "\C-\M-n" 'anything-next-source)
+; (define-key anything-map "\C-\M-p" 'anything-previous-source)
 (define-key anything-map "\C-s" 'anything-isearch)
 (define-key anything-map (kbd "C-p") 'anything-previous-line)
 (define-key anything-map (kbd "C-n") 'anything-next-line)
@@ -72,3 +79,5 @@
 
 (define-key anything-map "\C-a" 'beginning-of-line)
 
+(add-to-list 'load-path "~/.emacs.d/vendor/anything-config/extensions/")
+(require 'anything-css)
