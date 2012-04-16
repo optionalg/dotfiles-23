@@ -63,10 +63,11 @@
 
 ;; flymake for javascript using jshint
 (defun flymake-js-init ()
-  (let* ((local-dir (file-name-directory buffer-file-name))
-         (local-file (file-relative-name
-                      buffer-file-name
-                      local-dir)))
+  (let* ((temp-file   (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+         (local-file  (file-relative-name
+                       temp-file
+                       (file-name-directory buffer-file-name))))
     (list "jshint" (list local-file "--config" (file-truename "~/.jshint-config.json")))))
 (defun flymake-js-load ()
   (interactive)
