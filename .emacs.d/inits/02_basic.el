@@ -19,7 +19,7 @@
 (column-number-mode t)
 (tool-bar-mode -1)
 (custom-set-variables
- '(split-width-threshold 80)
+ '(split-width-threshold 90)
 )
 (setq vc-follow-symlinks t)
 ;; Avoid re-building of display buffer
