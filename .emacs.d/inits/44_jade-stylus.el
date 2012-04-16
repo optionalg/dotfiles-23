@@ -1,8 +1,9 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/jade-mode")
 (require 'sws-mode)
 (require 'jade-mode)
-(add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
 (add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
+(require 'stylus-mode)
+(add-to-list 'auto-mode-alist '("\\.styl$" . stylus-mode))
 
 ;; flymake for jade
 (add-to-list 'flymake-allowed-file-name-masks '("\\.jade\\'" flymake-jade-init))
@@ -51,6 +52,6 @@
   ;;             flymake-err-line-patterns))
   (flymake-mode t))
 
-(add-hook 'sws-mode-hook '(lambda () (flymake-stylus-load)))
+(add-hook 'stylus-mode-hook '(lambda () (flymake-stylus-load)))
 
-(add-hook 'sws-mode-hook 'my-flymake-minor-mode)
+(add-hook 'stylus-mode-hook 'my-flymake-minor-mode)
