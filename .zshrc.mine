@@ -1,19 +1,5 @@
 setopt completealiases # complete as original command
-alias diff="diff -u"
-alias grep="grep --exclude='tags' --exclude='*.svn-*' --exclude='*.git*' --exclude='entries'"
-alias lv="lv -Ou8 -c"
-alias g=hub
 # git() { hub $@ }
-
-if [ $EMACS ]; then
-# when fired in emacs, TERM is set to eterm-color but its not in terminfo
-# so, we have to set manually TERM to exisisting one in terminfo to have correct face
-  export TERM=xterm-256color
-
-# dont use vim in emacs!
-  alias vim="emacsclient -n"
-  export EDITOR="emacsclient"
-fi
 
 # ls after cd
 function chpwd() { ls }
@@ -29,28 +15,6 @@ if [ $TERM = 'screen' ]; then
     echo -ne "\ek$(basename $(pwd))\e\\"
   }
 fi
-
-
-case "$HOST" in
-  "sid" | "ubuntu")
-    export EDITOR="emacsclient"
-    # export DISPLAY=192.168.107.1:0.0
-    export PAGER='lv -Ou8 -c'
-    export GIT_PAGER=${PAGER}
-    alias emacs="emacs -rv"
-    alias e="emacsclient -n"
-    alias o="xdg-open"
-    ;;
-  yhmba.local | *plala.or.jp)
-    alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -rv"
-    alias e="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n"
-    alias o="open"
-    ;;
-  staff04001*)
-    alias emacs="/Users/yhara/Applications/Emacs.app/Contents/MacOS/Emacs -rv"
-    alias e="/Users/yhara/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n"
-    ;;
-esac
 
 fortune
 
