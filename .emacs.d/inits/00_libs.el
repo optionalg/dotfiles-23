@@ -54,3 +54,4 @@
 (setq migemo-coding-system 'utf-8-unix)
 (load-library "migemo")
 (migemo-init)
+(set-process-query-on-exit-flag (get-process "migemo") nil)
