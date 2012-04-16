@@ -122,6 +122,8 @@
 (global-set-key [(super p)] nil)
 ;(global-set-key "\M-\C-f" 'ns-toggle-fullscreen)
 (global-set-key [(super n)] 'make-frame)
+(global-set-key [(super d)] 'dired)
+(global-set-key [(super f)] 'find-file)
 
 ;; Edit
 (show-paren-mode 1)
