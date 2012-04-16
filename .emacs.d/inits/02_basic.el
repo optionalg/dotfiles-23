@@ -66,10 +66,22 @@
     )
   )
 
+(defun browse-url-with-chrome (url &rest args)
+  (interactive)
+  (let ((proc
+    (start-process-shell-command "chrome" nil
+                                 ;(concat "/usr/bin/chromium-browser " url))))
+                                 (concat "/usr/bin/google-chrome " url))))
+    (set-process-query-on-exit-flag proc nil)
+    (set-process-sentinel proc '(lambda (proc, status) ()))
+    (set-process-filter proc '(lambda (proc, data) ()))))
+
 (if (equal system-name "ubuntu")
     (progn
-      (setq x-meta-keysym 'super)
-      (setq x-super-keysym 'meta)))
+      (setq x-meta-keysym 'super
+            x-super-keysym 'meta
+            browse-url-browser-function 'browse-url-with-chrome
+      )))
 
 (defun search-google ()
   (interactive)
