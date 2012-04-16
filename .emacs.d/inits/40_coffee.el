@@ -25,7 +25,7 @@
          (local-file (file-relative-name
                       buffer-file-name
                       local-dir)))
-    (list "coffee" (list "--bare" "--compile" "--output" local-dir local-file)))
+    (list "coffee" (list "--compile" "--output" local-dir local-file))) ;; add "--bare" to access inner objs globally
   )
 
 (defun flymake-coffeescript-load ()
@@ -75,3 +75,6 @@
             (imenu-add-menubar-index)
             ))
 
+;; Use RHTML mode for eco template
+(setq auto-mode-alist
+      (append '(("\\.eco$" . rhtml-mode)) auto-mode-alist))
