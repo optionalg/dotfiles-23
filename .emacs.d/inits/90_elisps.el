@@ -52,3 +52,7 @@
 (push '(direx:direx-mode :position left :width 50 :dedicated t)
       popwin:special-display-config)
 
+(require 'jaunte)
+(global-set-key (kbd "C-c C-j") 'jaunte)
+
+(load "liquid.el")
