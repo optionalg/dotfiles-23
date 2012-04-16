@@ -110,7 +110,7 @@ and source-file directory for your debugger." t)
         (goto-char (point-min)))))
 
 (defun ri-search-init ()
-  (define-key ruby-mode-map (kbd "C-s-h") 'ri-search-doc-at-point))
+  (define-key ruby-mode-map (kbd "<f1> r") 'ri-search-doc-at-point))
 
 (add-hook 'ruby-mode-hook 'ri-search-init)
 (add-hook 'rhtml-mode-hook 'ri-search-init)
