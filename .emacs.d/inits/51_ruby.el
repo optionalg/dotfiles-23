@@ -1,6 +1,6 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/ruby-mode")
 (setq auto-mode-alist
-      (append '(("^Rakefile$" . ruby-mode)) auto-mode-alist))
+      (append '(("^Rakefile\\|Gemfile$" . ruby-mode)) auto-mode-alist))
 
 
 ;; ruby-electric.el
@@ -114,3 +114,13 @@ and source-file directory for your debugger." t)
 
 (add-hook 'ruby-mode-hook 'ri-search-init)
 (add-hook 'rhtml-mode-hook 'ri-search-init)
+
+
+;; RSense
+(setq rsense-home (expand-file-name "~/.emacs.d/vendor/rsense-0.3"))
+(add-to-list 'load-path (concat rsense-home "/etc"))
+(require 'rsense)
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (add-to-list 'ac-sources 'ac-source-rsense-method)
+            (add-to-list 'ac-sources 'ac-source-rsense-constant)))
