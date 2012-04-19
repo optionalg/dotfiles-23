@@ -24,3 +24,14 @@
  '(nxml-element-local-name-face ((t (:inherit nxml-name-face :foreground "medium turquoise"))))
  '(nxml-name-face ((t (:foreground "rosy brown"))))
  '(nxml-tag-slash-face ((t (:inherit nxml-name-face :foreground "grey")))))
+
+
+;; multi-web-mode: https://github.com/fgallina/multi-web-mode
+(add-to-load-path "vendor/multi-web-mode")
+(require 'multi-web-mode)
+(setq mweb-default-major-mode 'nxml-mode)
+(setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
+                  (js-mode "<script[^>]*>" "</script>")
+                  (css-mode "<style[^>]*>" "</style>")))
+(setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5"))
+(multi-web-global-mode 1)

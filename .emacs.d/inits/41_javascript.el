@@ -81,8 +81,13 @@
   (flymake-mode t))
 
 (add-to-list 'flymake-allowed-file-name-masks '("\\.\\(js\\|json\\)\\'" flymake-js-init))
-(add-hook 'js-mode-hook '(lambda () (flymake-js-load)))
-(add-hook 'js-mode-hook '(lambda () (my-flymake-minor-mode))) ;; keybindings for flymake
+;; (add-hook 'js-mode-hook '(lambda () (flymake-js-load)))
+;; (add-hook 'js-mode-hook '(lambda () (my-flymake-minor-mode))) ;; keybindings for flymake
+;; go along with multi-web-mode
+(add-hook 'find-file-hook '(lambda ()
+                             (when (equal (file-name-extension (buffer-file-name)) "js")
+                               (flymake-js-load)
+                               (my-flymake-minor-mode))))
 
 ;; for imenu
 ;; donot use semantic one

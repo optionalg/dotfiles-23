@@ -43,3 +43,6 @@
 [submodule ".emacs.d/vendor/evil"]
 	path = .emacs.d/vendor/evil
 	url = git://gitorious.org/evil/evil.git
+[submodule ".emacs.d/vendor/multi-web-mode"]
+	path = .emacs.d/vendor/multi-web-mode
+	url = https://github.com/fgallina/multi-web-mode.git
