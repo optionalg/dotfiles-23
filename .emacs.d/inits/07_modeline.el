@@ -1,10 +1,8 @@
 ;; based from: http://amitp.blogspot.jp/2011/08/emacs-custom-mode-line.html
 ;; Mode line setup
 (setq-default
- mode-line-format
+ mode-line-position
  '(
-   "%Z"
-   "  "
    ;; Position, including warning for 80 columns
    (:propertize "%4l" face mode-line-position-face)
    (:propertize "/" face mode-line-delim-face-1)
@@ -15,23 +13,34 @@
                       (if (>= (current-column) 80)
                           'mode-line-80col-face
                         'mode-line-position-face)))
-   "  "
+   " "
+   ))
+
+(setq-default
+ mode-line-format
+ '("%e"
+   mode-line-mule-info
    ;; emacsclient [default -- keep?]
    mode-line-client
-   "  "
+   mode-line-remote
+   ;evil-mode-line-tag
+   mode-line-position
    ; read-only or modified status
    (:eval
     (cond (buffer-read-only
            (propertize " RO " 'face 'mode-line-read-only-face))
           ((buffer-modified-p)
            (propertize " ** " 'face 'mode-line-modified-face))
-          (t "      ")))
-   "  "
+          (t "  ")))
+   " "
    ;; directory and buffer/file name
    (:propertize (:eval (shorten-directory default-directory 30))
                 face mode-line-folder-face)
-   (:propertize "%b"
-                face mode-line-filename-face)
+   (:eval
+    (if (buffer-file-name)
+        (propertize "%b"
+                     'face 'mode-line-filename-face)
+      ""))
    ;; narrow [default -- keep?]
    " %n "
    ;; mode indicators: vc, recursive edit, major mode, minor modes, process, global
@@ -73,12 +82,12 @@
     :foreground "gray60" :background "gray15"
     :inverse-video nil
     :weight 'normal
-    :box '(:line-width 3 :color "gray15" :style nil))
+    :box '(:line-width 2 :color "gray15" :style nil))
 (set-face-attribute 'mode-line-inactive nil
     :foreground "gray60" :background "gray30"
     :inverse-video nil
     :weight 'normal
-    :box '(:line-width 3 :color "gray30" :style nil))
+    :box '(:line-width 2 :color "gray30" :style nil))
 
 
 ;; Extra mode line faces
@@ -96,14 +105,17 @@
 (set-face-attribute 'mode-line-read-only-face nil
     :inherit 'mode-line-face
     :foreground "#4271ae"
+    :weight 'light
     :box '(:line-width 2 :color "#4271ae"))
 (set-face-attribute 'mode-line-modified-face nil
     :inherit 'mode-line-face
     :foreground "#c82829"
     :background "#ffffff"
+    :weight 'light
     :box '(:line-width 2 :color "#c82829"))
 (set-face-attribute 'mode-line-folder-face nil
     :inherit 'mode-line-face
+    :weight 'light
     :foreground "gray60")
 (set-face-attribute 'mode-line-filename-face nil
     :inherit 'mode-line-face
@@ -114,10 +126,12 @@
     :family "Menlo" :height 100)
 (set-face-attribute 'mode-line-mode-face nil
     :inherit 'mode-line-face
+    :weight 'light
     :foreground "gray80")
 (set-face-attribute 'mode-line-minor-mode-face nil
     :inherit 'mode-line-mode-face
     :foreground "gray40"
+    :weight 'light
     :height 110)
 (set-face-attribute 'mode-line-process-face nil
     :inherit 'mode-line-face
