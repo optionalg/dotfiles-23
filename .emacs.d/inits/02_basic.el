@@ -25,8 +25,7 @@
 ;; Avoid re-building of display buffer
 (setq gc-cons-threshold 40960000)        ; 40M(default: 400K)
 (setq frame-title-format (format "emacs@%s : %%f" (system-name)))
-(unless window-system
-    (menu-bar-mode -1))
+(menu-bar-mode -1)
 (if window-system
     (progn
       (setq initial-frame-alist
