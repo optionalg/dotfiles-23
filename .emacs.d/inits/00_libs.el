@@ -6,7 +6,7 @@
 ;; When opened from Desktep entry, PATH won't be set to shell's value.
 (let ((path-str
            (replace-regexp-in-string
-            "\n+$" "" (exec-shell-command-sync "echo" "$PATH"))))
+            "\n+$" "" (shell-command-to-string "echo $PATH"))))
      (setenv "PATH" (concat path-str ":" (getenv "PATH")))
      (setq exec-path (nconc (split-string (getenv "PATH") ":") exec-path)))
 ;; Custom Paths
