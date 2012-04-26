@@ -3,6 +3,7 @@
 (setq-default
  mode-line-position
  '(
+   " "
    ;; Position, including warning for 80 columns
    (:propertize "%4l" face mode-line-position-face)
    (:propertize "/" face mode-line-delim-face-1)
@@ -36,27 +37,22 @@
    ;; directory and buffer/file name
    (:propertize (:eval (shorten-directory default-directory 30))
                 face mode-line-folder-face)
-   (:eval
-    (if (buffer-file-name)
-        (propertize "%b"
-                     'face 'mode-line-filename-face)
-      ""))
+   (:propertize "%b" face mode-line-filename-face)
    ;; narrow [default -- keep?]
-   " %n "
+   " %n"
    ;; mode indicators: vc, recursive edit, major mode, minor modes, process, global
    (vc-mode vc-mode)
    "  %["
    (:propertize mode-name
                 face mode-line-mode-face)
-   "%] "
+   "%]"
    (:eval (propertize (format-mode-line minor-mode-alist)
                       'face 'mode-line-minor-mode-face))
    "  "
    (:propertize mode-line-process
                 face mode-line-process-face)
-   "  "
    (global-mode-string global-mode-string)
-   "  "
+   ;; "  "
    ;; nyan-mode uses nyan cat as an alternative to %p
    ;; (:eval (when nyan-mode (list (nyan-create))))
    ))
@@ -79,14 +75,16 @@
 
 
 (set-face-attribute 'mode-line nil
-    :foreground "gray60" :background "gray15"
+    :foreground "gray80" :background "gray10"
     :inverse-video nil
     :weight 'normal
-    :box '(:line-width 2 :color "gray15" :style nil))
+    :height 120
+    :box '(:line-width 2 :color "gray10" :style nil))
 (set-face-attribute 'mode-line-inactive nil
-    :foreground "gray60" :background "gray30"
+    :foreground "gray80" :background "gray30"
     :inverse-video nil
-    :weight 'normal
+    :weight 'extra-light
+    :height 120
     :box '(:line-width 2 :color "gray30" :style nil))
 
 
@@ -105,34 +103,31 @@
 (set-face-attribute 'mode-line-read-only-face nil
     :inherit 'mode-line-face
     :foreground "#4271ae"
-    :weight 'light
     :box '(:line-width 2 :color "#4271ae"))
 (set-face-attribute 'mode-line-modified-face nil
     :inherit 'mode-line-face
     :foreground "#c82829"
     :background "#ffffff"
-    :weight 'light
     :box '(:line-width 2 :color "#c82829"))
 (set-face-attribute 'mode-line-folder-face nil
     :inherit 'mode-line-face
-    :weight 'light
-    :foreground "gray60")
+    :weight 'extra-light
+    :height 110
+    :foreground "gray90")
 (set-face-attribute 'mode-line-filename-face nil
     :inherit 'mode-line-face
     :foreground "#eab700"
     :weight 'bold)
 (set-face-attribute 'mode-line-position-face nil
     :inherit 'mode-line-face
-    :family "Menlo" :height 100)
+    :family "Menlo")
 (set-face-attribute 'mode-line-mode-face nil
     :inherit 'mode-line-face
-    :weight 'light
-    :foreground "gray80")
+    :foreground "white")
 (set-face-attribute 'mode-line-minor-mode-face nil
     :inherit 'mode-line-mode-face
-    :foreground "gray40"
-    :weight 'light
-    :height 110)
+    :foreground "gray60"
+    :height 100)
 (set-face-attribute 'mode-line-process-face nil
     :inherit 'mode-line-face
     :foreground "#718c00")
@@ -141,4 +136,4 @@
     :foreground "black" :background "#eab700")
 (set-face-attribute 'mode-line-delim-face-1 nil
     :inherit 'mode-line-face
-    :foreground "gray90")
+    :foreground "white")
