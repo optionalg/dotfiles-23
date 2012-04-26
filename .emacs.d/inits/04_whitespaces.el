@@ -8,6 +8,11 @@
                                       'javascript-mode
                                       'ruby-mode
                                       'text-mode
+                                      'markdown-mode
+                                      'coffee-mode
+                                      'jade-mode
+                                      'stylus-mode
+                                      'nxml-mode
                                       'fundamental-mode))))
   (when (boundp 'jaspace-alternate-jaspace-string)
     (setq jaspace-alternate-jaspace-string "□"))
