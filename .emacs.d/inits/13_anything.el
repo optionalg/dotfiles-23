@@ -79,3 +79,13 @@
 
 (define-key anything-map "\C-a" 'beginning-of-line)
 
+;; other than defaults
+(add-to-list 'load-path "~/.emacs.d/vendor/anything-elisps")
+
+(require 'anything-project)
+(global-set-key [(super p)] 'anything-project)
+;;; rails
+(ap:add-project
+ :name 'rails
+ :look-for '("Gemfile" "Rakefile")
+ :grep-extensions '("\\.rb" "\\.erb" "\\.js" "\\.coffee" "\\.html" "\\.css"))
