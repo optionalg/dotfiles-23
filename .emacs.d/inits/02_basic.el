@@ -29,7 +29,6 @@
         (:eval (or (buffer-file-name)
                    default-directory))
         ))
-(menu-bar-mode -1)
 (if window-system
     (progn
       (setq initial-frame-alist
@@ -39,6 +38,11 @@
                (list '(width . 80) '(height . 48))
                )))
       (toggle-scroll-bar nil)))
+(if (eq system-type 'darwin)
+    (progn
+      (menu-bar-mode t)
+      (define-key global-map [ns-drag-file] 'ns-find-file))
+  (menu-bar-mode -1))
 
 (defun toggle-fullscreen (&optional f)
   "toggle full screen or normal window"
@@ -83,7 +87,7 @@
     (progn
       (setq x-meta-keysym 'super
             x-super-keysym 'meta
-            browse-url-browser-function 'browse-url-with-chrome
+            ;browse-url-browser-function 'browse-url-with-chrome
       )))
 
 (defun search-google ()
