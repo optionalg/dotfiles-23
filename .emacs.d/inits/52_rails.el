@@ -24,7 +24,7 @@
 
 
 ;; Rinari
-(add-to-list 'load-path "~/.emacs.d/vendor/rinari")
+(add-to-load-path "vendor/rinari")
 (require 'rinari)
 (add-hook 'rinari-mode-hook
           (lambda ()
@@ -34,8 +34,18 @@
 
 
 ;; rhtml-mode
-(add-to-list 'load-path "~/.emacs.d/vendor/rhtml")
+(add-to-load-path "vendor/rhtml")
 (require 'rhtml-mode)
 (add-hook 'rhtml-mode-hook
           (lambda () (rinari-launch)))
 
+;; rspec-mode
+(add-to-load-path "vendor/rspec-mode")
+(require 'rspec-mode)
+(defadvice rspec-compile (around rspec-compile-around)
+  "Use BASH shell for running the specs because of ZSH issues."
+  (let ((shell-file-name "/bin/bash"))
+    ad-do-it))
+(ad-activate 'rspec-compile)
+(custom-set-variables
+ '(rspec-use-rake-flag nil))
