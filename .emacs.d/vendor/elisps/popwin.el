@@ -1,6 +1,6 @@
 ;;; popwin.el --- Popup Window Manager.
 
-;; Copyright (C) 2011  Tomohiro Matsuyama
+;; Copyright (C) 2011, 2012  Tomohiro Matsuyama
 
 ;; Author: Tomohiro Matsuyama <tomo@cx4a.org>
 ;; Keywords: convenience
@@ -489,6 +489,9 @@ the popup window will be closed are followings:
            (quit-requested
             (and (eq last-command 'keyboard-quit)
                  (eq last-command-event ?\C-g)))
+           (other-window-selected
+            (and (not (eq window popwin:focus-window))
+                 (not (eq window popwin:popup-window))))
            (orig-this-command this-command)
            (popup-buffer-alive
             (buffer-live-p popwin:popup-buffer))
@@ -496,12 +499,11 @@ the popup window will be closed are followings:
             (popwin:buried-buffer-p popwin:popup-buffer))
            (popup-buffer-changed-despite-of-dedicated
             (and popwin:popup-window-dedicated-p
+                 (or (not other-window-selected)
+                     (not reading-from-minibuf))
                  (buffer-live-p window-buffer)
                  (not (eq popwin:popup-buffer window-buffer))))
-           (popup-window-alive (popwin:popup-window-live-p))
-           (other-window-selected
-            (and (not (eq window popwin:focus-window))
-                 (not (eq window popwin:popup-window)))))
+           (popup-window-alive (popwin:popup-window-live-p)))
       (when (or quit-requested
                 (not popup-buffer-alive)
                 popup-buffer-buried
@@ -774,6 +776,8 @@ usual. This function can be used as a value of
 (defun popwin:pop-to-buffer (buffer &optional other-window norecord)
   "Same as `pop-to-buffer' except that this function will use
 `popwin:display-buffer-1' instead of `display-buffer'."
+  (interactive (list (read-buffer "Pop to buffer: " (other-buffer))
+                     (if current-prefix-arg t)))
   (popwin:pop-to-buffer-1 buffer
                           :other-window other-window
                           :norecord norecord))
@@ -873,7 +877,8 @@ Keymap:
 | s, C-s | popwin:select-popup-window |
 | M-s    | popwin:stick-popup-window  |
 | 0      | popwin:close-popup-window  |
-| m, C-m | popwin:messages            |")
+| m, C-m | popwin:messages            |
+| u, C-u | popwin:universal-display   |")
 
 (provide 'popwin)
 ;;; popwin.el ends here
