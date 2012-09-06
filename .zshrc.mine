@@ -19,12 +19,6 @@ fi
 fortune
 
 
-## Ruby Version Manager
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
-fpath=(~/.rvm/scripts/zsh/Completion ${fpath})
-autoload -U compinit; compinit
-
-
 ###-begin-npm-completion-###
 #
 # npm command completion script
