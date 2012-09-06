@@ -10,9 +10,9 @@ set defsearch=googleen
 set activate+=links
 
 noremap  p t
-noremap  h 10j
-noremap  t 10k
-noremap  n 10l
+noremap  j 10j
+noremap  k 10k
+noremap  l 10l
 noremap  <C-g> <Esc>
 vnoremap <C-g> <Esc>
 inoremap <C-g> <Esc>
@@ -23,7 +23,7 @@ cnoremap <M-n> <C-n>
 cnoremap <M-p> <C-p>
 cnoremap <C-n> <Tab>
 cnoremap <C-p> <S-Tab>
-" iunmap <C-;>
+iunmap <C-;>
 
 set passkeys+=mail\.google\.(com|co\.jp):jk<CR>,gi
 " set passkeys+=www\.google\.com\/search:jk<CR>,ginp
