@@ -22,5 +22,10 @@
             'mew-draft-send-message
             'mew-draft-kill
             'mew-send-hook))
+      ;; edit on full window
+      (add-hook 'mew-draft-mode-hook (lambda ()
+                                       (progn
+                                         (delete-other-windows)
+                                         (goto-line 1))))
       )
   )

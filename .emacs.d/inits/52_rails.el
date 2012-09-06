@@ -32,6 +32,25 @@
 
 (setq rinari-tags-file-name "TAGS")
 
+;; Override to use "bundle exec rake"
+(defun ruby-compilation-rake (&optional edit task env-vars)
+  "Run a rake process dumping output to a ruby compilation buffer."
+  (interactive "P")
+  (let* ((task (concat
+                (or task (if (stringp edit) edit)
+                    (completing-read "Rake: " (pcmpl-rake-tasks)))
+                " "
+                (mapconcat (lambda (pair)
+                             (format "%s=%s" (car pair) (cdr pair)))
+                           env-vars " ")))
+         (rake-args (if (and edit (not (stringp edit)))
+                        (read-from-minibuffer "Edit Rake Command: " (concat task " "))
+                      task)))
+    (pop-to-buffer (ruby-compilation-do
+                    "rake" (nconc '("bundle" "exec" "rake")
+                                 (split-string rake-args))))))
+(ad-activate 'ruby-compilation-rake)
+
 
 ;; rhtml-mode
 (add-to-load-path "vendor/rhtml")
@@ -49,3 +68,10 @@
 (ad-activate 'rspec-compile)
 (custom-set-variables
  '(rspec-use-rake-flag nil))
+
+
+;; Web API Reference
+(define-key rinari-minor-mode-map (kbd "<f1> y")
+  '(lambda ()
+     (interactive)
+     (browse-url (concat "http://apidock.com/rails/search?query=" (region-string-or-currnet-word)))))

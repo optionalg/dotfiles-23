@@ -1,5 +1,3 @@
-(add-to-load-path "vendor/elisps")
-
 (require 'package)
 
 ;;リポジトリにMarmaladeを追加

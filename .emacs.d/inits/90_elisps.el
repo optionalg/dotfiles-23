@@ -11,12 +11,13 @@
 (require 'popwin)
 (setq display-buffer-function 'popwin:display-buffer)
 (setq anything-samewindow nil)
-(push '("^\\*anything" :regexp t :width 40 :position :left) popwin:special-display-config)
-(push '("*Help*" :width 78 :position :right :noselect t :stick t) popwin:special-display-config)
+;;(push '("^\\*anything" :regexp t :width 40 :position :left) popwin:special-display-config)
+(push '("^\\*anything" :regexp t :width 40 :position :right) popwin:special-display-config)
+(push '("*Help*" :width 64 :position :right :noselect t :stick t) popwin:special-display-config)
 ;; (push '("*anything imenu*" :width 40 :position :left) popwin:special-display-config)
 ;; (push '("*Moccur*" :height 50 :position :left) popwin:special-display-config)
 (define-key global-map [(super o)] 'dired-jump-other-window)
-(push '("*ri*" :width 78 :position :right :noselect t :stick t) popwin:special-display-config)
+(push '("*ri*" :width 70 :position :right :noselect t :stick t) popwin:special-display-config)
 
 (require 'recentf)
 (setq recentf-max-saved-items 1000)
@@ -56,3 +57,35 @@
 (global-set-key (kbd "C-c C-j") 'jaunte)
 
 (load "liquid.el")
+
+
+;; Auto insert corresponding parenthesis
+(require 'parenthesis)
+(setq my-parenthesis-settings
+      '((emacs-lisp-mode . "(\"")
+        (c-mode . "{(\'\"[")
+        (coffee-mode . "{(\"\'[/")
+        ))
+(defmacro my-parenthesis-gen-register-func (keystr mapname)
+  `(lambda ()
+    (parenthesis-register-keys ,(eval keystr) ,(eval mapname))))
+(dolist (setting my-parenthesis-settings)
+  (add-hook
+   (intern (concat (symbol-name (car setting)) "-hook"))
+   (my-parenthesis-gen-register-func
+    (cdr setting)
+    (intern (concat (symbol-name (car setting)) "-map")))))
+
+;; nore
+(add-to-list 'load-path "~/Dropbox/Proj/nore/misc")
+(require 'nore)
+(add-hook 'javascript-mode-hook
+          '(lambda ()
+             (define-key javascript-mode-map (kbd "<f1> n") 'nore-search-doc-at-point)))
+(add-hook 'coffee-mode-hook
+          '(lambda ()
+             (define-key coffee-mode-map (kbd "<f1> n") 'nore-search-doc-at-point)))
+
+
+:; physical line
+

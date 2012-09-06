@@ -1,6 +1,6 @@
 (require 'flymake)
 
-(defun credmp/flymake-display-err-minibuf () 
+(defun credmp/flymake-display-err-minibuf ()
   "Displays the error/warning for the current line in the minibuffer"
   (interactive)
   (let* ((line-no             (flymake-current-line-no))
@@ -13,10 +13,15 @@
                (full-file  (flymake-ler-full-file (nth (1- count) line-err-info-list)))
                (text (flymake-ler-text (nth (1- count) line-err-info-list)))
                (line       (flymake-ler-line (nth (1- count) line-err-info-list))))
-          (message "[%s] %s" line text)
+          (message "Flymake: %s" text)
           )
         )
       (setq count (1- count)))))
+
+(defadvice next-line (after flymake-disp-err activate compile)
+  (credmp/flymake-display-err-minibuf))
+(defadvice previous-line (after flymake-disp-err activate compile)
+  (credmp/flymake-display-err-minibuf))
 
 
 ;; minor mode for some useful keybindings

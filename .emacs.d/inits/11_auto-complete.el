@@ -16,6 +16,7 @@
 (global-auto-complete-mode t)
 ;(define-key ac-mode-map (kbd "TAB") 'auto-complete)
 (ac-set-trigger-key "TAB")
+(setq ac-candidate-max 20)
 
 (add-to-list 'ac-modes 'coffee-mode)
 (add-to-list 'ac-modes 'jade-mode)
@@ -24,6 +25,7 @@
 (add-to-list 'ac-modes 'js2-mode)
 (add-to-list 'ac-modes 'jde-mode)
 (add-to-list 'ac-modes 'nxml-mode)
+(add-to-list 'ac-modes 'makefile-mode)
 
 (defun my-ac-config-default ()
   (setq-default ac-sources '(ac-source-abbrev ac-source-dictionary ac-source-yasnippet ac-source-words-in-same-mode-buffers))

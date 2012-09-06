@@ -7,6 +7,7 @@
     '(progn
        (color-theme-initialize)
        ;; (color-theme-dark-laptop)
+       ;; (color-theme-greiner)
        (color-theme-ld-dark)
        ))
   )

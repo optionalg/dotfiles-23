@@ -1,4 +1,4 @@
-(add-to-list 'load-path "~/.emacs.d/vendor/elisps")
+(add-to-load-path "vendor/elisps")
 
 (setq multi-term-dedicated-select-after-open-p t)
 (setq multi-term-dedicated-window-height 22)
@@ -6,7 +6,10 @@
 
 (require 'multi-term)
 
-;; BUG: elscreen で他のスクリーンに遷移するとpopwinのウィンドウが閉じなくなる
+
+;; Toggle
+(defvar my-dedicated-term-name "*MULTI-TERM-DEDICATED*")
+
 (defun my-term-cd-cmd-for-dir (dir) (concat "cd " dir "\n"))
 
 (defun my-term-cd-cmd ()
@@ -15,7 +18,7 @@
         ("")))
 
 (defun my-multi-term-popwin-exist-p ()
-  (if (member "*MULTI-TERM-DEDICATED*"
+  (if (member my-dedicated-term-name
               (mapcar '(lambda (win) (buffer-name (window-buffer win))) (window-list))) t
     nil))
 
@@ -28,7 +31,7 @@
         (set-buffer (multi-term-dedicated-get-buffer-name))
       )
     ; 他のウィンドウにフォーカスしたときに閉じたくないなら :stick t を追加で渡す
-    (popwin:popup-buffer multi-term-dedicated-buffer :width 70 :position :right)
+    (popwin:popup-buffer multi-term-dedicated-buffer :width 60 :position :left :stick t)
     (term-char-mode)
     (term-send-raw-string cd-cmd)
     ))
@@ -38,7 +41,7 @@
   ;(popwin:close-popup-window-if-necessary t))
   (popwin:close-popup-window))
 
-; C-x t で multi-term-dedicated-window をトグル
+; toggle multi-term-dedicated-window with C-x t
 (global-set-key [(super t)]
                 '(lambda ()
                    (interactive)
@@ -57,8 +60,13 @@
 (setq term-default-bg-color nil)
 (setq term-default-fg-color nil)
 
-;; Command-v for paste
+
+;; Misc
+;; paste
 (add-hook 'term-mode-hook
           (lambda()
             (define-key term-raw-map [(super v)] 'term-paste)))
+
+;; Shell mode
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 

@@ -83,7 +83,7 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/anything-elisps")
 
 (require 'anything-project)
-(global-set-key [(super p)] 'anything-project)
+(global-set-key (kbd "C-x a p") 'anything-project)
 ;;; rails
 (ap:add-project
  :name 'rails

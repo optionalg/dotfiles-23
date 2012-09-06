@@ -24,3 +24,5 @@
               (define-key map "n" 'navi2ch-article-few-scroll-up)      ; n で1行下ヘスクロール
               (define-key map "p" 'navi2ch-article-few-scroll-down)    ; p で1行上へスクロール
               )))
+
+;(setq navi2ch-net-http-proxy "localhost:8118")

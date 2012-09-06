@@ -41,6 +41,7 @@
 (if (eq system-type 'darwin)
     (progn
       (menu-bar-mode t)
+      ;; Drag file to open that file in new buffer.
       (define-key global-map [ns-drag-file] 'ns-find-file))
   (menu-bar-mode -1))
 
@@ -56,11 +57,7 @@
 
 (if (eq system-type 'darwin)
     (progn
-      ;; (global-set-key [C-f11] 'ns-toggle-fullscreen)
-      (setq default-input-method "MacOSX")
-      ;; (mac-add-ignore-shortcut '(control))
-      ;; (mac-set-input-method-parameter `japanese `cursor-color "yellow")
-      ;; (mac-set-input-method-parameter `roman `cursor-color "green")
+      (global-set-key [C-f11] 'ns-toggle-fullscreen)
       ;; prevent many frames to be opened
       (setq ns-pop-up-frames nil)
       )
@@ -131,6 +128,10 @@
 (global-set-key [(super n)] 'make-frame)
 (global-set-key [(super d)] 'dired)
 (global-set-key [(super f)] 'find-file)
+;; Copy & Paste for Dvorak
+;; (global-set-key [(super j)] 'ns-copy-including-secondary)
+;; (global-set-key [(super k)] 'yank)
+;; (global-set-key [(super q)] 'kill-region)
 
 ;; Edit
 (show-paren-mode 1)
@@ -153,6 +154,10 @@
 ; fold always
 (setq truncate-lines nil)
 (setq truncate-partial-width-windows nil)
+
+(setq ffap-c-path
+      '("/usr/include" "/usr/local/include"))
+(setq ffap-kpathsea-depth 5)
 
 ;; require key inputs when C-x C-c
 ;; from: http://d.hatena.ne.jp/Ubuntu/20090417/1239934416
@@ -225,3 +230,39 @@
          (insert day)))))
 
 
+;; shell-command extention
+(defadvice erase-buffer (around erase-buffer-noop)
+  "make erase-buffer do nothing")
+
+(defadvice shell-command (around shell-command-unique-buffer activate compile)
+  (if (or current-prefix-arg
+          (not (string-match "[ \t]*&[ \t]*\\'" command)) ;; background
+          (bufferp output-buffer)
+          (stringp output-buffer))
+      ad-do-it ;; no behavior change
+
+    ;; else we need to set up buffer
+    (let* ((command-buffer-name
+            (format "*background: %s*"
+                    (substring command 0 (match-beginning 0))))
+           (command-buffer (get-buffer command-buffer-name)))
+
+      (when command-buffer
+        ;; if the buffer exists, reuse it, or rename it if it's still in use
+        (cond ((get-buffer-process command-buffer)
+               (set-buffer command-buffer)
+               (rename-uniquely))
+              ('t
+               (kill-buffer command-buffer))))
+      (setq output-buffer command-buffer-name)
+
+      ;; insert command at top of buffer
+      (switch-to-buffer-other-window output-buffer)
+      (insert "Running command: " command
+              "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n")
+
+      ;; temporarily blow away erase-buffer while doing it, to avoid
+      ;; erasing the above
+      (ad-activate-regexp "erase-buffer-noop")
+      ad-do-it
+      (ad-deactivate-regexp "erase-buffer-noop"))))

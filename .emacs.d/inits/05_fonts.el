@@ -5,7 +5,8 @@
        window-system
        (eq system-type 'darwin))
   (set-face-attribute 'default nil
-                      :family "monaco"
+                      ;; :family "monaco"
+                      :family "menlo"
                       :height 120)
   (set-fontset-font
    (frame-parameter nil 'font)

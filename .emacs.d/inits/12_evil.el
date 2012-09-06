@@ -5,14 +5,15 @@
 
 (setq my-evil-hjkl-maps
       '(("d" evil-backward-char)
-        ("h" evil-next-line)
-        ("t" evil-previous-line)
+        ("h" evil-next-visual-line)
+        ("t" evil-previous-visual-line)
         ("n" evil-forward-char)
         ("k" evil-delete)))
 
 (dolist (map my-evil-hjkl-maps)
   (apply 'define-key evil-normal-state-map map)
   (apply 'define-key evil-visual-state-map map)
+  (apply 'define-key evil-motion-state-map map)
   )
 
 ;; Prevent quit command from exit Emacs
@@ -21,7 +22,15 @@
   (interactive)
   (kill-buffer (current-buffer)))
 
+(defun my-save-kill-current-butffer ()
+  :repeat nil
+  (interactive)
+  (save-buffer)
+  (kill-buffer (current-buffer)))
+
 (evil-ex-define-cmd "q[uit]" 'my-kill-current-butffer)
+(evil-ex-define-cmd "wq" 'my-save-kill-current-butffer)
+
 
 ;; plugins
 (add-to-load-path "vendor/evil-plugins")

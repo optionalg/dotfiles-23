@@ -16,7 +16,11 @@
 (add-to-list 'warp-format-converter-alist
              '("\\.md\\|\\.markdown" t (lambda ()
                                          ;; Set command you are using
-                                         '("markdown"))))
+                                         '("redcarpet"))))
+;; (add-to-list 'warp-format-converter-alist
+;;              '(markdown-mode t (lambda ()
+;;                                          ;; Set command you are using
+;;                                          '("markdown"))))
 
 (setenv "LC_ALL" "en_US.UTF-8")
 

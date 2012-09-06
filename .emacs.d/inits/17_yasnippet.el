@@ -2,11 +2,6 @@
               "~/.emacs.d/vendor/yasnippet")
 
 (require 'yasnippet) ;; not yasnippet-bundle
-;; anything 連携はうまく動かないので、今の所有効にしない - 2011-11-08
-;; (require 'anything-c-yasnippet)
-;;
-;; (setq anything-c-yas-space-match-any-greedy t)
-;; (global-set-key (kbd "C-c y") 'anything-c-yas-complete)
 
 ;Don't map TAB to yasnippet
 ;In fact, set it to something we'll never use because

@@ -60,8 +60,8 @@
                 coffee-command nil (cons buffer-file-name '())))
 
         (display-buffer "*CoffeeRun*")
-        (read-string "press some key to close..")
-        (kill-buffer "*CoffeeRun*"))
+        (read-string "press Enter to close..")
+        (kill-buffer-and-window))
 
     (message "Please save buffer first.")))
 
