@@ -5,9 +5,9 @@ if [ `uname -s` = 'Darwin' ]; then
 
   for file in ${files}
   do
-    ln -fs ${file} ~/
+    ln -is ${file} ~/
   done
 else
-  find "${PWD}" -maxdepth 1 -name '.git' -prune -o -name '.gitignore' -prune -o -name '.*' -print0 | xargs -0 ln -fs -t ~/
+  find "${PWD}" -maxdepth 1 -name '.git' -prune -o -name '.gitignore' -prune -o -name '.*' -print0 | xargs -0 ln -is -t ~/
 fi
 
