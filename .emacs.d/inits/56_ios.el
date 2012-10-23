@@ -35,13 +35,53 @@
 ;; hook
 (add-hook 'objc-mode-hook
          (lambda ()
-           (define-key objc-mode-map (kbd "\t") 'ac-complete)
+           ;(define-key objc-mode-map (kbd "\t") 'ac-complete)
            ;; XCode を利用した補完を有効にする
-           (push 'ac-source-company-xcode ac-sources)
+           ;(push 'ac-source-company-xcode ac-sources)
+           (setq ac-sources '(ac-source-company-xcode))
            ;; C++ のキーワード補完をする Objective-C++ を利用する人だけ設定してください
            ;;(push 'ac-source-c++-keywords ac-sources)
          ))
 
+;; --- Obj-C switch between header and source ---
+
+(defun objc-in-header-file ()
+  (let* ((filename (buffer-file-name))
+         (extension (car (last (split-string filename "\\.")))))
+    (string= "h" extension)))
+
+(defun objc-jump-to-extension (extension)
+  (let* ((filename (buffer-file-name))
+         (file-components (append (butlast (split-string filename
+                                                         "\\."))
+                                  (list extension))))
+    (find-file (mapconcat 'identity file-components "."))))
+
+;;; Assumes that Header and Source file are in same directory
+(defun objc-jump-between-header-source ()
+  (interactive)
+  (if (objc-in-header-file)
+      (objc-jump-to-extension "m")
+    (objc-jump-to-extension "h")))
+
+(defun objc-mode-customizations ()
+  (define-key objc-mode-map (kbd "C-c t") 'objc-jump-between-header-source))
+
+(add-hook 'objc-mode-hook 'objc-mode-customizations)
+
+;; Build
+(defun xcode:buildandrun ()
+ (interactive)
+ (do-applescript
+  (format
+   (concat
+    "tell application \"Xcode\"\r"
+    "    activate \r"
+    "    tell application \"System Events\" \r"
+    "        key code 15 using {command down} \r"
+    "    end tell \r"
+    "end tell \r"
+    ))))
 
 ;; flymake
 ;; (require 'flymake)

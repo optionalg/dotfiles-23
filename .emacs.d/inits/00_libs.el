@@ -55,3 +55,6 @@
 (load-library "migemo")
 (migemo-init)
 (set-process-query-on-exit-flag (get-process "migemo") nil)
+
+;; websocket
+(add-to-load-path "lib/emacs-websocket")
