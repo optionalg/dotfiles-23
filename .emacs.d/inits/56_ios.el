@@ -25,23 +25,51 @@
            (define-key c-mode-base-map (kbd "C-c o") 'ff-find-other-file)
          ))
 
-;; 補完 auto-complete-mode 使用
-(add-to-list 'load-path "~/.emacs.d/vendor/elisps")
-(require 'ac-company)
-;; ac-company で company-xcode を有効にする
-(ac-company-define-source ac-source-company-xcode company-xcode)
-;; objc-mode で補完候補を設定
+(defvar xcode:sdkver "6.0")
+(defvar xcode:sdkpath "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer")
+(defvar xcode:sdk (concat xcode:sdkpath "/SDKs/iPhoneSimulator" xcode:sdkver ".sdk"))
+
+;; ;; 補完 auto-complete-mode 使用
+;; (add-to-list 'load-path "~/.emacs.d/vendor/elisps")
+;; (require 'ac-company)
+;; ;; ac-company で company-xcode を有効にする
+;; (ac-company-define-source ac-source-company-xcode company-xcode)
+;; ;; objc-mode で補完候補を設定
+;; (setq ac-modes (append ac-modes '(objc-mode)))
+;; ;; hook
+;; (add-hook 'objc-mode-hook
+;;          (lambda ()
+;;            ;(define-key objc-mode-map (kbd "\t") 'ac-complete)
+;;            ;; XCode を利用した補完を有効にする
+;;            ;(push 'ac-source-company-xcode ac-sources)
+;;            (setq ac-sources '(ac-source-company-xcode))
+;;            ;; C++ のキーワード補完をする Objective-C++ を利用する人だけ設定してください
+;;            ;;(push 'ac-source-c++-keywords ac-sources)
+;;          ))
+
+
+;; auto-complete-mode
 (setq ac-modes (append ac-modes '(objc-mode)))
-;; hook
+(add-to-load-path "vendor/auto-complete-clang")
+(setq ac-clang-flags (list "-D__IPHONE_OS_VERSION_MIN_REQUIRED=30200" "-x" "objective-c" "-std=gnu99" "-isysroot" xcode:sdkpath "-I." "-F.." "-fblocks"))
+(require 'auto-complete-clang)
+;; (setq ac-clang-prefix-header "stdafx.pch")
+;; (setq ac-clang-flags '("-w" "-ferror-limit" "1"))
+;(setq clang-completion-flags (list "-Wall" "-Wextra" "-fsyntax-only" "-ObjC" "-std=c99" "-isysroot" "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk" "-I." "-F.." "-D__IPHONE_OS_VERSION_MIN_REQUIRED=30200"))
 (add-hook 'objc-mode-hook
-         (lambda ()
-           ;(define-key objc-mode-map (kbd "\t") 'ac-complete)
-           ;; XCode を利用した補完を有効にする
-           ;(push 'ac-source-company-xcode ac-sources)
-           (setq ac-sources '(ac-source-company-xcode))
-           ;; C++ のキーワード補完をする Objective-C++ を利用する人だけ設定してください
-           ;;(push 'ac-source-c++-keywords ac-sources)
-         ))
+          (lambda () (setq ac-sources (append '(ac-source-clang
+                                                ac-source-yasnippet
+                                                ac-source-gtags)
+                                              ac-sources))))
+;; (add-hook 'objc-mode-hook
+;;          (lambda ()
+;;            ;(define-key objc-mode-map (kbd "\t") 'ac-complete)
+;;            ;; XCode を利用した補完を有効にする
+;;            ;(push 'ac-source-company-xcode ac-sources)
+;;            (setq ac-sources '(ac-source-clang))
+;;            ;; C++ のキーワード補完をする Objective-C++ を利用する人だけ設定してください
+;;            ;;(push 'ac-source-c++-keywords ac-sources)
+;;          ))
 
 ;; --- Obj-C switch between header and source ---
 
@@ -78,42 +106,50 @@
     "tell application \"Xcode\"\r"
     "    activate \r"
     "    tell application \"System Events\" \r"
-    "        key code 15 using {command down} \r"
+    "        key code 35 using {command down} \r"
     "    end tell \r"
     "end tell \r"
     ))))
 
-;; flymake
-;; (require 'flymake)
-;; (defvar xcode:sdkver "5.1")
-;; (defvar xcode:sdkpath "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer")
-;; (defvar xcode:sdk (concat xcode:sdkpath "/SDKs/iPhoneSimulator" xcode:sdkver ".sdk"))
-;; (defvar flymake-objc-compiler (concat xcode:sdkpath "/usr/bin/gcc"))
-;; ;;(defvar flymake-objc-compiler (concat xcode:sdkpath "/usr/bin/clang"))
-;; ;;(defvar flymake-objc-compile-default-options (list "-Wall" "-Wextra" "-fsyntax-only" "-x" "objective-c" "-std=c99"))
-;; (defvar flymake-objc-compile-default-options (list "-Wall" "-Wextra" "-fsyntax-only" "-ObjC" "-std=c99" "-isysroot" xcode:sdk))
-;; (defvar flymake-last-position nil)
-;; (defcustom flymake-objc-compile-options '("-I." "-F../")
-;;   "Compile option for objc check."
-;;   :group 'flymake
-;;   :type '(repeat (string)))
+;; flymake エラー表示は参考程度に・・・
+(require 'flymake)
+;(defvar flymake-objc-compiler (concat xcode:sdkpath "/usr/bin/gcc"))
+(defvar flymake-objc-compiler (executable-find "clang"))
+;;(defvar flymake-objc-compile-default-options (list "-Wall" "-Wextra" "-fsyntax-only" "-x" "objective-c" "-std=c99"))
+(defvar flymake-objc-compile-default-options (list "-D__IPHONE_OS_VERSION_MIN_REQUIRED=30200" "-fsyntax-only" "-fno-color-diagnostics" "-fobjc-arc" "-fblocks" "-Wreturn-type" "-Wparentheses" "-Wswitch" "-Wno-unused-parameter" "-Wunused-variable" "-Wunused-value" "-isysroot" xcode:sdk))
+(defvar flymake-last-position nil)
+(defcustom flymake-objc-compile-options '("-I.")
+  "Compile option for objc check."
+  :group 'flymake
+  :type '(repeat (string)))
 
-;; (defun flymake-objc-init ()
-;;  (let* ((temp-file (flymake-init-create-temp-buffer-copy
-;;                     'flymake-create-temp-inplace))
-;;         (local-file (file-relative-name
-;;                      temp-file
-;;                      (file-name-directory buffer-file-name))))
-;;    (list flymake-objc-compiler (append flymake-objc-compile-default-options flymake-objc-compile-options (list local-file)))))
+(defun flymake-objc-init ()
+ (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                    'flymake-create-temp-inplace))
+        (local-file (file-relative-name
+                     temp-file
+                     (file-name-directory buffer-file-name))))
+   (list flymake-objc-compiler (append flymake-objc-compile-default-options flymake-objc-compile-options (list local-file)))))
 
-;; (add-hook 'objc-mode-hook
-;;          (lambda ()
-;;            ;; 拡張子 m と h に対して flymake を有効にする設定 flymake-mode t の前に書く必要があります
-;;            (push '("\\.m$" flymake-objc-init) flymake-allowed-file-name-masks)
-;;            (push '("\\.h$" flymake-objc-init) flymake-allowed-file-name-masks)
-;;            ;; 存在するファイルかつ書き込み可能ファイル時のみ flymake-mode を有効にします
-;;            (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
-;;                (flymake-mode t))))
+(setq flymake-err-line-patterns
+      (cons
+       '("\\(.+\\):\\([0-9]+\\):\\([0-9]+\\): \\(.+\\)" 1 2 3 4)
+       flymake-err-line-patterns))
+
+(defadvice flymake-post-syntax-check (before flymake-force-check-was-interrupted)
+  ;(setq flymake-check-was-interrupted t)
+  ;; dirty hack.... clang command always exit with status code 1
+  (setq exit-status 0))
+
+(add-hook 'objc-mode-hook
+         (lambda ()
+           (ad-activate 'flymake-post-syntax-check)
+           ;; 拡張子 m と h に対して flymake を有効にする設定 flymake-mode t の前に書く必要があります
+           (push '("\\.m$" flymake-objc-init) flymake-allowed-file-name-masks)
+           (push '("\\.h$" flymake-objc-init) flymake-allowed-file-name-masks)
+           ;; 存在するファイルかつ書き込み可能ファイル時のみ flymake-mode を有効にします
+           (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
+               (flymake-mode t))))
 
 ;; Use Makefile
 ;; もともとのパターンにマッチしなかったので追加
