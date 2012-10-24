@@ -52,3 +52,6 @@
 [submodule ".emacs.d/lib/emacs-websocket"]
 	path = .emacs.d/lib/emacs-websocket
 	url = https://github.com/ahyatt/emacs-websocket.git
+[submodule ".emacs.d/vendor/auto-complete-clang"]
+	path = .emacs.d/vendor/auto-complete-clang
+	url = https://github.com/brianjcj/auto-complete-clang.git
