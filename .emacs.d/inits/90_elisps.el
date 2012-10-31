@@ -13,7 +13,7 @@
 (setq anything-samewindow nil)
 ;;(push '("^\\*anything" :regexp t :width 40 :position :left) popwin:special-display-config)
 (push '("^\\*anything" :regexp t :width 40 :position :right) popwin:special-display-config)
-(push '("*Help*" :width 64 :position :right :noselect t :stick t) popwin:special-display-config)
+(push '("*Help*" :width 80 :position :right :noselect t :stick t) popwin:special-display-config)
 ;; (push '("*anything imenu*" :width 40 :position :left) popwin:special-display-config)
 ;; (push '("*Moccur*" :height 50 :position :left) popwin:special-display-config)
 (define-key global-map [(super o)] 'dired-jump-other-window)
