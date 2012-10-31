@@ -7,7 +7,8 @@
   (set-face-attribute 'default nil
                       ;; :family "monaco"
                       :family "menlo"
-                      :height 120)
+                      :height 115)
+  (setq-default line-spacing 2)
   (set-fontset-font
    (frame-parameter nil 'font)
    'japanese-jisx0208
