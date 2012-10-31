@@ -29,29 +29,10 @@
 (defvar xcode:sdkpath "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer")
 (defvar xcode:sdk (concat xcode:sdkpath "/SDKs/iPhoneSimulator" xcode:sdkver ".sdk"))
 
-;; ;; 補完 auto-complete-mode 使用
-;; (add-to-list 'load-path "~/.emacs.d/vendor/elisps")
-;; (require 'ac-company)
-;; ;; ac-company で company-xcode を有効にする
-;; (ac-company-define-source ac-source-company-xcode company-xcode)
-;; ;; objc-mode で補完候補を設定
-;; (setq ac-modes (append ac-modes '(objc-mode)))
-;; ;; hook
-;; (add-hook 'objc-mode-hook
-;;          (lambda ()
-;;            ;(define-key objc-mode-map (kbd "\t") 'ac-complete)
-;;            ;; XCode を利用した補完を有効にする
-;;            ;(push 'ac-source-company-xcode ac-sources)
-;;            (setq ac-sources '(ac-source-company-xcode))
-;;            ;; C++ のキーワード補完をする Objective-C++ を利用する人だけ設定してください
-;;            ;;(push 'ac-source-c++-keywords ac-sources)
-;;          ))
-
-
 ;; auto-complete-mode
 (setq ac-modes (append ac-modes '(objc-mode)))
 (add-to-load-path "vendor/auto-complete-clang")
-(setq ac-clang-flags (list "-D__IPHONE_OS_VERSION_MIN_REQUIRED=30200" "-x" "objective-c" "-std=gnu99" "-isysroot" xcode:sdkpath "-I." "-F.." "-fblocks"))
+(setq ac-clang-flags (list "-D__IPHONE_OS_VERSION_MIN_REQUIRED=30200" "-x" "objective-c" "-std=gnu99" "-isysroot" xcode:sdk "-I." "-F.." "-fblocks"))
 (require 'auto-complete-clang)
 ;; (setq ac-clang-prefix-header "stdafx.pch")
 ;; (setq ac-clang-flags '("-w" "-ferror-limit" "1"))
@@ -61,15 +42,7 @@
                                                 ac-source-yasnippet
                                                 ac-source-gtags)
                                               ac-sources))))
-;; (add-hook 'objc-mode-hook
-;;          (lambda ()
-;;            ;(define-key objc-mode-map (kbd "\t") 'ac-complete)
-;;            ;; XCode を利用した補完を有効にする
-;;            ;(push 'ac-source-company-xcode ac-sources)
-;;            (setq ac-sources '(ac-source-clang))
-;;            ;; C++ のキーワード補完をする Objective-C++ を利用する人だけ設定してください
-;;            ;;(push 'ac-source-c++-keywords ac-sources)
-;;          ))
+
 
 ;; --- Obj-C switch between header and source ---
 
@@ -92,11 +65,6 @@
       (objc-jump-to-extension "m")
     (objc-jump-to-extension "h")))
 
-(defun objc-mode-customizations ()
-  (define-key objc-mode-map (kbd "C-c t") 'objc-jump-between-header-source))
-
-(add-hook 'objc-mode-hook 'objc-mode-customizations)
-
 ;; Build
 (defun xcode:buildandrun ()
  (interactive)
@@ -110,6 +78,39 @@
     "    end tell \r"
     "end tell \r"
     ))))
+
+;; Documentation Search
+(defun xcode:searchdoc ()
+  (interactive)
+  (let ((term (region-string-or-currnet-word)))
+    (do-applescript
+     (format
+      (concat
+       "tell application \"System Events\" \r"
+       "  tell process \"Xcode\" \r"
+                                        ; -- Activate Xcode if necessary
+       "    set frontmost to true \r"
+                                        ;    -- Open the Organizer
+       "    keystroke \"2\" using {shift down, command down} \r"
+       "    set organizer to window 1 \r"
+                                        ;    -- Select the Documentation panel if it's not already selected
+       "    if the title of organizer is not \"Organizer - Documentation\" then \r"
+       "      click button \"Documentation\" of tool bar 1 of organizer \r"
+       "      delay 0.1 \r"
+       "      set organizer to window 1 \r"
+       "    end if \r"
+                                        ;    -- Move focus to the search field
+       "    set searchField to text field 1 of splitter group 1 of organizer \r"
+       "    set searchField's focused to true \r"
+       "    set value of searchField to \"" term "\" \r"
+       "  end tell \r"
+       "end tell \r"
+       )))))
+
+(defun objc-mode-customizations ()
+  (define-key objc-mode-map (kbd "C-c t") 'objc-jump-between-header-source)
+  (define-key objc-mode-map (kbd "C-c r") 'xcode:searchdoc))
+(add-hook 'objc-mode-hook 'objc-mode-customizations)
 
 ;; flymake エラー表示は参考程度に・・・
 (require 'flymake)
@@ -150,29 +151,3 @@
            ;; 存在するファイルかつ書き込み可能ファイル時のみ flymake-mode を有効にします
            (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
                (flymake-mode t))))
-
-;; Use Makefile
-;; もともとのパターンにマッチしなかったので追加
-;; (setq flymake-err-line-patterns
-;;       (cons
-;;        '("\\(.+\\):\\([0-9]+\\):\\([0-9]+\\): \\(.+\\)" 1 2 3 4)
-;;        flymake-err-line-patterns))
-
-;; (add-hook 'objc-mode-hook
-;;           (lambda ()
-;;             (push '("\\.m$" flymake-simple-make-init) flymake-allowed-file-name-masks)
-;;             (push '("\\.h$" flymake-simple-make-init) flymake-allowed-file-name-masks)
-;;             (flymake-mode t)))
-
-; Makefile for iOS
-;; CLANG	    = /usr/bin/clang
-;; ARCH	    = -arch armv7
-;; SDK	    = -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.1.sdk
-;; OS_VER_MIN  = -miphoneos-version-min=4.3
-;; OPTIONS     = -fsyntax-only -x objective-c -std=gnu99
-;; WARNINGS    = -Wreturn-type -Wparentheses -Wswitch -Wno-unused-parameter -Wunused-variable -Wunused-value
-;; INCLUDES    = -I.
-;; FRAMEWORKS  = -F../
-
-;; check-syntax:
-;; 	$(CLANG) $(OPTIONS) $(ARCH) $(WARNINGS) $(SDK) $(OS_VER_MIN) $(INCLUDES) $(FRAMEWORKS) ${CHK_SOURCES}
