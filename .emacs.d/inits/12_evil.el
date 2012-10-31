@@ -30,6 +30,7 @@
 
 (evil-ex-define-cmd "q[uit]" 'my-kill-current-butffer)
 (evil-ex-define-cmd "wq" 'my-save-kill-current-butffer)
+(evil-ex-define-cmd "W" 'save-buffer)
 
 
 ;; plugins
