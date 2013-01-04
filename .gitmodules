@@ -49,3 +49,6 @@
 [submodule ".emacs.d/vendor/rspec-mode"]
 	path = .emacs.d/vendor/rspec-mode
 	url = https://github.com/pezra/rspec-mode.git
+[submodule ".emacs.d/lib/emacs-websocket"]
+	path = .emacs.d/lib/emacs-websocket
+	url = git://github.com/ahyatt/emacs-websocket.git
