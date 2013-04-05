@@ -56,15 +56,11 @@
 the directory containing file becomes the initial working directory
 and source-file directory for your debugger." t)
 
-
-;; Without this, viper-mode will be disabled in ruby-mode.
-;(add-to-list 'viper-vi-state-mode-list 'ruby-mode)
-
-
-;; use rvm ruby
-(require 'rvm)
-(rvm-use-default) ;; use rvm's default ruby for the current Emacs session
-
+;; use rbenv ruby
+(setenv "PATH" (concat (getenv "HOME") "/.rbenv/shims:"
+                       (getenv "HOME") "/.rbenv/bin:" (getenv "PATH")))
+(setq exec-path (cons (concat (getenv "HOME") "/.rbenv/shims")
+                      (cons (concat (getenv "HOME") "/.rbenv/bin") exec-path)))
 
 ;; ri search
 (defvar ri-command "ri"
