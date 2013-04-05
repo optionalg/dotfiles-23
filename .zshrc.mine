@@ -92,3 +92,5 @@ function _update_vcs_info_msg() {
 add-zsh-hook precmd _update_vcs_info_msg
 RPROMPT="%1(v|%F{green}%1v%f|)""$RPROMPT"
 
+setopt correct
+SPROMPT="%r? べ, 別にあんたのために修正したわけじゃないんだから! [n,y,a,e]:"

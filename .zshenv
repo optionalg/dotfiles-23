@@ -26,13 +26,13 @@ case `uname -s` in
         ;;
       *)
         export PATH=/Users/yukihr/bin:/Users/yukihr/Library/Haskell/ghc-7.0.4/lib/yi-0.6.5.0/bin/:$PATH
-        export EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n"
+        export EDITOR="/usr/local/Cellar/emacs/24.2/bin/emacsclient -n"
         alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -rv"
         alias e=${EDITOR}
         alias o="open"
+        alias be="bundle exec"
 
-        export NAVEVERSION=0.6.11
-        ;;
+        export NAVEVERSION=0.9.6
     esac
     ;;
 esac
@@ -66,5 +66,6 @@ fi
 #PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
