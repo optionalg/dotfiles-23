@@ -21,11 +21,15 @@
   '(("\\.coffee$" flymake-coffeescript-init)))
 
 (defun flymake-coffeescript-init ()
-  (let* ((local-dir (file-name-directory buffer-file-name))
-         (local-file (file-relative-name
-                      buffer-file-name
-                      local-dir)))
-    (list "coffee" (list "--compile" "--output" local-dir local-file))) ;; add "--bare" to access inner objs globally
+  (let* ((temp-file   (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+         (local-file  (file-relative-name
+                       temp-file
+                       (file-name-directory buffer-file-name))))
+    (list "coffee" (list
+                                        ;"--compile"
+                                        ;"--output" local-dir
+                    local-file))) ;; add "--bare" to access inner objs globally
   )
 
 (defun flymake-coffeescript-load ()

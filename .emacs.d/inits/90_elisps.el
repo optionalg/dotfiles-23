@@ -1,23 +1,25 @@
-(setq load-path (cons (expand-file-name "~/.emacs.d/vendor/elisps") load-path))
-
-(require 'auto-save-buffers)
-(run-with-idle-timer 5 t 'auto-save-buffers)
-
 ;; popwin.el
-;; https://github.com/m2ym/popwin-el#readme
-(setq popwin:popup-window-position 'bottom)
-(setq popwin:popup-window-height 15)
-(setq popwin:adjust-other-windows nil)
-(require 'popwin)
-(setq display-buffer-function 'popwin:display-buffer)
-(setq anything-samewindow nil)
+(reqpack 'popwin)
+(custom-set-variables
+ '(popwin:popup-window-position 'bottom)
+ '(popwin:popup-window-height 15)
+ '(popwin:adjust-other-windows nil)
+ '(display-buffer-function 'popwin:display-buffer)
+ '(anything-samewindow nil))
 ;;(push '("^\\*anything" :regexp t :width 40 :position :left) popwin:special-display-config)
-(push '("^\\*anything" :regexp t :width 40 :position :right) popwin:special-display-config)
+(push '("^\\*helm" :regexp t :width 60 :position :right) popwin:special-display-config)
 (push '("*Help*" :width 80 :position :right :noselect t :stick t) popwin:special-display-config)
 ;; (push '("*anything imenu*" :width 40 :position :left) popwin:special-display-config)
 ;; (push '("*Moccur*" :height 50 :position :left) popwin:special-display-config)
 (define-key global-map [(super o)] 'dired-jump-other-window)
 (push '("*ri*" :width 70 :position :right :noselect t :stick t) popwin:special-display-config)
+
+
+
+(setq load-path (cons (expand-file-name "~/.emacs.d/vendor/elisps") load-path))
+
+(require 'auto-save-buffers)
+(run-with-idle-timer 5 t 'auto-save-buffers)
 
 (require 'recentf)
 (setq recentf-max-saved-items 1000)
@@ -87,5 +89,11 @@
              (define-key coffee-mode-map (kbd "<f1> n") 'nore-search-doc-at-point)))
 
 
-:; physical line
+;; dash
+(autoload 'dash-at-point "dash-at-point"
+          "Search the word at point with Dash." t nil)
+(global-set-key "\C-c\C-r" 'dash-at-point)
 
+;; edit server
+(reqpack 'edit-server)
+(edit-server-start)

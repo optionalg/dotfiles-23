@@ -45,16 +45,17 @@
 (load-file (expand-file-name "~/.emacs.d/lib/emacs-deferred/concurrent.el"))
 
 ;; migemo
-(require 'migemo)
-(setq migemo-command "cmigemo")
-(setq migemo-options '("-q" "--emacs" "-i" "\g"))
-(setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
-(setq migemo-user-dictionary nil)
-(setq migemo-regex-dictionary nil)
-(setq migemo-coding-system 'utf-8-unix)
-(load-library "migemo")
-(migemo-init)
-(set-process-query-on-exit-flag (get-process "migemo") nil)
+(setq migemo-command (executable-find "cmigemo"))
+(when migemo-command
+  (setq migemo-options '("-q" "--emacs" "-i" "\g"))
+  (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
+  (setq migemo-user-dictionary nil)
+  (setq migemo-regex-dictionary nil)
+  (setq migemo-coding-system 'utf-8-unix)
+  (require 'migemo)
+  (load-library "migemo")
+  (migemo-init)
+  (set-process-query-on-exit-flag (get-process "migemo") nil))
 
 ;; websocket
 (add-to-load-path "lib/emacs-websocket")

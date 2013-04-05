@@ -1,6 +1,5 @@
-(add-to-load-path "vendor/evil")
-(setq evil-shift-width 2)
-(require 'evil)
+(reqpack 'evil)
+(setq-default evil-shift-width 2)
 (evil-mode 1)
 
 (setq my-evil-hjkl-maps
@@ -36,7 +35,7 @@
 ;; plugins
 (add-to-load-path "vendor/evil-plugins")
 
-(require 'evil-numbers)
+(reqpack 'evil-numbers)
 (define-key evil-normal-state-map "+" 'evil-numbers/inc-at-pt)
 (define-key evil-normal-state-map "-" 'evil-numbers/dec-at-pt)
 

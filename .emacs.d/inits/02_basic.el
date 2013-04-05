@@ -42,9 +42,28 @@
     (progn
       (menu-bar-mode t)
       ;; Drag file to open that file in new buffer.
-      (define-key global-map [ns-drag-file] 'ns-find-file))
+      (define-key global-map [ns-drag-file] 'ns-find-file)
+      ;; prevent many frames to be opened
+      (setq ns-pop-up-frames nil))
   (menu-bar-mode -1))
 
+
+;; Key
+(when (eq system-type 'darwin)         ; もし、システムが Mac のとき
+  (setq mac-command-key-is-meta nil)   ; コマンドキーをメタにしない
+  (setq mac-option-modifier 'meta)     ; オプションキーをメタに
+  (setq mac-command-modifier 'super)   ; コマンドキーを Super に
+  (setq mac-pass-control-to-system t)) ; コントロールキーを Mac ではなく Emacs に渡す
+
+(if (equal system-name "ubuntu")
+    (progn
+      (setq x-meta-keysym 'super
+            x-super-keysym 'meta
+            ;browse-url-browser-function 'browse-url-with-chrome
+      )))
+
+
+;; Utilities
 (defun toggle-fullscreen (&optional f)
   "toggle full screen or normal window"
   (interactive)
@@ -58,8 +77,6 @@
 (if (eq system-type 'darwin)
     (progn
       (global-set-key [C-f11] 'ns-toggle-fullscreen)
-      ;; prevent many frames to be opened
-      (setq ns-pop-up-frames nil)
       )
   (progn
     ;; Make new frames fullscreen by default. Note: this hook doesn't do
@@ -69,6 +86,8 @@
     (global-set-key [f11] 'toggle-fullscreen)
     )
   )
+
+(global-set-key [(super f1)] 'other-frame)
 
 (defun browse-url-with-chrome (url &rest args)
   (interactive)
@@ -80,34 +99,21 @@
     (set-process-sentinel proc '(lambda (proc, status) ()))
     (set-process-filter proc '(lambda (proc, data) ()))))
 
-(if (equal system-name "ubuntu")
-    (progn
-      (setq x-meta-keysym 'super
-            x-super-keysym 'meta
-            ;browse-url-browser-function 'browse-url-with-chrome
-      )))
-
 (defun search-google ()
   (interactive)
   (browse-url (format "http://google.com/search?q=%s"
                       (region-string-or-currnet-word))))
 (global-set-key (kbd "C-x w") 'search-google)
 
-(defun search-eowp ()
+(defun search-dict ()
   (interactive)
-  (browse-url (format "http://eowp.alc.co.jp/search?q=%s"
+  (browse-url (format "dict:///%s"
                       (region-string-or-currnet-word))))
-(global-set-key (kbd "C-x p") 'search-eowp)
+(global-set-key (kbd "C-x p") 'search-dict)
+
 
 ;; display EOF
 (setq-default indicate-empty-lines t)
-
-;; Key
-(when (eq system-type 'darwin)         ; もし、システムが Mac のとき
-  (setq mac-command-key-is-meta nil)   ; コマンドキーをメタにしない
-  (setq mac-option-modifier 'meta)     ; オプションキーをメタに
-  (setq mac-command-modifier 'super)   ; コマンドキーを Super に
-  (setq mac-pass-control-to-system t)) ; コントロールキーを Mac ではなく Emacs に渡す
 
 ;; Key Mapping
 ;; (global-set-key "\C-h" 'delete-backward-char)
@@ -116,10 +122,10 @@
 (global-set-key "\C-m" 'newline-and-indent)
 (global-set-key "\C-z" 'undo)
 ; move between window
-(global-set-key [M-left] 'windmove-left)          ; move to left windnow
-(global-set-key [M-right] 'windmove-right)        ; move to right window
-(global-set-key [M-up] 'windmove-up)              ; move to upper window
-(global-set-key [M-down] 'windmove-down)          ; move to downer window
+(global-set-key [C-M-n] 'windmove-right)  ; move to left windnow
+(global-set-key [C-M-d] 'windmove-left)   ; move to right window
+(global-set-key [C-M-t] 'windmove-up)     ; move to upper window
+(global-set-key [C-M-h] 'windmove-down)   ; move to downer window
 (global-set-key "\C-xm" 'browse-url-at-point)
 (global-set-key "\C-x." 'find-file-at-point)
 (global-set-key [C-tab] 'other-window)
@@ -230,7 +236,7 @@
          (insert day)))))
 
 
-;; shell-command extention
+;; shell-command extension
 (defadvice erase-buffer (around erase-buffer-noop)
   "make erase-buffer do nothing")
 
@@ -266,3 +272,13 @@
       (ad-activate-regexp "erase-buffer-noop")
       ad-do-it
       (ad-deactivate-regexp "erase-buffer-noop"))))
+
+
+;; open file with App set by OS
+(defun open ()
+  (interactive)
+  (let ((path (or buffer-file-name default-directory)))
+    (cond
+     ((eq system-type 'darwin) (shell-command (concat "open " path)))
+     (t (error "Can't specify open command for system type: %s" system-type))
+     )))

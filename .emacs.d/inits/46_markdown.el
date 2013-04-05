@@ -6,7 +6,7 @@
             (cons '("\\.howm" . markdown-mode) auto-mode-alist)
             ))
 
-(setq markdown-command "sundown")
+(setq markdown-command "redcarpet")
 
 (defun outline-imenu-create-index ()
   (let (index)

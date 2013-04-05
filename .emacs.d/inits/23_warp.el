@@ -10,7 +10,7 @@
          "\n+$" "" (shell-command-to-string "echo $NODE_PATH")))
 
 (custom-set-variables
- '(warp-base-url "http://dev:")
+ '(warp-base-url "http://dev")
  '(warp-reload-default-base-url "http://dev:"))
 
 (add-to-list 'warp-format-converter-alist
