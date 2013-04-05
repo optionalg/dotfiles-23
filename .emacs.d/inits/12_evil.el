@@ -15,6 +15,8 @@
   (apply 'define-key evil-motion-state-map map)
   )
 
+(define-key evil-normal-state-map "q" 'quit-window)
+
 ;; Prevent quit command from exit Emacs
 (defun my-kill-current-butffer ()
   :repeat nil
@@ -29,16 +31,15 @@
 
 (evil-ex-define-cmd "q[uit]" 'my-kill-current-butffer)
 (evil-ex-define-cmd "wq" 'my-save-kill-current-butffer)
+(evil-ex-define-cmd "Wq" 'my-save-kill-current-butffer)
 (evil-ex-define-cmd "W" 'save-buffer)
 
 
 ;; plugins
-(add-to-load-path "vendor/evil-plugins")
-
 (reqpack 'evil-numbers)
 (define-key evil-normal-state-map "+" 'evil-numbers/inc-at-pt)
 (define-key evil-normal-state-map "-" 'evil-numbers/dec-at-pt)
 
+(add-to-load-path "vendor/evil-plugins")
 (require 'surround)
 (global-surround-mode 1)
-
