@@ -20,10 +20,10 @@
 ;; (setq marmalade-server "http://marmalade-repo.org/")
 
 ;; Utils
-(defun reqpack (name)
-  (unless (package-installed-p name)
-    (package-install name))
-  (require name))
+(defmacro reqpack (name)
+  `(progn (unless (package-installed-p ,name)
+            (package-install ,name))
+          (require ,name)))
 
 ;;
 (reqpack 'scala-mode2)
