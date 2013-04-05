@@ -10,9 +10,6 @@
 [submodule ".emacs.d/vendor/auto-complete"]
 	path = .emacs.d/vendor/auto-complete
 	url = git://github.com/m2ym/auto-complete.git
-[submodule ".emacs.d/vendor/anything-config"]
-	path = .emacs.d/vendor/anything-config
-	url = git://repo.or.cz/anything-config.git
 [submodule ".emacs.d/vendor/html5-el"]
 	path = .emacs.d/vendor/html5-el
 	url = https://github.com/hober/html5-el.git
@@ -22,9 +19,6 @@
 [submodule ".emacs.d/vendor/jade-mode"]
 	path = .emacs.d/vendor/jade-mode
 	url = https://github.com/brianc/jade-mode.git
-[submodule ".emacs.d/vendor/magit"]
-	path = .emacs.d/vendor/magit
-	url = git://github.com/magit/magit.git
 [submodule ".emacs.d/vendor/yasnippet"]
 	path = .emacs.d/vendor/yasnippet
 	url = https://github.com/capitaomorte/yasnippet.git
@@ -40,9 +34,6 @@
 [submodule ".emacs.d/vendor/rhtml"]
 	path = .emacs.d/vendor/rhtml
 	url = https://github.com/eschulte/rhtml.git
-[submodule ".emacs.d/vendor/evil"]
-	path = .emacs.d/vendor/evil
-	url = git://gitorious.org/evil/evil.git
 [submodule ".emacs.d/vendor/multi-web-mode"]
 	path = .emacs.d/vendor/multi-web-mode
 	url = https://github.com/fgallina/multi-web-mode.git

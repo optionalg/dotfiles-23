@@ -15,3 +15,5 @@
 .emacs.d/vendor/elpa/archives
 .emacs.d/trash
 .emacs.d/url
+.emacs.d/bookmarks
+.emacs.d/vendor/elpa
