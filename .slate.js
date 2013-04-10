@@ -20,6 +20,6 @@ var launch_and_focus = function (target) {
   };
 };
 
-S.bind('0:ctrl;cmd', launch_and_focus('Emacs'));
-S.bind('9:ctrl;cmd', launch_and_focus('FirefoxNightly'));
-S.bind('8:ctrl;cmd', launch_and_focus('Chromium'));
+S.bind('1:cmd', launch_and_focus('Emacs'));
+S.bind('2:cmd', launch_and_focus('FirefoxNightly'));
+S.bind('3:cmd', launch_and_focus('Chromium'));
