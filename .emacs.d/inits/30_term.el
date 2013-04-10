@@ -5,7 +5,8 @@
 (setq multi-term-program shell-file-name)
 
 (require 'multi-term)
-
+(reqpack 'popwin)
+(require 'ucs-normalize)
 
 ;; Toggle
 (defvar my-dedicated-term-name "*MULTI-TERM-DEDICATED*")
@@ -31,7 +32,8 @@
         (set-buffer (multi-term-dedicated-get-buffer-name))
       )
     ; 他のウィンドウにフォーカスしたときに閉じたくないなら :stick t を追加で渡す
-    (popwin:popup-buffer multi-term-dedicated-buffer :width 60 :position :left :stick t)
+    ;; (popwin:popup-buffer multi-term-dedicated-buffer :width 60 :position :right :stick t)
+    (popwin:popup-buffer multi-term-dedicated-buffer :height 30 :position :top :stick t)
     (term-char-mode)
     (term-send-raw-string cd-cmd)
     ))
@@ -60,13 +62,22 @@
 (setq term-default-bg-color nil)
 (setq term-default-fg-color nil)
 
+(setq system-uses-terminfo nil)
 
 ;; Misc
-;; paste
+; keybindings
 (add-hook 'term-mode-hook
           (lambda()
-            (define-key term-raw-map [(super v)] 'term-paste)))
+            (define-key term-raw-map [(super v)] 'term-paste)
+            (define-key term-raw-map (kbd "M-r")
+              '(lambda ()
+                 (interactive)
+                 (term-send-raw-string (kbd "C-r"))))
+            ))
 
 ;; Shell mode
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
+; Don't scroll back after showing complete candidates
+(setq-default term-scroll-show-maximum-output t)
+; (setq-default multi-term-scroll-show-maximum-output t) ; not necessary
