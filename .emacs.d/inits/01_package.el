@@ -20,10 +20,18 @@
 ;; (setq marmalade-server "http://marmalade-repo.org/")
 
 ;; Utils
-(defmacro reqpack (name)
-  `(progn (unless (package-installed-p ,name)
-            (package-install ,name))
-          (require ,name)))
+;; (defun reqpack (name)
+;;   (progn (unless (package-installed-p name)
+;;            (package-install name))
+;;          (when (featurep name)
+;;            (require name))))
 
-;;
+(defun reqpack (name)
+  (progn (unless (package-installed-p name)
+           (package-install name))
+         (require name)))
+
+;; just require (no settings)
 (reqpack 'scala-mode2)
+(reqpack 'git-gutter)
+(reqpack 'yaml-mode)

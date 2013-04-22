@@ -1,6 +1,8 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/ruby-mode")
 (setq auto-mode-alist
-      (append '(("^Rakefile\\|Gemfile$\\|.rake$" . ruby-mode)) auto-mode-alist))
+      (append '((".rake$" . ruby-mode)
+                ("Gemfile$" . ruby-mode)
+                ("Rakefile$" . ruby-mode)) auto-mode-alist))
 
 
 ;; ruby-electric.el

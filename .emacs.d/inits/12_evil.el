@@ -88,3 +88,9 @@ Add additional BINDINGS if specified. For dvorak keyboard."
        "d" 'dired-up-directory
        "n" 'dired-find-file                   ; "j"
        ";" (lookup-key dired-mode-map ":")))) ; ":d", ":v", ":s", ":e"
+
+;;; Magit
+(add-hook 'magit-mode-hook
+          '(lambda () (evil-define-key 'normal magit-status-mode-map
+                        "h" 'magit-goto-next-section
+                        "t" 'magit-goto-previous-section)))

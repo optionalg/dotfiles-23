@@ -92,7 +92,7 @@
 ;; dash
 (autoload 'dash-at-point "dash-at-point"
           "Search the word at point with Dash." t nil)
-(global-set-key "\C-c\C-r" 'dash-at-point)
+(global-set-key (kbd "C-c r") 'dash-at-point)
 
 ;; edit server
 (reqpack 'edit-server)
