@@ -73,4 +73,5 @@
 
 ; Don't scroll back after showing complete candidates
 (setq-default term-scroll-show-maximum-output t)
+(setq-default term-scroll-to-bottom-on-output 'all)
 ; (setq-default multi-term-scroll-show-maximum-output t) ; not necessary
