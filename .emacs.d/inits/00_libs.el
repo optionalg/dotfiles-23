@@ -1,3 +1,5 @@
+(require 'cl)
+
 ; (add-to-list 'load-path "~/.emacs.d/lib/apel")
 (load-file (concat user-emacs-directory "lib/mylib.el"))
 (add-to-load-path "lib")
