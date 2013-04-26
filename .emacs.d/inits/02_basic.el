@@ -305,11 +305,20 @@
                 "*Messages*" "*Compile-Log*" "*Help*"
                 "*init log*" "*Ibuffer*" "*scratch*"
                 "*MULTI-TERM-DEDICATED*"))
-         (hidden-buffers (my/filter
-                          '(lambda (buffer)
-                             (not (string-match "^ " (buffer-name buffer))))
-                          (buffer-list)))
-         (buffers-to-kill (set-difference hidden-buffers
+         (interested-buffers (my/filter
+                              '(lambda (buffer)
+                                 (and
+                                  ; dont kill hidden buffers
+                                  (not (string-match "^ " (buffer-name buffer)))
+                                  ; dont kill buffers who have processes
+                                  (let ((proc (get-buffer-process buffer)))
+                                    (if proc
+                                        (equal 'exit
+                                               (process-status
+                                                (get-buffer-process buffer)))
+                                      t))))
+                              (buffer-list)))
+         (buffers-to-kill (set-difference interested-buffers
                                           (mapcar '(lambda (buffer-name)
                                                      (get-buffer buffer-name))
                                                   no-kill-buffer-names))))
