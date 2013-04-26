@@ -282,3 +282,31 @@
      ((eq system-type 'darwin) (shell-command (concat "open " path)))
      (t (error "Can't specify open command for system type: %s" system-type))
      )))
+
+
+;; Buffer
+; ibuffer
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+; Ensure ibuffer opens with point at the current buffer's entry.
+(defadvice ibuffer
+  (around ibuffer-point-to-most-recent) ()
+  "Open ibuffer with cursor pointed to most recent buffer name."
+  (let ((recent-buffer-name (buffer-name)))
+    ad-do-it
+    (ibuffer-jump-to-buffer recent-buffer-name)))
+(ad-activate 'ibuffer)
+
+; kill other buffers
+(defun kill-other-buffers ()
+  "Kill all other buffers."
+  (interactive)
+  (let* ((no-kill-buffer-names
+          (list (buffer-name (current-buffer))
+                "*Messages*" "*Compile-Log*" "*Help*"
+                "*init log*" "*Ibuffer*" "*scratch*"
+                "*MULTI-TERM-DEDICATED*"))
+         (buffers (set-difference (buffer-list) (mapcar '(lambda (buffer-name)
+                                                           (get-buffer buffer-name))
+                                                        no-kill-buffer-names))))
+    (mapc 'kill-buffer buffers)))
+(global-set-key (kbd "C-c C-b C-b") 'kill-other-buffers)
