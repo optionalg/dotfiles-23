@@ -305,8 +305,13 @@
                 "*Messages*" "*Compile-Log*" "*Help*"
                 "*init log*" "*Ibuffer*" "*scratch*"
                 "*MULTI-TERM-DEDICATED*"))
-         (buffers (set-difference (buffer-list) (mapcar '(lambda (buffer-name)
-                                                           (get-buffer buffer-name))
-                                                        no-kill-buffer-names))))
-    (mapc 'kill-buffer buffers)))
+         (hidden-buffers (my/filter
+                          '(lambda (buffer)
+                             (not (string-match "^ " (buffer-name buffer))))
+                          (buffer-list)))
+         (buffers-to-kill (set-difference hidden-buffers
+                                          (mapcar '(lambda (buffer-name)
+                                                     (get-buffer buffer-name))
+                                                  no-kill-buffer-names))))
+    (mapc 'kill-buffer buffers-to-kill)))
 (global-set-key (kbd "C-c C-b C-b") 'kill-other-buffers)

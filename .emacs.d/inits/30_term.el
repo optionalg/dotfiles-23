@@ -26,10 +26,6 @@
         (list-buffers-directory (my/term-cd-cmd-for-dir list-buffers-directory))
         ("")))
 
-(defun my/filter (condp lst)
-  (delq nil
-        (mapcar (lambda (x) (and (funcall condp x) x)) lst)))
-
 (defun my/find-multi-term-dedicated-window ()
   (car
    (my/filter '(lambda (win)

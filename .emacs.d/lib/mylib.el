@@ -37,3 +37,6 @@ return output of the command in string format."
   (mapconcat 'identity lst
              (if (null delim) "" delim)))
 
+(defun my/filter (condp lst)
+  (delq nil
+        (mapcar (lambda (x) (and (funcall condp x) x)) lst)))
