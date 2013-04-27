@@ -310,7 +310,7 @@
                                  (and
                                   ; dont kill hidden buffers
                                   (not (string-match "^ " (buffer-name buffer)))
-                                  ; dont kill buffers who have processes
+                                  ; dont kill buffers who have running processes
                                   (let ((proc (get-buffer-process buffer)))
                                     (if proc
                                         (equal 'exit
