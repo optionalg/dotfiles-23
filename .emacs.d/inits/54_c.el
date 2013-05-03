@@ -1,4 +1,7 @@
 ;; Flymake
+(defadvice flymake-c-post-syntax-check (before flymake-force-check-was-interrupted)
+  (setq flymake-check-was-interrupted t))
+
 (defun flymake-c-init ()
   (let* ((temp-file   (flymake-init-create-temp-buffer-copy
                        'flymake-create-temp-inplace))
@@ -11,6 +14,7 @@
 (add-hook 'c-mode-hook
           '(lambda ()
              (progn
+               (ad-activate 'flymake-c-post-syntax-check)
                (flymake-mode t)
                (my-flymake-minor-mode))))
 
