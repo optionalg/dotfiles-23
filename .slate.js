@@ -21,5 +21,6 @@ var launch_and_focus = function (target) {
 };
 
 S.bind('1:cmd', launch_and_focus('Emacs'));
-S.bind('2:cmd', launch_and_focus('Chromium'));
+S.bind('2:cmd', launch_and_focus('Safari'));
 S.bind('3:cmd', launch_and_focus('Dash'));
+S.bind('4:cmd', launch_and_focus('Chromium'));
