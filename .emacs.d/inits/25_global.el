@@ -2,22 +2,23 @@
 (require 'gtags)
 
 ;; Use with helm
+(reqpack 'helm)
 (reqpack 'helm-gtags)
 
 ;;; Enable helm-gtags-mode
-(add-hook 'c-mode-hook 'helm-gtags-mode)
-(add-hook 'c++-mode-hook 'helm-gtags-mode)
-(add-hook 'asm-mode-hook 'helm-gtags-mode)
+(dolist (hook '(asm-mode-hook c-mode-common-hook))
+  (add-hook hook '(lambda()
+                    (helm-gtags-mode)
+                    (gtags-make-complete-list))))
 
 ;; customize
 (setq helm-gtags-path-style 'relative)
 (setq helm-gtags-ignore-case t)
 (setq helm-gtags-read-only t)
 
-;; key bindings
-(add-hook 'helm-gtags-mode-hook
-          '(lambda ()
-             (local-set-key (kbd "M-t") 'helm-gtags-find-tag)
-             (local-set-key (kbd "M-r") 'helm-gtags-find-rtag)
-             (local-set-key (kbd "M-s") 'helm-gtags-find-symbol)
-             (local-set-key (kbd "C-t") 'helm-gtags-pop-stack)))
+;; key bindings (evil integration)
+(reqpack 'evil)
+(define-key evil-normal-state-map (kbd "C-]") 'helm-gtags-find-tag)
+(define-key evil-normal-state-map (kbd "C-=") 'helm-gtags-find-rtag) ;reference
+(define-key evil-normal-state-map (kbd "C-/") 'helm-gtags-find-symbol)
+(define-key evil-normal-state-map (kbd "C-t") 'helm-gtags-pop-stack)
