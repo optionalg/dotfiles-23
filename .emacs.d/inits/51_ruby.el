@@ -1,4 +1,3 @@
-(add-to-list 'load-path "~/.emacs.d/vendor/ruby-mode")
 (setq auto-mode-alist
       (append '((".rake$" . ruby-mode)
                 ("Gemfile$" . ruby-mode)
@@ -6,25 +5,22 @@
 
 
 ;; ruby-electric.el
-(require 'ruby-electric)
+(reqpack 'ruby-electric)
 (add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))
 
 
 ;; ruby-block.el
-(require 'ruby-block)
+(reqpack 'ruby-block)
 (ruby-block-mode t)
 (setq ruby-block-highlight-toggle 'overlay)
 
 
 ;; inf-ruby.el
-(autoload 'run-ruby "inf-ruby"
-  "Run an inferior Ruby process")
-(autoload 'inf-ruby-keys "inf-ruby"
-  "Set local key defs for inf-ruby in ruby-mode")
-(add-hook 'ruby-mode-hook
-          '(lambda ()
-             (inf-ruby-keys)
-             ))
+(reqpack 'inf-ruby)
+(autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
+(autoload 'inf-ruby-setup-keybindings "inf-ruby" "" t)
+(eval-after-load 'ruby-mode
+  '(add-hook 'ruby-mode-hook 'inf-ruby-setup-keybindings))
 
 
 ;; flymake-ruby
@@ -52,6 +48,7 @@
 
 
 ;; rubydb
+(add-to-list 'load-path "~/.emacs.d/vendor/ruby-mode")
 ;; M-x rubydb
 (autoload 'rubydb "rubydb3x"
   "run rubydb on program file in buffer *gud-file*.
