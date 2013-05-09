@@ -24,8 +24,7 @@
 
 
 ;; Rinari
-(add-to-load-path "vendor/rinari")
-(require 'rinari)
+(reqpack 'rinari)
 (add-hook 'rinari-mode-hook
           (lambda ()
             (define-key rinari-minor-mode-map "\C-c\C-t" 'rails-create-tags)))
