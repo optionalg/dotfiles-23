@@ -69,3 +69,5 @@ fi
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
+#global
+export GTAGSLABEL=exuberant-ctags

@@ -8,8 +8,7 @@
 ;;; Enable helm-gtags-mode
 (dolist (hook '(asm-mode-hook c-mode-common-hook))
   (add-hook hook '(lambda()
-                    (helm-gtags-mode)
-                    (gtags-make-complete-list))))
+                    (helm-gtags-mode))))
 
 ;; customize
 (setq helm-gtags-path-style 'relative)
