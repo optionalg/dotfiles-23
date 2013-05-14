@@ -1,21 +1,3 @@
-;; popwin.el
-(reqpack 'popwin)
-(custom-set-variables
- '(popwin:popup-window-position 'bottom)
- '(popwin:popup-window-height 15)
- '(popwin:adjust-other-windows nil)
- '(display-buffer-function 'popwin:display-buffer)
- '(anything-samewindow nil))
-;;(push '("^\\*anything" :regexp t :width 40 :position :left) popwin:special-display-config)
-(push '("^\\*helm" :regexp t :width 60 :position :right) popwin:special-display-config)
-(push '("*Help*" :width 80 :position :right :noselect t :stick t) popwin:special-display-config)
-;; (push '("*anything imenu*" :width 40 :position :left) popwin:special-display-config)
-;; (push '("*Moccur*" :height 50 :position :left) popwin:special-display-config)
-(define-key global-map [(super o)] 'dired-jump-other-window)
-(push '("*ri*" :width 70 :position :right :noselect t :stick t) popwin:special-display-config)
-
-
-
 (setq load-path (cons (expand-file-name "~/.emacs.d/vendor/elisps") load-path))
 
 (require 'auto-save-buffers)
@@ -47,13 +29,13 @@
 
 (autoload 'html-fold-mode "html-fold" "Minor mode for hiding and revealing elements." t)
 
-(require 'direx)
-(global-set-key (kbd "C-x C-j") 'direx:jump-to-directory-other-window)
-;; direx:direx-modeのバッファをウィンドウ左辺に幅25でポップアップ
-;; :dedicatedにtを指定することで、direxウィンドウ内でのバッファの切り替えが
-;; ポップアップ前のウィンドウに移譲される
-(push '(direx:direx-mode :position left :width 50 :dedicated t)
-      popwin:special-display-config)
+;; (require 'direx)
+;; (global-set-key (kbd "C-x C-j") 'direx:jump-to-directory-other-window)
+;; ;; direx:direx-modeのバッファをウィンドウ左辺に幅25でポップアップ
+;; ;; :dedicatedにtを指定することで、direxウィンドウ内でのバッファの切り替えが
+;; ;; ポップアップ前のウィンドウに移譲される
+;; (push '(direx:direx-mode :position left :width 50 :dedicated t)
+;;       popwin:special-display-config)
 
 (require 'jaunte)
 (global-set-key (kbd "C-c C-j") 'jaunte)
