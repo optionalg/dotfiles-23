@@ -61,3 +61,20 @@
 
 ;; websocket
 (add-to-load-path "lib/emacs-websocket")
+
+;; popwin.el
+(reqpack 'popwin)
+(custom-set-variables
+ '(popwin:popup-window-position 'bottom)
+ '(popwin:popup-window-height 15)
+ '(popwin:adjust-other-windows nil)
+ '(display-buffer-function 'popwin:display-buffer)
+ '(anything-samewindow nil))
+;;(push '("^\\*anything" :regexp t :width 40 :position :left) popwin:special-display-config)
+(push '("^\\*helm" :regexp t :width 60 :position :right) popwin:special-display-config)
+(push '("*Help*" :width 80 :position :right :noselect t :stick t) popwin:special-display-config)
+;; (push '("*anything imenu*" :width 40 :position :left) popwin:special-display-config)
+;; (push '("*Moccur*" :height 50 :position :left) popwin:special-display-config)
+(define-key global-map [(super o)] 'dired-jump-other-window)
+(push '("*ri*" :width 70 :position :right :noselect t :stick t) popwin:special-display-config)
+(push '("^\\*SPEEDBAR" :regexp t :width 40 :position :left :noselect t :stick t) popwin:special-display-config)

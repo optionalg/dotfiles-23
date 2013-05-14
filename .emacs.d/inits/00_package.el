@@ -4,6 +4,10 @@
 (require 'package)
 
 ;;リポジトリにMarmaladeを追加
+(add-to-list 'package-archives
+             '("ELPA" . "http://tromey.com/elpa/"))
+(add-to-list 'package-archives
+             '("gnu" . "http://elpa.gnu.org/packages/"))
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 ;;リポジトリにMelpaを追加
 (add-to-list 'package-archives
