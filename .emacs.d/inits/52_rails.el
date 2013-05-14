@@ -1,35 +1,44 @@
-(defvar rails-tags-dirs '("app" "lib" "test" "db" "vendor")
-  "make tag target directories"
-)
+;; (defvar rails-tags-dirs '("app" "lib" "test" "db" "vendor")
+;;   "make tag target directories"
+;; )
 
-(defvar rails-tags-command "etags %s"
-  "make tag target directories"
-)
+;; (defvar rails-tags-command "gtags %s"
+;;   "make tag target directories"
+;; )
 
-(defun rails-create-tags()
-  "Create tags file"
-  (interactive)
-   (message "Creating TAGS, please wait...")
-   (let ((tags-file-name (concat (rinari-root) "TAGS")))
-     (shell-command
-      (format rails-tags-command tags-file-name
-        (mapconcat (function (lambda (s) (concat (rinari-root) "" s)))
-                   rails-tags-dirs " ")))
-     (visit-tags-table tags-file-name)))
+;; (defun rails-create-tags()
+;;   "Create tags file"
+;;   (interactive)
+;;    (message "Creating TAGS, please wait...")
+;;    (let ((tags-file-name (concat (rinari-root) "TAGS")))
+;;      (shell-command
+;;       (format rails-tags-command tags-file-name
+;;         (mapconcat (function (lambda (s) (concat (rinari-root) "" s)))
+;;                    rails-tags-dirs " ")))
+;;      (visit-tags-table tags-file-name)))
 
 
 ;; Interactively Do Things (highly recommended, but not strictly required)
 ;; (require 'ido)
 ;; (ido-mode t)
 
+(reqpack 'helm-gtags)
+(defun rails-gems-root ()
+  (replace-regexp-in-string
+   "\\(/bin/rails$\\|\n+$\\)" "" (shell-command-to-string "rbenv which rails")))
+
+(defun rails-source-find-tag ()
+  (interactive)
+  (with-helm-default-directory (rails-gems-root)
+      (helm-gtags-find-tag)))
 
 ;; Rinari
 (reqpack 'rinari)
-(add-hook 'rinari-mode-hook
-          (lambda ()
-            (define-key rinari-minor-mode-map "\C-c\C-t" 'rails-create-tags)))
+(global-rinari-mode t)
+(rinari-bind-key-to-func "]" (symbol-function 'rails-source-find-tag))
 
 (setq rinari-tags-file-name "TAGS")
+
 
 ;; Override to use "bundle exec rake"
 (defun ruby-compilation-rake (&optional edit task env-vars)
