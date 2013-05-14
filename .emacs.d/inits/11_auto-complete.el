@@ -27,13 +27,21 @@
 (add-to-list 'ac-modes 'nxml-mode)
 (add-to-list 'ac-modes 'makefile-mode)
 
-(defun my-ac-config-default ()
+(defun my/ac-ruby-mode-setup ()
+  (setq ac-sources (append '(ac-source-yasnippet ac-source-gtags) ac-sources)))
+
+(defun my/ac-config-default ()
   (setq-default ac-sources '(ac-source-abbrev ac-source-dictionary ac-source-yasnippet ac-source-words-in-same-mode-buffers))
   (add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)
   (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
-  (add-hook 'ruby-mode-hook 'ac-ruby-mode-setup)
+  (add-hook 'ruby-mode-hook 'my/ac-ruby-mode-setup)
   (add-hook 'css-mode-hook 'ac-css-mode-setup)
   (add-hook 'auto-complete-mode-hook 'ac-common-setup)
   (global-auto-complete-mode t))
 
-(my-ac-config-default)
+(my/ac-config-default)
+
+;; Mode Specific
+(add-hook
+ 'ruby-mode-hook '(lambda ()
+                    (define-key ruby-mode-map (kbd "TAB") nil))) ;ruby-indent-line conflicts with auto-complete
