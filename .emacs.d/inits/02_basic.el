@@ -308,7 +308,7 @@
          (interested-buffers (my/filter
                               '(lambda (buffer)
                                  (and
-                                  ; dont kill hidden buffers
+                                  ; dont kill hidden buffers (hidden buffers' name starts with SPACE)
                                   (not (string-match "^ " (buffer-name buffer)))
                                   ; dont kill buffers who have running processes
                                   (let ((proc (get-buffer-process buffer)))
