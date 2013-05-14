@@ -3,6 +3,10 @@ alias grep="grep --exclude='tags' --exclude='*.svn-*' --exclude='*.git*' --exclu
 alias lv="lv -Ou8 -c"
 alias g=hub
 alias r=rails
+# below needs /usr/obj dir
+# $ mkdir /usr/obj
+# $ chmod 777 /usr/obj
+alias gtags="gtags -O"
 
 case `uname -s` in
   Linux)
