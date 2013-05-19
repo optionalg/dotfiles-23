@@ -59,6 +59,12 @@
                                  (split-string rake-args))))))
 (ad-activate 'ruby-compilation-rake)
 
+;; Use with ebenv
+;; This affects rinari-script, rinari-test and rinari-web-server
+(add-hook 'rinari-minor-mode-hook '(lambda ()
+                                     (make-local-variable 'ruby-compilation-executable)
+                                     (setq ruby-compilation-executable "")))
+
 
 ;; rhtml-mode
 (add-to-load-path "vendor/rhtml")
