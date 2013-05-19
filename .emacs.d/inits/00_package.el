@@ -19,16 +19,6 @@
 ;;インストールしたパッケージにロードパスを通してロードする
 (package-initialize)
 
-;; ;; Setup Marmalade
-;; (load "marmalade.el")
-;; (setq marmalade-server "http://marmalade-repo.org/")
-
-;; Utils
-;; (defun reqpack (name)
-;;   (progn (unless (package-installed-p name)
-;;            (package-install name))
-;;          (when (featurep name)
-;;            (require name))))
 
 (defun reqpack (name)
   (progn (unless (package-installed-p name)
