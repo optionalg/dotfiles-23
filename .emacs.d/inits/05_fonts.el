@@ -8,7 +8,7 @@
                       ;; :family "monaco"
                       :family "menlo"
                       :height 115)
-  (setq-default line-spacing 2)
+  (setq-default line-spacing 3)
   (set-fontset-font
    (frame-parameter nil 'font)
    'japanese-jisx0208
