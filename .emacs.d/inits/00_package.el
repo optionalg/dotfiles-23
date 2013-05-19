@@ -25,7 +25,10 @@
            (package-install name))
          (require name)))
 
-;; just require (no settings)
+;; no setting file
 (reqpack 'scala-mode2)
 (reqpack 'git-gutter)
 (reqpack 'yaml-mode)
+(reqpack 'rainbow-mode)
+(dolist (hook '(css-mode-hook stylus-mode-hook sass-mode-hook))
+  (add-hook hook 'rainbow-mode))
