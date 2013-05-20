@@ -39,3 +39,13 @@
                (setq autopair-dont-activate t) ;; for emacsen < 24
                (autopair-mode -1))             ;; for emacsen >= 24
 )
+;; speedbar
+(reqpac 'sr-speedbar)
+(custom-set-variables
+ '(speedbar-show-unknown-files t)
+ ;; '(speedbar-directory-unshown-regexp "^\\(\\.[^\\.].*\\)\\'")
+ '(sr-speedbar-width-x 80)
+ '(sr-speedbar-max-width 120)
+ '(sr-speedbar-right-side nil)
+ )
+(global-set-key [f2] 'sr-speedbar-toggle)
