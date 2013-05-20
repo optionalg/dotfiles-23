@@ -22,7 +22,7 @@
 ;; (require 'ido)
 ;; (ido-mode t)
 
-(reqpack 'helm-gtags)
+(reqpac 'helm-gtags)
 (defun rails-gems-root ()
   (replace-regexp-in-string
    "\\(/bin/rails$\\|\n+$\\)" "" (shell-command-to-string "rbenv which rails")))
@@ -33,7 +33,7 @@
       (helm-gtags-find-tag)))
 
 ;; Rinari
-(reqpack 'rinari)
+(reqpac 'rinari)
 (global-rinari-mode t)
 (rinari-bind-key-to-func "]" (symbol-function 'rails-source-find-tag))
 

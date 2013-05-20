@@ -5,18 +5,18 @@
 
 
 ;; ruby-electric.el
-(reqpack 'ruby-electric)
+(reqpac 'ruby-electric)
 (add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))
 
 
 ;; ruby-block.el
-(reqpack 'ruby-block)
+(reqpac 'ruby-block)
 (ruby-block-mode t)
 (setq ruby-block-highlight-toggle 'overlay)
 
 
 ;; inf-ruby.el
-(reqpack 'inf-ruby)
+(reqpac 'inf-ruby)
 (autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
 (autoload 'inf-ruby-setup-keybindings "inf-ruby" "" t)
 (eval-after-load 'ruby-mode

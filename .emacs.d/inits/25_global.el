@@ -11,8 +11,8 @@
 (require 'gtags)
 
 ;; Use with helm
-(reqpack 'helm)
-(reqpack 'helm-gtags)
+(reqpac 'helm)
+(reqpac 'helm-gtags)
 (custom-set-variables '(helm-gtags-read-only nil))
 
 ;;; Enable helm-gtags-mode
@@ -26,7 +26,7 @@
 (setq helm-gtags-read-only t)
 
 ;; key bindings (evil integration)
-(reqpack 'evil)
+(reqpac 'evil)
 (define-key evil-normal-state-map (kbd "C-]") 'helm-gtags-find-tag)
 (define-key evil-normal-state-map (kbd "C-=") 'helm-gtags-find-rtag) ;reference
 (define-key evil-normal-state-map (kbd "C-/") 'helm-gtags-find-symbol)

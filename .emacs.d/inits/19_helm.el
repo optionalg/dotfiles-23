@@ -2,7 +2,7 @@
 (setq helm-input-idle-delay 0.2) ; 文字列を入力しから検索するまでのタイムラグ。デフォルトで 0
 (setq helm-candidate-number-limit 50)
 
-(reqpack 'helm)
+(reqpac 'helm)
 (require 'helm-config)
 
 ;; See: https://github.com/emacs-helm/helm/issues/30
@@ -62,7 +62,7 @@
 (define-key global-map [(super \,)] 'helm-git-project)
 
 
-(reqpack 'helm-ag)
+(reqpac 'helm-ag)
 (global-set-key (kbd "M-g .") 'helm-ag)
 (global-set-key (kbd "M-g ,") 'helm-ag-pop-stack)
 (global-set-key (kbd "C-M-s") 'helm-ag-this-file)

@@ -77,5 +77,5 @@
 (global-set-key (kbd "C-c r") 'dash-at-point)
 
 ;; edit server
-(reqpack 'edit-server)
+(reqpac 'edit-server)
 (edit-server-start)

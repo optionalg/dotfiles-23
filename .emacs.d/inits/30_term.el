@@ -12,7 +12,7 @@
 (setq system-uses-terminfo nil)
 
 
-(reqpack 'multi-term)
+(reqpac 'multi-term)
 (require 'ucs-normalize)
 
 ;; Toggle

@@ -20,15 +20,15 @@
 (package-initialize)
 
 
-(defun reqpack (name)
+(defun reqpac (name)
   (progn (unless (package-installed-p name)
            (package-install name))
          (require name)))
 
 ;; no setting file
-(reqpack 'scala-mode2)
-(reqpack 'git-gutter)
-(reqpack 'yaml-mode)
-(reqpack 'rainbow-mode)
+(reqpac 'scala-mode2)
+(reqpac 'git-gutter)
+(reqpac 'yaml-mode)
+(reqpac 'rainbow-mode)
 (dolist (hook '(css-mode-hook stylus-mode-hook sass-mode-hook))
   (add-hook hook 'rainbow-mode))
