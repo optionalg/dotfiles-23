@@ -11,27 +11,28 @@ alias gtags="gtags -O"
 
 case `uname -s` in
   Linux)
-    export PATH=/home/yhara/bin/:/home/yhara/.cabal/bin:$PATH
-    export EDITOR="emacsclient -n"
-    export PAGER='lv -Ou8 -c'
-    export GIT_PAGER=${PAGER}
-    alias emacs="emacs -rv"
-    alias e=${EDITOR}
-    alias o="xdg-open"
+    # export PATH=/home/yhara/bin/:/home/yhara/.cabal/bin:$PATH
+    # export EDITOR="emacsclient -n"
+    # export PAGER='lv -Ou8 -c'
+    # export GIT_PAGER=${PAGER}
+    # alias emacs="emacs -rv"
+    # alias e=${EDITOR}
+    # alias o="xdg-open"
 
-    export NAVEVERSION=0.7.2
+    # export NAVEVERSION=0.7.2
     ;;
   Darwin)
     case $HOST in
-      staff04001*)
-        export EDITOR="/Users/yhara/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n"
-        alias emacs="/Users/yhara/Applications/Emacs.app/Contents/MacOS/Emacs -rv"
-        alias e=${EDITOR}
-        alias o="open"
-        ;;
+      # staff04001*)
+      #   export EDITOR="/Users/yhara/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n"
+      #   alias emacs="/Users/yhara/Applications/Emacs.app/Contents/MacOS/Emacs -rv"
+      #   alias e=${EDITOR}
+      #   alias o="open"
+      #   ;;
       *)
         export PATH=/Users/yukihr/bin:/Users/yukihr/Library/Haskell/ghc-7.0.4/lib/yi-0.6.5.0/bin/:$PATH
         export EDITOR="/usr/local/Cellar/emacs/24.2/bin/emacsclient -n"
+        alias emacsclient="/usr/local/Cellar/emacs/24.2/bin/emacsclient -n"
         alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -rv"
         alias e=${EDITOR}
         alias o="open"
@@ -42,7 +43,9 @@ case `uname -s` in
     ;;
 esac
 
+# export PAGER=$epipe
 
+# Nave
 export PATH=$HOME/.nave/installed/${NAVEVERSION}/bin:$PATH
 export NODE_PATH=$HOME/.nave/installed/${NAVEVERSION}/lib/node_modules #:$NODE_PATH
 export NAVE=$NAVEVERSION

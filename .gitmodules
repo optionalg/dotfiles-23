@@ -40,3 +40,6 @@
 [submodule ".emacs.d/vendor/auto-complete-clang"]
 	path = .emacs.d/vendor/auto-complete-clang
 	url = git://github.com/brianjcj/auto-complete-clang.git
+[submodule ".zsh/zsh-completions"]
+	path = .zsh/zsh-completions
+	url = git@github.com:zsh-users/zsh-completions.git

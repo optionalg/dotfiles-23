@@ -90,7 +90,7 @@ setopt share_history # share command history data
 
 ## Completion configuration
 #
-fpath=($fpath $HOME/.zsh/comp)
+fpath=($HOME/.zsh/zsh-completions/src $fpath)
 autoload -U compinit
 compinit
 

@@ -94,3 +94,10 @@ RPROMPT="%1(v|%F{green}%1v%f|)""$RPROMPT"
 
 setopt correct
 SPROMPT="%r? べ, 別にあんたのために修正したわけじゃないんだから! [n,y,a,e]:"
+
+function to-e() {
+    TMP=$(mktemp -t emacs)
+    cat > $TMP
+    emacsclient $TMP
+    rm $TMP
+}
