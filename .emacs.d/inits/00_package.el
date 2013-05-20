@@ -34,3 +34,8 @@
   (add-hook hook 'rainbow-mode))
 (reqpac 'autopair)
 (autopair-global-mode)
+(add-hook 'term-mode-hook
+           #'(lambda () 
+               (setq autopair-dont-activate t) ;; for emacsen < 24
+               (autopair-mode -1))             ;; for emacsen >= 24
+)
