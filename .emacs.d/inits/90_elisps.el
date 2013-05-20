@@ -44,21 +44,21 @@
 
 
 ;; Auto insert corresponding parenthesis
-(require 'parenthesis)
-(setq my-parenthesis-settings
-      '((emacs-lisp-mode . "(\"")
-        (c-mode . "{(\'\"[")
-        (coffee-mode . "{(\"\'[/")
-        ))
-(defmacro my-parenthesis-gen-register-func (keystr mapname)
-  `(lambda ()
-    (parenthesis-register-keys ,(eval keystr) ,(eval mapname))))
-(dolist (setting my-parenthesis-settings)
-  (add-hook
-   (intern (concat (symbol-name (car setting)) "-hook"))
-   (my-parenthesis-gen-register-func
-    (cdr setting)
-    (intern (concat (symbol-name (car setting)) "-map")))))
+;; (require 'parenthesis)
+;; (setq my-parenthesis-settings
+;;       '((emacs-lisp-mode . "(\"")
+;;         (c-mode . "{(\'\"[")
+;;         (coffee-mode . "{(\"\'[/")
+;;         ))
+;; (defmacro my-parenthesis-gen-register-func (keystr mapname)
+;;   `(lambda ()
+;;     (parenthesis-register-keys ,(eval keystr) ,(eval mapname))))
+;; (dolist (setting my-parenthesis-settings)
+;;   (add-hook
+;;    (intern (concat (symbol-name (car setting)) "-hook"))
+;;    (my-parenthesis-gen-register-func
+;;     (cdr setting)
+;;     (intern (concat (symbol-name (car setting)) "-map")))))
 
 ;; nore
 (add-to-list 'load-path "~/Dropbox/Proj/nore/misc")

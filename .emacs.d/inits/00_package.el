@@ -32,3 +32,5 @@
 (reqpac 'rainbow-mode)
 (dolist (hook '(css-mode-hook stylus-mode-hook sass-mode-hook))
   (add-hook hook 'rainbow-mode))
+(reqpac 'autopair)
+(autopair-global-mode)
