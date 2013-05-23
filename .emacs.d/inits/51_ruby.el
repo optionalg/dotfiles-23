@@ -6,7 +6,6 @@
 
 ;; ruby-electric.el
 (reqpac 'ruby-electric)
-(add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))
 
 
 ;; ruby-block.el
