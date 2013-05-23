@@ -27,6 +27,16 @@
   (replace-regexp-in-string
    "\\(/bin/rails$\\|\n+$\\)" "" (shell-command-to-string "rbenv which rails")))
 
+(defun rails-source-create-tag ()
+  (interactive)
+  (let ((root (rails-gems-root))
+        (current default-directory))
+  (cd root)
+  (when (executable-find "global")
+    (start-process "gtags-update" nil
+                   "global" "-uvO"))
+  (cd current)))
+
 (defun rails-source-find-tag ()
   (interactive)
   (with-helm-default-directory (rails-gems-root)
@@ -71,6 +81,7 @@
 (require 'rhtml-mode)
 (add-hook 'rhtml-mode-hook
           (lambda () (rinari-launch)))
+(add-to-list 'auto-mode-alist '("\\.erb$" . rhtml-mode))
 
 ;; rspec-mode
 (add-to-load-path "vendor/rspec-mode")
