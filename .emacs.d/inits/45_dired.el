@@ -23,6 +23,7 @@
 ;;              'dired-mode 'vi-state dired-mode-map))))))
 
 (custom-set-variables
+ '(dired-auto-revert-buffer t)
  '(delete-by-moving-to-trash t)
  '(trash-directory "~/.Trash")
  '(dired-dwim-target t))
