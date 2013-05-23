@@ -32,13 +32,17 @@
 (reqpac 'rainbow-mode)
 (dolist (hook '(css-mode-hook stylus-mode-hook sass-mode-hook))
   (add-hook hook 'rainbow-mode))
+
+;; autopair
 (reqpac 'autopair)
 (autopair-global-mode)
-(add-hook 'term-mode-hook
-           #'(lambda () 
-               (setq autopair-dont-activate t) ;; for emacsen < 24
-               (autopair-mode -1))             ;; for emacsen >= 24
-)
+(dolist (hook '(term-mode-hook ruby-mode-hook))
+  (add-hook hook
+            #'(lambda () 
+                (setq autopair-dont-activate t) ;; for emacsen < 24
+                (autopair-mode -1))             ;; for emacsen >= 24
+            ))
+
 ;; speedbar
 (reqpac 'sr-speedbar)
 (custom-set-variables
