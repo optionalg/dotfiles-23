@@ -33,7 +33,7 @@ case `uname -s` in
         export PATH=/Users/yukihr/bin:/Users/yukihr/Library/Haskell/ghc-7.0.4/lib/yi-0.6.5.0/bin/:$PATH
         export EDITOR="/usr/local/Cellar/emacs/24.2/bin/emacsclient -n"
         alias emacsclient="/usr/local/Cellar/emacs/24.2/bin/emacsclient -n"
-        alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -rv"
+        alias emacs="/usr/local/Cellar/emacs/24.2/bin/emacs -rv"
         alias e=${EDITOR}
         alias o="open"
         alias be="bundle exec"
