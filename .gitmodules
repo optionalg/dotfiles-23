@@ -40,3 +40,6 @@
 [submodule ".zsh/zsh-completions"]
 	path = .zsh/zsh-completions
 	url = git@github.com:zsh-users/zsh-completions.git
+[submodule ".rbenv/plugins/rbenv-binstubs"]
+	path = .rbenv/plugins/rbenv-binstubs
+	url = https://github.com/ianheggie/rbenv-binstubs.git

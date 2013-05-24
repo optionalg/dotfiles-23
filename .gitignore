@@ -17,3 +17,6 @@
 .emacs.d/url
 .emacs.d/bookmarks
 .emacs.d/vendor/elpa
+.rbenv/shims
+.rbenv/version
+.rbenv/versions
