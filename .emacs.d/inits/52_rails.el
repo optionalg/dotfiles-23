@@ -83,6 +83,9 @@
           (lambda () (rinari-launch)))
 (add-to-list 'auto-mode-alist '("\\.erb$" . rhtml-mode))
 
+;; slim-mode
+(reqpac 'slim-mode)
+
 ;; rspec-mode
 (add-to-load-path "vendor/rspec-mode")
 (require 'rspec-mode)
