@@ -87,8 +87,7 @@
 (reqpac 'slim-mode)
 
 ;; rspec-mode
-(add-to-load-path "vendor/rspec-mode")
-(require 'rspec-mode)
+(reqpac 'rspec-mode)
 (defadvice rspec-compile (around rspec-compile-around)
   "Use BASH shell for running the specs because of ZSH issues."
   (let ((shell-file-name "/bin/bash"))
