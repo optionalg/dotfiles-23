@@ -89,8 +89,16 @@ Add additional BINDINGS if specified. For dvorak keyboard."
        "n" 'dired-find-file                   ; "j"
        ";" (lookup-key dired-mode-map ":")))) ; ":d", ":v", ":s", ":e"
 
-;;; Magit
-(add-hook 'magit-mode-hook
-          '(lambda () (evil-define-key 'normal magit-status-mode-map
-                        "h" 'magit-goto-next-section
-                        "t" 'magit-goto-previous-section)))
+;; (evil-define-key 'normal magit-status-mode-map
+;;   "h" 'magit-goto-next-section
+;;   "t" 'magit-goto-previous-section)
+
+;; (eval-after-load 'term
+;;   '(progn
+;;      ;; (evil-make-overriding-map term-mode-map 'insert t)
+;;      (evil-define-key 'insert term-mode-map
+;;        (kbd "C-e") 'term-send-raw)))
+
+(eval-after-load 'compile
+  '(progn
+     (evil-add-dhtn-bindings compilation-mode-map 'normal)))
