@@ -38,7 +38,7 @@ case `uname -s` in
         alias o="open"
         alias be="bundle exec"
 
-        export NAVEVERSION=0.9.6
+        export NAVEVERSION=0.10.9
     esac
     ;;
 esac
