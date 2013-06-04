@@ -1,4 +1,4 @@
-(add-to-list 'load-path "~/Dropbox/Proj/warp")
+(add-to-list 'load-path "~/Documents/OldProjects/warp")
 (require 'warp)
 (require 'warp-reload)
 (global-set-key (kbd "C-c C-w C-w") 'warp-mode)
