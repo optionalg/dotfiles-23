@@ -79,6 +79,8 @@ Add additional BINDINGS if specified. For dvorak keyboard."
 (require 'surround)
 (global-surround-mode 1)
 
+(require 'evil-operator-moccur)
+(global-evil-operator-moccur-mode 1)
 
 ;; integration
 ;;; Dired
