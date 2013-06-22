@@ -20,6 +20,7 @@
 
 (add-to-list 'ac-modes 'coffee-mode)
 (add-to-list 'ac-modes 'jade-mode)
+(add-to-list 'ac-modes 'stylus-mode)
 (add-to-list 'ac-modes 'sws-mode)
 (add-to-list 'ac-modes 'markdown-mode)
 (add-to-list 'ac-modes 'js2-mode)
