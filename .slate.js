@@ -31,4 +31,4 @@ var _to = function(name) {
 S.bind('1:cmd', _to('Safari'));
 S.bind('2:cmd', _to('Emacs'));
 S.bind('3:cmd', _to('Dash'));
-S.bind('4:cmd', _to('Chromium'));
+S.bind('4:cmd', _to('Google Chrome'));
