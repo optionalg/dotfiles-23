@@ -19,24 +19,24 @@
 
 ;; funcs
 ;; using coffee-command in vender/coffee-mode/coffee-mode.el
-(defun coffee-run-buffer-file-saving ()
-  "Run coffee script in current buffer in new window"
-  (interactive)
+;; (defun coffee-run-buffer-file-saving ()
+;;   "Run coffee script in current buffer in new window"
+;;   (interactive)
 
-  (if buffer-file-name
-      (progn
-        (save-buffer)
-        (set-buffer
-         (apply 'make-comint "CoffeeRun"
-                coffee-command nil (cons buffer-file-name '())))
+;;   (if buffer-file-name
+;;       (progn
+;;         (save-buffer)
+;;         (set-buffer
+;;          (apply 'make-comint "CoffeeRun"
+;;                 coffee-command nil (cons buffer-file-name '())))
 
-        (display-buffer "*CoffeeRun*")
-        (read-string "press Enter to close..")
-        (kill-buffer-and-window))
+;;         (display-buffer "*CoffeeRun*")
+;;         (read-string "press Enter to close..")
+;;         (kill-buffer-and-window))
 
-    (message "Please save buffer first.")))
+;;     (message "Please save buffer first.")))
 
-(define-key coffee-mode-map (kbd "C-c r") 'coffee-run-buffer-file-saving)
+;; (define-key coffee-mode-map (kbd "C-c r") 'coffee-run-buffer-file-saving)
 
 ;; for imenu
 ;; donot use semantic one
