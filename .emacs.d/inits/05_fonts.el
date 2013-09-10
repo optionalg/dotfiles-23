@@ -7,7 +7,7 @@
   (set-face-attribute 'default nil
                       ;; :family "monaco"
                       :family "menlo"
-                      :height 115)
+                      :height 130)
   (setq-default line-spacing 3)
   (set-fontset-font
    (frame-parameter nil 'font)
