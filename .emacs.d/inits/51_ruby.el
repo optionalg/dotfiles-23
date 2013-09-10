@@ -3,6 +3,11 @@
                 ("Gemfile$" . ruby-mode)
                 ("Rakefile$" . ruby-mode)) auto-mode-alist))
 
+;; rbenv
+(setq rbenv-executable "/usr/local/bin/rbenv")
+(setq rbenv-show-active-ruby-in-modeline nil)
+(reqpac 'rbenv)
+(global-rbenv-mode)
 
 ;; ruby-electric.el
 (reqpac 'ruby-electric)
@@ -118,3 +123,8 @@ and source-file directory for your debugger." t)
           (lambda ()
             (add-to-list 'ac-sources 'ac-source-rsense-method)
             (add-to-list 'ac-sources 'ac-source-rsense-constant)))
+
+;; rcodetools
+;; (add-to-list 'load-path "~/.rbenv/versions/2.0.0-p0/lib/ruby/gems/2.0.0/gems/rcodetools-0.8.5.0/")
+;; (require 'rcodetools)
+;; (define-key ruby-mode-map (kbd "<C-return>") 'rct-complete-symbol)
