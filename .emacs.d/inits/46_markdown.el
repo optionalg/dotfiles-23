@@ -3,8 +3,9 @@
 
 (setq auto-mode-alist
       (cons '("\\.md" . markdown-mode)
+            (cons '("\\.md.erb" . markdown-mode)
             (cons '("\\.howm" . markdown-mode) auto-mode-alist)
-            ))
+            )))
 
 (setq markdown-command "redcarpet")
 
