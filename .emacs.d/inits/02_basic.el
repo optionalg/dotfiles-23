@@ -9,6 +9,7 @@
 (unless (server-running-p)
   (server-start))
 
+(savehist-mode 1)
 (setq initial-major-mode 'lisp-interaction-mode)
 (setq inhibit-startup-screen t)
 (setq-default tab-width 2)
