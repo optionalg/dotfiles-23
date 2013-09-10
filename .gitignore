@@ -20,3 +20,4 @@
 .rbenv/shims
 .rbenv/version
 .rbenv/versions
+/.emacs.d/history
