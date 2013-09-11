@@ -3,9 +3,7 @@
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.ctp\\'"   . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . web-mode))
-
-
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 
 ;; web-modeの設定
 (defun web-mode-hook ()
