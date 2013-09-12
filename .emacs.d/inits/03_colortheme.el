@@ -1,13 +1,15 @@
-(unless
-    (string-match "^sid" (system-name)) ;; on sid, disable color theme
+;; (unless
+;;     (string-match "^sid" (system-name)) ;; on sid, disable color theme
 
-  (add-to-list 'load-path "~/.emacs.d/vendor/color-theme")
-  (require 'color-theme)
-  (eval-after-load "color-theme"
-    '(progn
-       (color-theme-initialize)
-       ;; (color-theme-dark-laptop)
-       ;; (color-theme-greiner)
-       (color-theme-ld-dark)
-       ))
-  )
+;;   (add-to-list 'load-path "~/.emacs.d/vendor/color-theme")
+;;   (require 'color-theme)
+;;   (eval-after-load "color-theme"
+;;     '(progn
+;;        (color-theme-initialize)
+;;        ;; (color-theme-dark-laptop)
+;;        ;; (color-theme-greiner)
+;;        (color-theme-ld-dark)
+;;        ))
+;;   )
+(reqpac 'zenburn-theme)
+(load-theme 'zenburn t)
