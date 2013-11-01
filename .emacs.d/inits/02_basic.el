@@ -123,10 +123,10 @@
 (global-set-key "\C-m" 'newline-and-indent)
 (global-set-key "\C-z" 'undo)
 ; move between window
-(global-set-key [C-M-n] 'windmove-right)  ; move to left windnow
-(global-set-key [C-M-d] 'windmove-left)   ; move to right window
-(global-set-key [C-M-t] 'windmove-up)     ; move to upper window
-(global-set-key [C-M-h] 'windmove-down)   ; move to downer window
+(global-set-key "\M-n" 'windmove-right)  ; move to left windnow
+(global-set-key "\M-d" 'windmove-left)   ; move to right window
+(global-set-key "\M-t" 'windmove-up)     ; move to upper window
+(global-set-key "\M-h" 'windmove-down)   ; move to downer window
 (global-set-key "\C-xm" 'browse-url-at-point)
 (global-set-key "\C-x." 'find-file-at-point)
 (global-set-key [C-tab] 'other-window)
