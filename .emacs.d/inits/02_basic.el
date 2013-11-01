@@ -309,6 +309,8 @@
          (interested-buffers (my/filter
                               '(lambda (buffer)
                                  (and
+                                  ; donk kill buffers who has window to displayed
+                                  (not (get-buffer-window (buffer-name buffer)))
                                   ; dont kill hidden buffers (hidden buffers' name starts with SPACE)
                                   (not (string-match "^ " (buffer-name buffer)))
                                   ; dont kill buffers who have running processes
