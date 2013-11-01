@@ -79,3 +79,18 @@
 ;; edit server
 (reqpac 'edit-server)
 (edit-server-start)
+
+;; nav
+(add-to-load-path "vendor/nav/")
+(require 'nav)
+(nav-disable-overeager-window-splitting)
+;; Optional: set up a quick key to toggle nav
+(global-set-key [f8] 'nav-toggle)
+;; (nav-jump-to-dir default-directory)
+
+
+;; git-messenger
+(reqpac 'popup)
+(add-to-load-path "vendor/emacs-git-messenger")
+(require 'git-messenger)
+(global-set-key [f9] 'git-messenger:popup-message)

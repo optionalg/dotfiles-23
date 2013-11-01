@@ -40,3 +40,6 @@
 [submodule ".rbenv/plugins/rbenv-binstubs"]
 	path = .rbenv/plugins/rbenv-binstubs
 	url = https://github.com/ianheggie/rbenv-binstubs.git
+[submodule ".emacs.d/vendor/emacs-git-messenger"]
+	path = .emacs.d/vendor/emacs-git-messenger
+	url = git@github.com:yukihr/emacs-git-messenger.git
