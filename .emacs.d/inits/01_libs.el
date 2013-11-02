@@ -63,7 +63,8 @@
 (add-to-load-path "lib/emacs-websocket")
 
 ;; popwin.el
-(reqpac 'popwin)
+(add-to-load-path "vendor/popwin-el")
+(require 'popwin)
 (custom-set-variables
  '(popwin:popup-window-position 'bottom)
  '(popwin:popup-window-height 15)

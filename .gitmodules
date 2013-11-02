@@ -43,3 +43,9 @@
 [submodule ".emacs.d/vendor/emacs-git-messenger"]
 	path = .emacs.d/vendor/emacs-git-messenger
 	url = git@github.com:yukihr/emacs-git-messenger.git
+[submodule ".emacs.d/vendor/direx-el"]
+	path = .emacs.d/vendor/direx-el
+	url = https://github.com/m2ym/direx-el.git
+[submodule ".emacs.d/vendor/popwin-el"]
+	path = .emacs.d/vendor/popwin-el
+	url = git@github.com:yukihr/popwin-el.git
