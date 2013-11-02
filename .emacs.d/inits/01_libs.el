@@ -78,4 +78,7 @@
 (define-key global-map [(super o)] 'dired-jump-other-window)
 (push '("*ri*" :width 70 :position :right :noselect t :stick t) popwin:special-display-config)
 (push '("*rspec-compilation*" :height 40 :position :bottom) popwin:special-display-config)
+(push '("*MULTI-TERM-DEDICATED*" :width 60 :position :right) popwin:special-display-config)
 ;; (push '("^\\*SPEEDBAR" :regexp t :width 40 :position :left :noselect t :stick t) popwin:special-display-config)
+(push '("*nav*" :width 40 :position :left :noselect t :stick t) popwin:special-display-config)
+(push '("*Moccur*" :width 80 :position :left :stick t) popwin:special-display-config)
