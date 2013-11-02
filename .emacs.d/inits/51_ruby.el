@@ -116,13 +116,13 @@ and source-file directory for your debugger." t)
 
 
 ;; RSense
-(setq rsense-home (expand-file-name "~/.emacs.d/vendor/rsense-0.3"))
-(add-to-list 'load-path (concat rsense-home "/etc"))
-(require 'rsense)
-(add-hook 'ruby-mode-hook
-          (lambda ()
-            (add-to-list 'ac-sources 'ac-source-rsense-method)
-            (add-to-list 'ac-sources 'ac-source-rsense-constant)))
+;; (setq rsense-home (expand-file-name "~/.emacs.d/vendor/rsense-0.3"))
+;; (add-to-list 'load-path (concat rsense-home "/etc"))
+;; (require 'rsense)
+;; (add-hook 'ruby-mode-hook
+;;           (lambda ()
+;;             (add-to-list 'ac-sources 'ac-source-rsense-method)
+;;             (add-to-list 'ac-sources 'ac-source-rsense-constant)))
 
 ;; rcodetools
 ;; (add-to-list 'load-path "~/.rbenv/versions/2.0.0-p0/lib/ruby/gems/2.0.0/gems/rcodetools-0.8.5.0/")
