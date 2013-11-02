@@ -29,25 +29,38 @@
 
 ;; flymake-ruby
 (defun flymake-ruby-init ()
-  (let* ((temp-file   (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-         (local-file  (file-relative-name
-                       temp-file
-                       (file-name-directory buffer-file-name))))
-    (list "ruby" (list "-c" local-file))))
+  (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                     'flymake-create-temp-inplace))
+         (local-file (file-relative-name
+                      temp-file
+                      (file-name-directory buffer-file-name))))
+    (list "ruby-lint" (list local-file))))
+ 
+(defconst flymake-allowed-ruby-file-name-masks
+  '(("\.rb$" flymake-ruby-init)
+    ("^Rakefile$" flymake-ruby-init)))
+(defvar flymake-ruby-err-line-patterns
+  '(("^\\(.*\\): .+: line \\([0-9]+\\), .+: \\(.*\\)$" 1 2 nil 3)))
+; /tmp/a.rb: error: line 5, column 15: undefined local variable or method a
+;sharings_helper.rb: error: line 9, column 27: undefined method request                                                 
 
-(push '(".+\\.rb$" flymake-ruby-init) flymake-allowed-file-name-masks)
-(push '("Rakefile$" flymake-ruby-init) flymake-allowed-file-name-masks)
-
-(push '("^\\(.*\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3) flymake-err-line-patterns)
-
-(add-hook 'ruby-mode-hook
-          '(lambda ()
-             ;; Don't want flymake mode for ruby regions in rhtml files and also on read only files
-             (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
-                 (flymake-mode t))
-             ))
-
+(defun flymake-ruby-load ()
+  (interactive)
+  (defadvice flymake-post-syntax-check (before flymake-force-check-was-interrupted)
+    (setq flymake-check-was-interrupted t))
+  (ad-activate 'flymake-post-syntax-check)
+  (setq flymake-allowed-file-name-masks
+        (append flymake-allowed-file-name-masks flymake-allowed-ruby-file-name-masks))
+  (setq flymake-err-line-patterns flymake-ruby-err-line-patterns)
+  (flymake-mode t))
+ 
+;(add-hook 'ruby-mode-hook '(lambda () (flymake-ruby-load)))
+(add-hook
+ 'ruby-mode-hook
+ '(lambda ()
+    ;; rhtmlファイルではflymakeしない
+    (if (not (null buffer-file-name)) (flymake-ruby-load))
+    ))
 (add-hook 'ruby-mode-hook 'my-flymake-minor-mode) ;keybindings for flymake
 
 
