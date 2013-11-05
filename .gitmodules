@@ -55,3 +55,6 @@
 [submodule ".emacs.d/vendor/enhanced-ruby-mode"]
 	path = .emacs.d/vendor/enhanced-ruby-mode
 	url = https://github.com/zenspider/enhanced-ruby-mode.git
+[submodule ".emacs.d/lib/el-lib"]
+	path = .emacs.d/lib/el-lib
+	url = https://github.com/sabof/es-lib.git
