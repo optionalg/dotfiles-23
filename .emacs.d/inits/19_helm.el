@@ -62,7 +62,11 @@
 (define-key global-map [(super \,)] 'helm-git-project)
 
 
-(reqpac 'helm-ag)
+(add-to-load-path "vendor/emacs-helm-ag")
+(setq helm-ag-base-command "ag --nocolor --nogroup --ignore-case")
+(setq helm-ag-command-option "--all-text")
+(setq helm-ag-thing-at-point 'symbol)
+(require 'helm-ag)
 (global-set-key (kbd "M-g .") 'helm-ag)
 (global-set-key (kbd "M-g ,") 'helm-ag-pop-stack)
 (global-set-key (kbd "C-M-s") 'helm-ag-this-file)
