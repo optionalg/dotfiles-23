@@ -51,5 +51,13 @@
  '(sr-speedbar-width-x 80)
  '(sr-speedbar-max-width 120)
  '(sr-speedbar-right-side nil)
+ '(sr-speedbar-delete-windows t)
+ '(sr-speedbar-skip-other-window-p t)
  )
 (global-set-key [f2] 'sr-speedbar-toggle)
+
+;; ag
+(setq ag-highlight-search t)
+(setq ag-reuse-window 't)
+(setq ag-reuse-buffers 't)
+(reqpac 'ag)
