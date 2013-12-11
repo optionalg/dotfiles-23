@@ -1,0 +1,14 @@
+requires:
+  - ruby-lint/definitions/rails
+report_levels:
+  - info
+  - warning
+  - error
+analysis_classes:
+  - argument_amount
+  - pedantics
+  - shadowing_variables
+  - unused_variables
+disabled:
+  - undefined_methods
+  - undefined_variables
