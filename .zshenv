@@ -8,6 +8,9 @@ alias r=rails
 # $ mkdir /usr/obj
 # $ chmod 777 /usr/obj
 alias gtags="gtags -O"
+# Middleman
+alias bem="bundle exec middleman"
+alias bema="bundle exec middleman article"
 
 case `uname -s` in
   Linux)
@@ -31,8 +34,8 @@ case `uname -s` in
       #   ;;
       *)
         export PATH=/Users/yukihr/bin:/Users/yukihr/Library/Haskell/ghc-7.0.4/lib/yi-0.6.5.0/bin/:$PATH
-        export EDITOR="/usr/local/Cellar/emacs/24.2/bin/emacsclient -n"
-        alias emacsclient="/usr/local/Cellar/emacs/24.2/bin/emacsclient -n"
+        export EDITOR="/usr/local/Cellar/emacs/24.2/bin/emacsclient"
+        alias emacsclient="/usr/local/Cellar/emacs/24.2/bin/emacsclient"
         alias emacs="/usr/local/Cellar/emacs/24.2/bin/emacs -rv"
         alias e=${EDITOR}
         alias o="open"
