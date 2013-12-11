@@ -205,10 +205,20 @@
     (if (file-directory-p backup-dir)
         (let*
             ((file-path (expand-file-name file))
-             (chars-alist '((?/ . (?#))(?# . (?# ?#))(?: . (?\;))(?\; . (?\; ?\;)))) (mapchars(lambda (c) (or (cdr (assq c chars-alist)) (list c))))) (setq ad-return-value
-                (concat backup-dir "/" (mapconcat 'char-to-string
-                                                  (apply 'append
-                                                         (mapcar mapchars file-path)) ""))))
+             (chars-alist '((?/ . (?#))
+                            (?# . (?# ?#))
+                            (?: . (?\;))
+                            (?\; . (?\; ?\;))))
+             (mapchars
+              (lambda (c)
+                (or (cdr (assq c chars-alist))
+                    (list c)))))
+          (setq ad-return-value
+                (concat backup-dir "/"
+                        (mapconcat 'char-to-string
+                                   (apply 'append
+                                          (mapcar mapchars file-path))
+                                   ""))))
       ad-do-it)))
 
 ;; original commands
