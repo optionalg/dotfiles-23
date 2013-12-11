@@ -123,3 +123,6 @@
                    (interactive)
                    (dirtree default-directory "*dirtree*")))
 
+;; Lingr
+(require 'lingr)
+(require 'private)
