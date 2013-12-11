@@ -25,9 +25,9 @@
 (reqpac 'helm-gtags)
 (defun rails-gems-root ()
   (replace-regexp-in-string
-   "\\(/bin/rails$\\|\n+$\\)" "" (shell-command-to-string "rbenv which rails")))
+   "\n+$" "" (shell-command-to-string "gem env gemdir")))
 
-(defun rails-source-create-tag ()
+(defun rails-source-update-tag ()
   (interactive)
   (let ((root (rails-gems-root))
         (current default-directory))
@@ -35,6 +35,16 @@
   (when (executable-find "global")
     (start-process "gtags-update" nil
                    "global" "-uvO"))
+  (cd current)))
+
+(defun rails-source-create-tag ()
+  (interactive)
+  (let ((root (rails-gems-root))
+        (current default-directory))
+  (cd root)
+  (when (executable-find "gtags")
+    (start-process "gtags-create" nil
+                   "gtags" "-O"))
   (cd current)))
 
 (defun rails-source-find-tag ()
@@ -94,8 +104,12 @@
     ad-do-it))
 (ad-activate 'rspec-compile)
 (custom-set-variables
- '(rspec-use-rake-flag nil))
-
+ '(rspec-use-rake-flag nil)
+ '(rspec-use-bundler-when-possible t))
+(defun rspec-spring-p ()
+  (and rspec-use-spring-when-possible
+       (rinari-root)
+       (stringp (executable-find "spring"))))
 
 ;; Web API Reference
 (define-key rinari-minor-mode-map (kbd "<f1> y")
