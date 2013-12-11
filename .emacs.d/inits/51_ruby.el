@@ -1,7 +1,29 @@
 (setq auto-mode-alist
-      (append '((".rake$" . ruby-mode)
+      (append '(("\\.rake$" . ruby-mode)
                 ("Gemfile$" . ruby-mode)
+                ("\\.gemspec$" . ruby-mode)
+                ("\\.ru$" . ruby-mode)
                 ("Rakefile$" . ruby-mode)) auto-mode-alist))
+
+(setq ruby-insert-encoding-magic-comment nil)
+
+;; indent
+(setq ruby-deep-indent-paren-style nil)
+;; reduce indent depth of last paren
+(defadvice ruby-indent-line (after unindent-closing-paren activate)
+  (let ((column (current-column))
+        indent offset)
+    (save-excursion
+      (back-to-indentation)
+      (let ((state (syntax-ppss)))
+        (setq offset (- column (current-column)))
+        (when (and (eq (char-after) ?\))
+                   (not (zerop (car state))))
+          (goto-char (cadr state))
+          (setq indent (current-indentation)))))
+    (when indent
+      (indent-line-to indent)
+      (when (> offset 0) (forward-char offset)))))
 
 ;; Enhanced ruby mode
 ;; (add-to-load-path "vendor/enhanced-ruby-mode")
@@ -156,6 +178,17 @@ and source-file directory for your debugger." t)
 ;;             (add-to-list 'ac-sources 'ac-source-rsense-constant)))
 
 ;; rcodetools
-;; (add-to-list 'load-path "~/.rbenv/versions/2.0.0-p0/lib/ruby/gems/2.0.0/gems/rcodetools-0.8.5.0/")
+;; (add-to-list 'load-path "~/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/rcodetools-0.8.5.0/")
 ;; (require 'rcodetools)
-;; (define-key ruby-mode-map (kbd "<C-return>") 'rct-complete-symbol)
+;; (setq rct-find-tag-if-available nil)
+;; (defun ruby-mode-hook-rcodetools ()
+;;   (define-key ruby-mode-map (kbd "<C-tab>") 'rct-complete-symbol)
+;;   (define-key ruby-mode-map (kbd "<C-return>") 'xmp))
+;; (add-hook 'ruby-mode-hook 'ruby-mode-hook-rcodetools)
+;; (defun make-ruby-scratch-buffer ()
+;;   (with-current-buffer (get-buffer-create "*ruby scratch*")
+;;     (ruby-mode)
+;;     (current-buffer)))
+;; (defun ruby-scratch ()
+;;   (interactive)
+;;   (pop-to-buffer (make-ruby-scratch-buffer)))
