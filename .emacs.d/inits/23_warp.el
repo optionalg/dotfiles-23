@@ -1,4 +1,4 @@
-(add-to-list 'load-path "~/Documents/OldProjects/warp")
+(add-to-list 'load-path "~/Projects/warp")
 (require 'warp)
 (require 'warp-reload)
 (global-set-key (kbd "C-c C-w C-w") 'warp-mode)
@@ -10,7 +10,7 @@
          "\n+$" "" (shell-command-to-string "echo $NODE_PATH")))
 
 (custom-set-variables
- '(warp-base-url "http://dev")
+ '(warp-base-url "http://dev:")
  '(warp-reload-default-base-url "http://dev:"))
 
 (add-to-list 'warp-format-converter-alist
