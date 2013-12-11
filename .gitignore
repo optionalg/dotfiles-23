@@ -21,3 +21,5 @@
 .rbenv/version
 .rbenv/versions
 /.emacs.d/history
+/.emacs.d/eshell/history
+/.emacs.d/eshell/lastdir
