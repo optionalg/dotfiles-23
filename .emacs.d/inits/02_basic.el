@@ -20,11 +20,11 @@
 (column-number-mode t)
 (tool-bar-mode -1)
 (custom-set-variables
- '(split-width-threshold 70)
+ '(split-width-threshold nil)
 )
 (setq vc-follow-symlinks t)
 ;; Avoid re-building of display buffer
-(setq gc-cons-threshold 40960000)        ; 40M(default: 400K)
+(setq gc-cons-threshold 40960000) ; 40M(default: 400K)
 (setq frame-title-format
       '("emacs@" system-name ":"
         (:eval (or (buffer-file-name)
@@ -306,24 +306,45 @@
                 "*Messages*" "*Compile-Log*" "*Help*"
                 "*init log*" "*Ibuffer*" "*scratch*"
                 "*MULTI-TERM-DEDICATED*"))
-         (interested-buffers (my/filter
-                              '(lambda (buffer)
-                                 (and
-                                  ; donk kill buffers who has window to displayed
-                                  (not (get-buffer-window (buffer-name buffer)))
-                                  ; dont kill hidden buffers (hidden buffers' name starts with SPACE)
-                                  (not (string-match "^ " (buffer-name buffer)))
-                                  ; dont kill buffers who have running processes
-                                  (let ((proc (get-buffer-process buffer)))
-                                    (if proc
-                                        (equal 'exit
-                                               (process-status
-                                                (get-buffer-process buffer)))
-                                      t))))
-                              (buffer-list)))
-         (buffers-to-kill (set-difference interested-buffers
-                                          (mapcar '(lambda (buffer-name)
-                                                     (get-buffer buffer-name))
-                                                  no-kill-buffer-names))))
+         (interested-buffers
+          (my/filter
+           '(lambda (buffer)
+              (and
+               ;; donk kill buffers who has window to displayed
+               (not (get-buffer-window (buffer-name buffer)))
+               ;; dont kill hidden buffers (hidden buffers' name starts with SPACE)
+               (not (string-match "^ " (buffer-name buffer)))
+               ;; dont kill buffers who have running processes
+               (let ((proc (get-buffer-process buffer)))
+                 (if proc
+                     (equal 'exit
+                            (process-status
+                             (get-buffer-process buffer)))
+                   t))))
+           (buffer-list)))
+         (buffers-to-kill
+          (set-difference interested-buffers
+                          (mapcar '(lambda (buffer-name)
+                                     (get-buffer buffer-name))
+                                  no-kill-buffer-names))))
     (mapc 'kill-buffer buffers-to-kill)))
 (global-set-key (kbd "C-c C-b C-b") 'kill-other-buffers)
+
+;; Swap Window Buffers
+(defun swap-screen()
+  "Swap two screen,leaving cursor at current window."
+  (interactive)
+  (let ((thiswin (selected-window))
+        (nextbuf (window-buffer (next-window))))
+    (set-window-buffer (next-window) (window-buffer))
+    (set-window-buffer thiswin nextbuf)))
+(defun swap-screen-with-cursor()
+  "Swap two screen,with cursor in same buffer."
+  (interactive)
+  (let ((thiswin (selected-window))
+        (thisbuf (window-buffer)))
+    (other-window 1)
+    (set-window-buffer thiswin (window-buffer))
+    (set-window-buffer (selected-window) thisbuf)))
+(global-set-key [f2] 'swap-screen)
+(global-set-key [S-f2] 'swap-screen-with-cursor)
