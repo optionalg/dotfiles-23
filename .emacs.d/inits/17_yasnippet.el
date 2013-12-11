@@ -7,12 +7,11 @@
 ;In fact, set it to something we'll never use because
 ;we'll only ever trigger it indirectly.
 (setq yas/trigger-key (kbd "C-c <kp-multiply>"))
-(yas/initialize)
 (yas/load-directory "~/.emacs.d/vendor/yasnippet/snippets")
 (yas/load-directory "~/.emacs.d/snippets")
 
-(require 'dropdown-list)
-(setq yas/prompt-functions '(yas/dropdown-prompt))
+;; (require 'dropdown-list)
+;; (setq yas/prompt-functions '(yas/dropdown-prompt))
 
 
 ;; from http://d.hatena.ne.jp/antipop/20080321/1206090430
