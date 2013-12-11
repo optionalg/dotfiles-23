@@ -29,14 +29,6 @@
 
 (autoload 'html-fold-mode "html-fold" "Minor mode for hiding and revealing elements." t)
 
-;; (require 'direx)
-;; (global-set-key (kbd "C-x C-j") 'direx:jump-to-directory-other-window)
-;; ;; direx:direx-modeのバッファをウィンドウ左辺に幅25でポップアップ
-;; ;; :dedicatedにtを指定することで、direxウィンドウ内でのバッファの切り替えが
-;; ;; ポップアップ前のウィンドウに移譲される
-;; (push '(direx:direx-mode :position left :width 50 :dedicated t)
-;;       popwin:special-display-config)
-
 (require 'jaunte)
 (global-set-key (kbd "C-c C-j") 'jaunte)
 
@@ -80,17 +72,54 @@
 (reqpac 'edit-server)
 (edit-server-start)
 
-;; nav
-(add-to-load-path "vendor/nav/")
-(require 'nav)
-(nav-disable-overeager-window-splitting)
-;; Optional: set up a quick key to toggle nav
-(global-set-key [f8] 'nav-toggle)
-;; (nav-jump-to-dir default-directory)
-
-
 ;; git-messenger
 (reqpac 'popup)
 (add-to-load-path "vendor/emacs-git-messenger")
 (require 'git-messenger)
+(custom-set-variables
+ '(git-messenger:show-detail t))
 (global-set-key [f9] 'git-messenger:popup-message)
+
+;; direx
+;; (add-to-load-path "vendor/direx-el")
+;; (require 'direx-project)
+;; (push '(direx:direx-mode
+;;         :position left
+;;         :width 32
+;;         :dedicated t
+;;         :stick t)
+;;       popwin:special-display-config)
+
+;; (defun my/buffer-mode (buffer-or-string)
+;;   "Returns the major mode associated with a buffer."
+;;   (with-current-buffer buffer-or-string
+;;      major-mode))
+
+;; (defun my/find-mode-window (major-mode-symbol)
+;;   (car
+;;    (my/filter '(lambda (win)
+;;                  (equal (my/buffer-mode (window-buffer win)) major-mode-symbol))
+;;               (window-list))))
+
+;; (global-set-key [f8]
+;;                 '(lambda ()
+;;                    (interactive)
+;;                    (let* ((direx-win (my/find-mode-window 'direx:direx-mode))
+;;                           (direx-buffer (window-buffer direx-win))
+;;                           (current-win (selected-window)))
+;;                      (if direx-win
+;;                          (progn
+;;                            (delete-window direx-win)
+;;                            (kill-buffer direx-buffer))
+;;                        (progn
+;;                          (direx-project:jump-to-project-root-other-window)
+;;                          (select-window current-win)))))) ;select-window not working..
+
+;; dirtree
+(setq  dirtree-windata '(frame left 0.20 delete))
+(require 'dirtree)
+(global-set-key [f8]
+                '(lambda ()
+                   (interactive)
+                   (dirtree default-directory "*dirtree*")))
+
