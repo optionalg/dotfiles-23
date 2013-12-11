@@ -44,17 +44,17 @@
             ))
 
 ;; speedbar
-(reqpac 'sr-speedbar)
-(custom-set-variables
- '(speedbar-show-unknown-files t)
- ;; '(speedbar-directory-unshown-regexp "^\\(\\.[^\\.].*\\)\\'")
- '(sr-speedbar-width-x 80)
- '(sr-speedbar-max-width 120)
- '(sr-speedbar-right-side nil)
- '(sr-speedbar-delete-windows t)
- '(sr-speedbar-skip-other-window-p t)
- )
-(global-set-key [f2] 'sr-speedbar-toggle)
+;; (reqpac 'sr-speedbar)
+;; (custom-set-variables
+;;  '(speedbar-show-unknown-files t)
+;;  ;; '(speedbar-directory-unshown-regexp "^\\(\\.[^\\.].*\\)\\'")
+;;  '(sr-speedbar-width-x 80)
+;;  '(sr-speedbar-max-width 120)
+;;  '(sr-speedbar-right-side nil)
+;;  '(sr-speedbar-delete-windows t)
+;;  '(sr-speedbar-skip-other-window-p t)
+;;  )
+;; (global-set-key [f2] 'sr-speedbar-toggle)
 
 ;; ag
 (setq ag-highlight-search t)
