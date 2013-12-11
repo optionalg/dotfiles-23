@@ -12,8 +12,8 @@
 
 ;; Use with helm
 (reqpac 'helm)
+(setq helm-gtags-read-only nil)
 (reqpac 'helm-gtags)
-(custom-set-variables '(helm-gtags-read-only nil))
 
 ;;; Enable helm-gtags-mode
 (dolist (hook '(asm-mode-hook c-mode-common-hook))
@@ -34,10 +34,11 @@
 
 ;; update tags files on saving files
 ;; http://qiita.com/items/8e8c7fca64b4810d8e78
+;; TODO: not working?
 (defun my/update-gtags ()
   (let* ((file (buffer-file-name (current-buffer)))
          (dir (directory-file-name (file-name-directory file))))
     (when (executable-find "global")
       (start-process "gtags-update" nil
-                     "global" "-uvO"))))
+                     "global" "-uv"))))
 (add-hook 'after-save-hook 'my/update-gtags)
