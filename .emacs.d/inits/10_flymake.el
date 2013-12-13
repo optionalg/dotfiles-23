@@ -27,8 +27,8 @@
 ;; minor mode for some useful keybindings
 (defvar my-flymake-minor-mode-map
   (let ((map (make-sparse-keymap)))
-    (define-key map "\M-p" 'flymake-goto-prev-error)
-    (define-key map "\M-n" 'flymake-goto-next-error)
+    (define-key map "\M-j" 'flymake-goto-prev-error)
+    (define-key map "\M-k" 'flymake-goto-next-error)
     (define-key map "\C-cd" 'credmp/flymake-display-err-minibuf)
     (define-key map "\C-cf" 'flymake-mode)
     map)
