@@ -116,12 +116,12 @@
 ;;                          (select-window current-win)))))) ;select-window not working..
 
 ;; dirtree
-(setq  dirtree-windata '(frame left 0.20 delete))
+(setq  dirtree-windata '(frame left 0.16 delete))
 (require 'dirtree)
 (global-set-key [f8]
                 '(lambda ()
                    (interactive)
-                   (dirtree default-directory "*dirtree*")))
+                   (dirtree default-directory nil)))
 
 ;; Lingr
 (require 'lingr)
