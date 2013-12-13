@@ -112,14 +112,15 @@ With prefix arguement select `dirtree-buffer'"
     (unless win
       ;;(setq win (get-buffer-window dirtree-buffer))
       (setq win (apply 'windata-display-buffer dirtree-buffer dirtree-windata))
-      (select-window win))
-    (with-selected-window win
-      (unless (widget-get tree :open)
-        (widget-apply-action tree))
-      (goto-char (widget-get tree :from))
-      (recenter 1))
-    (if select
-        (select-window win))))
+      ;; (select-window win))
+      (set-window-dedicated-p win 1) ; Custom: set window dedicated
+      (with-selected-window win
+        (unless (widget-get tree :open)
+          (widget-apply-action tree))
+        (goto-char (widget-get tree :from))
+        (recenter 1))
+      (if select
+          (select-window win)))))
 
 (defun dirtree-in-buffer (root select)
   "create tree of `root' directory

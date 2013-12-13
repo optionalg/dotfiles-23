@@ -81,6 +81,6 @@
 (push '("*rspec-compilation*" :height 40 :position :bottom) popwin:special-display-config)
 (push '("*MULTI-TERM-DEDICATED*" :width 60 :position :right) popwin:special-display-config)
 ;; (push '("^\\*SPEEDBAR" :regexp t :width 40 :position :left :noselect t :stick t) popwin:special-display-config)
-(push '("^\\*nav" :regexp t :width 40 :position :left :noselect t :stick t) popwin:special-display-config)
+;; (push '("*dirtree*" :width 40 :position :left :noselect t :stick t :dedicated t) popwin:special-display-config)
 (push '("*Moccur*" :width 80 :position :left :stick t) popwin:special-display-config)
 (push '("*rspec-compilation*" :width 60 :position :left) popwin:special-display-config)
