@@ -17,7 +17,7 @@
 ;; Buffer specific bg-color
 ;; http://www.emacswiki.org/emacs/BufferBackgroundColor
 (defvar chosig-alist
-  '((term-mode . "#000")))
+  '((term-mode . "#0f0f0f"))
     ;; ("scratch" . "#fee")
     ;; (emacs-lisp-mode . "#eee"))
   "Alist matching major modes or buffer names with background colors.
