@@ -126,8 +126,18 @@
 (global-set-key [f8]
                 '(lambda ()
                    (interactive)
-                   (dirtree default-directory nil)))
+                   (let ((window (get-buffer-window (get-buffer "*dirtree*"))))
+                     (if window
+                         (delete-window window)
+                       (dirtree default-directory nil)))))
 
 ;; Lingr
 (require 'lingr)
 (require 'private)
+
+;; Sticky Windows
+;; prevent dedicated windows from deleted
+(require 'sticky-windows)
+(global-set-key [(control x) (?0)] 'sticky-window-delete-window)
+(global-set-key [(control x) (?1)] 'sticky-window-delete-other-windows)
+(global-set-key [(control x) (?9)] 'sticky-window-keep-window-visible)
