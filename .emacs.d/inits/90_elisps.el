@@ -122,14 +122,25 @@
 
 ;; dirtree
 (setq  dirtree-windata '(frame left 0.16 nil))
+(defmacro my/if-dirtree-window-exist (win &rest on-t on-nil)
+  `(let* ((buffer (get-buffer "*dirtree*"))
+          (,win (and buffer
+                    (get-buffer-window buffer))))
+         (if ,win
+             ,@on-t
+           ,@on-nil)))
 (require 'dirtree)
 (global-set-key [f8]
-                '(lambda ()
+                #'(lambda ()
                    (interactive)
-                   (let ((window (get-buffer-window (get-buffer "*dirtree*"))))
-                     (if window
-                         (delete-window window)
-                       (dirtree default-directory nil)))))
+                   (my/if-dirtree-window-exist window
+                                               (delete-window window)
+                                               (dirtree default-directory nil))))
+(add-hook 'after-change-major-mode-hook
+          #'(lambda ()
+              (interactive)
+              (my/if-dirtree-window-exist window
+                                          (dirtree default-directory nil))))
 
 ;; Lingr
 (require 'lingr)
