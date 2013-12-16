@@ -78,7 +78,12 @@
 (require 'git-messenger)
 (custom-set-variables
  '(git-messenger:show-detail t))
-(global-set-key [f9] 'git-messenger:popup-message)
+; set evil key bind
+(let ((map '("c" git-messenger:popup-message)))
+  (apply 'define-key evil-normal-state-map map)
+  ;; (apply 'define-key evil-visual-state-map map)
+  ;; (apply 'define-key evil-motion-state-map map)
+  )
 
 ;; direx
 ;; (add-to-load-path "vendor/direx-el")
