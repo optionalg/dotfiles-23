@@ -122,6 +122,9 @@
 
 ;; dirtree
 (setq  dirtree-windata '(frame left 0.16 nil))
+
+(require 'dirtree)
+
 (defmacro my/if-dirtree-window-exist (win &rest on-t on-nil)
   `(let* ((buffer (get-buffer "*dirtree*"))
           (,win (and buffer
@@ -129,22 +132,39 @@
          (if ,win
              ,@on-t
            ,@on-nil)))
-(require 'dirtree)
+
 (global-set-key [f8]
                 #'(lambda ()
                    (interactive)
                    (my/if-dirtree-window-exist window
                                                (delete-window window)
                                                (dirtree default-directory nil))))
-(add-hook 'after-change-major-mode-hook
-          #'(lambda ()
-              (interactive)
-              (my/if-dirtree-window-exist window
-                                          (dirtree default-directory nil))))
 
-;; Lingr
-(require 'lingr)
-(require 'private)
+(defun my/dirtree-update ()
+  (my/if-dirtree-window-exist window
+                              (dirtree default-directory nil)))
+
+(defadvice switch-to-buffer (after dirtree-update (buffer-or-name
+                                                   &optional
+                                                   norecord
+                                                   force-same-window))
+  (my/dirtree-update))
+(defadvice quit-window (after dirtree-update (&optional kill window))
+  (my/dirtree-update))
+;; Windmove 使ってない時は他の関数をアドバイス
+(defadvice windmove-do-window-select (after dirtree-update (dir &optional arg window))
+  (my/dirtree-update))
+
+(ad-activate 'switch-to-buffer)
+(ad-activate 'quit-window)
+(ad-activate 'windmove-do-window-select)
+
+;; ;; Needs more hooks to follow directory change smoothly
+;; (add-hook 'after-change-major-mode-hook
+;;           #'(lambda ()
+;;               (interactive)
+;;               (my/if-dirtree-window-exist window
+;;                                           (dirtree default-directory nil))))
 
 ;; Sticky Windows
 ;; prevent dedicated windows from deleted
@@ -152,3 +172,7 @@
 (global-set-key [(control x) (?0)] 'sticky-window-delete-window)
 (global-set-key [(control x) (?1)] 'sticky-window-delete-other-windows)
 (global-set-key [(control x) (?9)] 'sticky-window-keep-window-visible)
+
+;; Lingr
+(require 'lingr)
+(require 'private)

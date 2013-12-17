@@ -101,6 +101,7 @@ With prefix arguement select `dirtree-buffer'"
   (let ((buffer (get-buffer-create dirtree-buffer))
         tree win)
     (with-current-buffer buffer
+      (setq truncate-lines 0)
       (unless (eq major-mode 'dirtree-mode)
         (dirtree-mode))
       (dolist (atree tree-mode-list)
