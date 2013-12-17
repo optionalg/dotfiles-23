@@ -1,6 +1,7 @@
 (setq helm-idle-delay 0.3) ; 候補を作って描写するまでのタイムラグ。デフォルトで 0.3
 (setq helm-input-idle-delay 0.2) ; 文字列を入力しから検索するまでのタイムラグ。デフォルトで 0
 (setq helm-candidate-number-limit 50)
+(setq helm-split-window-default-side 'left)
 
 (reqpac 'helm)
 (require 'helm-config)
