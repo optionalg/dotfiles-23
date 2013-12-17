@@ -1,7 +1,15 @@
 (setq helm-idle-delay 0.3) ; 候補を作って描写するまでのタイムラグ。デフォルトで 0.3
 (setq helm-input-idle-delay 0.2) ; 文字列を入力しから検索するまでのタイムラグ。デフォルトで 0
 (setq helm-candidate-number-limit 50)
-(setq helm-split-window-default-side 'left)
+;; Configure window display
+;; (setq helm-split-window-in-side-p t)
+;; (setq helm-split-window-default-side 'left)
+;; (setq helm-always-two-windows nil)
+(require 'windata)
+(setq helm-windata '(frame left 0.3 nil))
+(defun my/helm-display-buffer (buffer)
+  (apply 'windata-display-buffer buffer helm-windata))
+(setq helm-display-function 'my/helm-display-buffer)
 
 (reqpac 'helm)
 (require 'helm-config)
@@ -9,6 +17,7 @@
 ;; See: https://github.com/emacs-helm/helm/issues/30
 (require 'helm-buffers)
 (require 'helm-files)
+
 
 (defun my-helm ()
   (interactive)
