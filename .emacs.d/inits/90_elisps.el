@@ -126,7 +126,7 @@
 (require 'dirtree)
 
 (defmacro my/if-dirtree-window-exist (win &rest on-t on-nil)
-  `(let* ((buffer (get-buffer "*dirtree*"))
+  `(let* ((buffer (get-buffer dirtree-buffer))
           (,win (and buffer
                     (get-buffer-window buffer))))
          (if ,win
@@ -142,7 +142,8 @@
 
 (defun my/dirtree-update ()
   (my/if-dirtree-window-exist window
-                              (dirtree default-directory nil)))
+                              (unless (equal (buffer-name) dirtree-buffer)
+                                (dirtree default-directory nil))))
 
 (defadvice switch-to-buffer (after dirtree-update (buffer-or-name
                                                    &optional
