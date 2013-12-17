@@ -341,11 +341,18 @@
 (global-set-key (kbd "C-c C-b C-b") 'kill-other-buffers)
 
 ;; Swap Window Buffers
+(defun my/next-undedicated-window ()
+  (let ((win (next-window)))
+    (with-selected-window win 
+      (if (window-dedicated-p win)
+          (my/next-undedicated-window)
+        win)
+    )))
 (defun swap-screen()
   "Swap two screen,leaving cursor at current window."
   (interactive)
   (let ((thiswin (selected-window))
-        (nextbuf (window-buffer (next-window))))
+        (nextbuf (window-buffer (my/next-undedicated-window))))
     (set-window-buffer (next-window) (window-buffer))
     (set-window-buffer thiswin nextbuf)))
 (defun swap-screen-with-cursor()
