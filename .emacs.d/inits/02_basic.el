@@ -365,3 +365,7 @@
     (set-window-buffer (selected-window) thisbuf)))
 (global-set-key [f2] 'swap-screen)
 (global-set-key [S-f2] 'swap-screen-with-cursor)
+
+;; Enable Uniquify
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
