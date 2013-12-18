@@ -34,3 +34,10 @@ return output of the command in string format."
 (defun my/filter (condp lst)
   (delq nil
         (mapcar (lambda (x) (and (funcall condp x) x)) lst)))
+
+(defun my/get-buffer-window-list-regexp (regexp)
+  "Return list of windows whose name is match regexp."
+  (my/filter #'(lambda (window)
+              (string-match regexp
+               (buffer-name (window-buffer window))))
+          (window-list)))
