@@ -7,15 +7,14 @@
              '("gnu" . "http://elpa.gnu.org/packages/"))
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 ;;リポジトリにMelpaを追加
-;; (add-to-list 'package-archives
-;;              '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 ;;インストールするディレクトリを指定
 (setq package-user-dir (concat user-emacs-directory "vendor/elpa"))
 
 ;;インストールしたパッケージにロードパスを通してロードする
 (package-initialize)
-
 
 (defun reqpac (name)
   (progn (unless (package-installed-p name)
@@ -54,7 +53,13 @@
 ;; (global-set-key [f2] 'sr-speedbar-toggle)
 
 ;; ag
-(setq ag-highlight-search t)
-(setq ag-reuse-window 't)
-(setq ag-reuse-buffers 't)
 (reqpac 'ag)
+(custom-set-variables
+ '(ag-highlight-search t)
+ '(ag-reuse-window 'nil)
+ '(ag-reuse-buffers 'nil))
+(reqpac 'wgrep-ag)
+(autoload 'wgrep-ag-setup "wgrep-ag")
+(add-hook 'ag-mode-hook 'wgrep-ag-setup)
+(define-key ag-mode-map (kbd "r") 'wgrep-change-to-wgrep-mode)
+(global-set-key [(super m)] 'ag)
