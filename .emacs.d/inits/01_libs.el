@@ -55,26 +55,3 @@
   (load-library "migemo")
   (migemo-init)
   (set-process-query-on-exit-flag (get-process "migemo") nil))
-
-;; popwin.el
-(require 'popwin)
-(custom-set-variables
- '(popwin:popup-window-position 'bottom)
- '(popwin:popup-window-height 15)
- '(popwin:adjust-other-windows nil)
- '(display-buffer-function 'popwin:display-buffer)
- '(helm-samewindow nil))
-;;(push '("^\\*anything" :regexp t :width 40 :position :left) popwin:special-display-config)
-;; Use default func for helm, used with popwin, below settings delete other window when quit helm
-;; (push '("^\\*helm" :regexp t :width 60 :position :left) popwin:special-display-config)
-(push '("*Help*" :width 80 :position :left :stick t) popwin:special-display-config)
-;; (push '("*anything imenu*" :width 40 :position :left) popwin:special-display-config)
-;; (push '("*Moccur*" :height 50 :position :left) popwin:special-display-config)
-(define-key global-map [(super o)] 'dired-jump-other-window)
-(push '("*ri*" :width 70 :position :left :noselect t :stick t) popwin:special-display-config)
-;; (push '("*rspec-compilation*" :height 40 :position :bottom) popwin:special-display-config)
-(push '("*MULTI-TERM-DEDICATED*" :width 60 :position :left) popwin:special-display-config)
-;; (push '("^\\*SPEEDBAR" :regexp t :width 40 :position :left :noselect t :stick t) popwin:special-display-config)
-;; (push '("*dirtree*" :width 40 :position :left :noselect t :stick t :dedicated t) popwin:special-display-config)
-(push '("*Moccur*" :width 80 :position :left :stick t) popwin:special-display-config)
-(push '("*rspec-compilation*" :width 60 :position :left) popwin:special-display-config)
