@@ -20,7 +20,7 @@
 ;; Documentation Search
 (defun xcode:searchdoc ()
   (interactive)
-  (let ((term (region-string-or-currnet-word)))
+  (let ((term (my/region-string-or-current-word)))
     (do-applescript
      (format
       (concat

@@ -99,4 +99,4 @@
 (define-key rinari-minor-mode-map (kbd "<f1> y")
   '(lambda ()
      (interactive)
-     (browse-url (concat "http://apidock.com/rails/search?query=" (region-string-or-currnet-word)))))
+     (browse-url (concat "http://apidock.com/rails/search?query=" (my/region-string-or-current-word)))))

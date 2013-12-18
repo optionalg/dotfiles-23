@@ -125,14 +125,14 @@ and source-file directory for your debugger." t)
   (interactive)
   (setq item
         (if item item
-          (region-string-or-currnet-word)))
+          (my/region-string-or-current-word)))
   (ri-search-ri item))
 
 (defun ri-search-doc (&optional item)
   (interactive)
   (setq item (read-string "Search symbol: "
                           (if item item
-                            (region-string-or-currnet-word))))
+                            (my/region-string-or-current-word))))
   (ri-search-ri item)
 )
 

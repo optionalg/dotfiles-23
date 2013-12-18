@@ -103,13 +103,13 @@
 (defun search-google ()
   (interactive)
   (browse-url (format "http://google.com/search?q=%s"
-                      (region-string-or-currnet-word))))
+                      (my/region-string-or-current-word))))
 (global-set-key (kbd "C-x w") 'search-google)
 
 (defun search-dict ()
   (interactive)
   (browse-url (format "dict:///%s"
-                      (region-string-or-currnet-word))))
+                      (my/region-string-or-current-word))))
 (global-set-key (kbd "C-x p") 'search-dict)
 
 

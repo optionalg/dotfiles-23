@@ -21,7 +21,7 @@ return output of the command in string format."
       (sleep-for 0 10))
     (car ret)))
 
-(defun region-string-or-currnet-word ()
+(defun my/region-string-or-current-word ()
   "Get region string if region is set, else get current word."
   (if mark-active
       (buffer-substring (region-beginning) (region-end))
