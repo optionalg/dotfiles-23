@@ -1,5 +1,3 @@
-(add-to-list 'load-path "~/.emacs.d/vendor/auto-complete")
-
 ;; for vimpulse
 ;; <ESC> once to normal mode
 ;; from: https://sites.google.com/site/fudist/Home/vimpulse

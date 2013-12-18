@@ -1,8 +1,4 @@
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/vendor/navi2ch/"))
-(autoload 'navi2ch "navi2ch" "Navigator for 2ch for Emacs" t)
-
 ;;; navi2ch の設定
-(setq load-path (cons (expand-file-name "~/site-lisp/navi2ch/") load-path))
 (autoload 'navi2ch "navi2ch" "Navigator for 2ch for Emacs" t)
 ;; 送信控えをとる
 (setq navi2ch-message-save-sendlog t)

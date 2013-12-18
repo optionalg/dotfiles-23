@@ -4,7 +4,6 @@
 ;; C-c C-b : 'sql-send-buffer
 (require 'sql)
 (reqpac 'sql-indent)
-(add-to-load-path "vendor/sql")
 
 (add-hook 'sql-interactive-mode-hook
           #'(lambda ()

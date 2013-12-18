@@ -26,7 +26,6 @@
       (when (> offset 0) (forward-char offset)))))
 
 ;; Enhanced ruby mode
-;; (add-to-load-path "vendor/enhanced-ruby-mode")
 ;; (setq enh-ruby-program 
 ;;       (replace-regexp-in-string
 ;;        "\n+$" "" (shell-command-to-string "rbenv which ruby")))
@@ -105,7 +104,6 @@
 
 
 ;; rubydb
-(add-to-list 'load-path "~/.emacs.d/vendor/ruby-mode")
 ;; M-x rubydb
 (autoload 'rubydb "rubydb3x"
   "run rubydb on program file in buffer *gud-file*.

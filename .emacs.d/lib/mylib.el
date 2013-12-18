@@ -5,12 +5,6 @@
 
 
 ;;; utilities ;;;
-(defun add-to-load-path (path-from-emacs-directory)
-  "Add path to load-path.
-\"path\" will be interpreted as an entry in user-emacs-directory."
-  (setq load-path
-        (cons (concat user-emacs-directory path-from-emacs-directory)
-              load-path)))
 
 (defun exec-shell-command-sync (command &rest args)
   "Execute command in the shell, wait command to exit,

@@ -1,5 +1,3 @@
-;; (add-to-list 'load-path "~/.emacs.d/vendor/js2")
-
 ;; (setq-default c-basic-offset 2)
 
 ;; (when (load "js2" t)

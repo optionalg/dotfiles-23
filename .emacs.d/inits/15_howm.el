@@ -1,4 +1,3 @@
-(add-to-list 'load-path "~/.emacs.d/vendor/howm")
 (require 'howm)
 (require 'howm-menu-en)
 (setq howm-menu-lang 'en)

@@ -1,5 +1,3 @@
-(setq load-path (cons (expand-file-name "~/.emacs.d/vendor/elisps") load-path))
-
 (require 'auto-save-buffers)
 (run-with-idle-timer 5 t 'auto-save-buffers)
 
@@ -74,7 +72,6 @@
 
 ;; git-messenger
 (reqpac 'popup)
-(add-to-load-path "vendor/emacs-git-messenger")
 (require 'git-messenger)
 (custom-set-variables
  '(git-messenger:show-detail t))
@@ -86,7 +83,6 @@
   )
 
 ;; direx
-;; (add-to-load-path "vendor/direx-el")
 ;; (require 'direx-project)
 ;; (push '(direx:direx-mode
 ;;         :position left

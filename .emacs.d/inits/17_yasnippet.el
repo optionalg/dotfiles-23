@@ -1,6 +1,3 @@
-(add-to-list 'load-path
-              "~/.emacs.d/vendor/yasnippet")
-
 (require 'yasnippet) ;; not yasnippet-bundle
 
 ;Don't map TAB to yasnippet

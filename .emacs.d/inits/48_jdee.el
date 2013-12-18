@@ -1,4 +1,3 @@
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/lib/elib-1.0"))
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/vendor/jdee-2.4.0.1/lisp"))
 
 (autoload 'jde-mode "jde" "Java Development Environment for Emacs." t)

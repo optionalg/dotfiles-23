@@ -75,7 +75,6 @@ Add additional BINDINGS if specified. For dvorak keyboard."
 (define-key evil-normal-state-map "+" 'evil-numbers/inc-at-pt)
 (define-key evil-normal-state-map "-" 'evil-numbers/dec-at-pt)
 
-(add-to-load-path "vendor/evil-plugins")
 (require 'surround)
 (global-surround-mode 1)
 

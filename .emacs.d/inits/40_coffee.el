@@ -1,4 +1,3 @@
-(add-to-list 'load-path "~/.emacs.d/vendor/coffee-mode")
 (reqpac 'coffee-mode)
 
 (defun coffee-custom ()

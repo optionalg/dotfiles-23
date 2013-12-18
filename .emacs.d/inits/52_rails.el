@@ -87,7 +87,6 @@
 
 
 ;; rhtml-mode
-;; (add-to-load-path "vendor/rhtml")
 ;; (require 'rhtml-mode)
 ;; (add-hook 'rhtml-mode-hook
 ;;           (lambda () (rinari-launch)))

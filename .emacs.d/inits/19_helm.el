@@ -72,7 +72,7 @@
 (define-key global-map [(super \,)] 'helm-git-project)
 
 
-(add-to-load-path "vendor/emacs-helm-ag")
+;; helm ag
 (setq helm-ag-base-command "ag --nocolor --nogroup --ignore-case")
 (setq helm-ag-command-option "--all-text")
 (setq helm-ag-thing-at-point 'symbol)

@@ -1,6 +1,3 @@
-(if (<= emacs-major-version 23)
-    (add-to-load-path "vendor/elisps"))
-
 (require 'package)
 
 ;;リポジトリにMarmaladeを追加

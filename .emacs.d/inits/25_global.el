@@ -7,7 +7,6 @@
 ;; Set EnVar(bash/zsh):
 ;;     export GTAGSLABEL=exuberant-ctags
 
-(add-to-load-path "vendor/global")
 (require 'gtags)
 
 ;; Use with helm

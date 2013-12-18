@@ -79,7 +79,6 @@
 
 ;; auto-complete-mode
 (setq ac-modes (append ac-modes '(objc-mode)))
-(add-to-load-path "vendor/auto-complete-clang")
 (setq ac-clang-flags (list "-D__IPHONE_OS_VERSION_MIN_REQUIRED=30200" "-x" "objective-c" "-std=gnu99" "-isysroot" xcode:sdk "-I." "-F.." "-fblocks"))
 (require 'auto-complete-clang)
 ;; (setq ac-clang-prefix-header "stdafx.pch")

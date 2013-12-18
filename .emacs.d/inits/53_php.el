@@ -1,5 +1,3 @@
-(add-to-list 'load-path "~/.emacs.d/vendor/php-mode-1.5.0")
-
 ;; php-mode
 (require 'php-mode)
 

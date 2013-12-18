@@ -1,8 +1,6 @@
 (require 'cl)
 
-; (add-to-list 'load-path "~/.emacs.d/lib/apel")
 (load-file (concat user-emacs-directory "lib/mylib.el"))
-(add-to-load-path "lib")
 
 ;; path
 ;; When opened from Desktep entry, PATH won't be set to shell's value.
@@ -42,7 +40,6 @@
 ;; (semantic-load-enable-minimum-features)
 
 ;; deferred
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/lib/emacs-deferred"))
 (load-file (expand-file-name "~/.emacs.d/lib/emacs-deferred/deferred.el"))
 (load-file (expand-file-name "~/.emacs.d/lib/emacs-deferred/concurrent.el"))
 
@@ -59,11 +56,7 @@
   (migemo-init)
   (set-process-query-on-exit-flag (get-process "migemo") nil))
 
-;; websocket
-(add-to-load-path "lib/emacs-websocket")
-
 ;; popwin.el
-(add-to-load-path "vendor/popwin-el")
 (require 'popwin)
 (custom-set-variables
  '(popwin:popup-window-position 'bottom)
