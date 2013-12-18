@@ -2,31 +2,6 @@
 
 (load-file (concat user-emacs-directory "lib/mylib.el"))
 
-;; path
-;; When opened from Desktep entry, PATH won't be set to shell's value.
-(let ((path-str
-           (replace-regexp-in-string
-            "\n+$" "" (shell-command-to-string "echo $PATH"))))
-     (setenv "PATH" (concat path-str ":" (getenv "PATH")))
-     (setq exec-path (nconc (split-string (getenv "PATH") ":") exec-path)))
-;; Custom Paths
-;; より下に記述した物が PATH の先頭に追加されます
-(dolist (dir (list
-              "/sbin"
-              "/usr/sbin"
-              "/bin"
-              "/usr/bin"
-              "/opt/local/bin"
-              "/sw/bin"
-              "/usr/local/bin"
-              (expand-file-name "~/bin")
-              (expand-file-name "~/.emacs.d/local/bin")
-              ))
-  ;; PATH と exec-path に同じ物を追加します
-  (when (and (file-exists-p dir) (not (member dir exec-path)))
-    (setenv "PATH" (concat dir ":" (getenv "PATH")))
-    (setq exec-path (append (list dir) exec-path))))
-
 
 ;; ;; disable default load-path for cedet on emacs-version > 23
 ;; (add-to-list 'load-path (expand-file-name "~/.emacs.d/lib/cedet-1.0/common"))

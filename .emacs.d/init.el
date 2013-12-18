@@ -3,6 +3,7 @@
 
 (load-file (expand-file-name  "private.el" user-emacs-directory))
 
+;; load-paths
 (defun my/add-to-load-path (path)
   "Add path to load-path."
   (setq load-path
@@ -20,7 +21,6 @@
                            fullpath))
           (my/add-to-load-path fullpath))))))
 
-;; load-paths
 ;; lib and sub-dir
 (setq user-lib-directory
       (expand-file-name "lib" user-emacs-directory))
@@ -31,7 +31,32 @@
       (expand-file-name "vendor" user-emacs-directory))
 (my/add-subdir-to-load-path user-vendor-directory)
 
+;; path
+;; When opened from Desktep entry, PATH won't be set to shell's value.
+(let ((path-str
+           (replace-regexp-in-string
+            "\n+$" "" (shell-command-to-string "echo $PATH"))))
+     (setenv "PATH" (concat path-str ":" (getenv "PATH")))
+     (setq exec-path (nconc (split-string (getenv "PATH") ":") exec-path)))
+;; Custom Paths
+;; より下に記述した物が PATH の先頭に追加されます
+(dolist (dir (list
+              "/sbin"
+              "/usr/sbin"
+              "/bin"
+              "/usr/bin"
+              "/opt/local/bin"
+              "/sw/bin"
+              "/usr/local/bin"
+              (expand-file-name "~/bin")
+              (expand-file-name "~/.emacs.d/local/bin")
+              ))
+  ;; PATH と exec-path に同じ物を追加します
+  (when (and (file-exists-p dir) (not (member dir exec-path)))
+    (setenv "PATH" (concat dir ":" (getenv "PATH")))
+    (setq exec-path (append (list dir) exec-path))))
 
+;; Exec inits
 (my/add-to-load-path user-emacs-directory)
 (require 'init-loader)
 (init-loader-load (expand-file-name "inits" user-emacs-directory))
