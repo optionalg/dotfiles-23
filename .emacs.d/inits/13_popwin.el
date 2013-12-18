@@ -9,7 +9,7 @@
 ;;(push '("^\\*anything" :regexp t :width 40 :position :left) popwin:special-display-config)
 ;; Use default func for helm, used with popwin, below settings delete other window when quit helm
 (push '("^\\*helm" :regexp t :width 60 :position :right) popwin:special-display-config)
-(push '("*Help*" :width 80 :position :left :stick t) popwin:special-display-config)
+(push '("*Help*" :width 80 :position :right :stick t) popwin:special-display-config)
 ;; (push '("*anything imenu*" :width 40 :position :left) popwin:special-display-config)
 ;; (push '("*Moccur*" :height 50 :position :left) popwin:special-display-config)
 (define-key global-map [(super o)] 'dired-jump-other-window)
