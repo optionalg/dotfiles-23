@@ -377,3 +377,7 @@
   (or (memq (window-new-normal window) '(ignore stuck skip))
       (and (window-live-p window)
            (window-dedicated-p window))))
+
+;; enable winner mode
+(when (fboundp 'winner-mode)
+      (winner-mode 1))
