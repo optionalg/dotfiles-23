@@ -20,10 +20,10 @@
 ;; (ac-mode) ;; enable
 
 ;; Moccur
-(setq moccur-split-word t) 
-(global-set-key [(super m)] 'moccur-grep-find)
-(require 'color-moccur)
-(require 'moccur-edit)
+;; (setq moccur-split-word t)
+;; (global-set-key [(super m)] 'moccur-grep-find)
+;; (require 'color-moccur)
+;; (require 'moccur-edit)
 
 ;; remember line
 (setq-default save-place t)
