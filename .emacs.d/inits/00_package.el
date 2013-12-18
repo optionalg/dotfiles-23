@@ -54,4 +54,4 @@
                     (interactive)
                     (call-interactively 'ag)
                     (select-window ; select ag buffer
-                     (car (my/get-buffer-window-list-regexp "^*ag ")))))
+                     (car (my/get-buffer-window-list-regexp "^\\*ag ")))))
