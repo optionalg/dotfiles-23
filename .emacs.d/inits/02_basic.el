@@ -369,3 +369,11 @@
 ;; Enable Uniquify
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+
+;; balance-windows should ignore dedicated-window
+;; TODO: balance holizontally dont work
+(defun window--resize-child-windows-skip-p (window)
+  "Return non-nil if WINDOW shall be skipped by resizing routines."
+  (or (memq (window-new-normal window) '(ignore stuck skip))
+      (and (window-live-p window)
+           (window-dedicated-p window))))
