@@ -192,3 +192,33 @@ and source-file directory for your debugger." t)
 ;; (defun ruby-scratch ()
 ;;   (interactive)
 ;;   (pop-to-buffer (make-ruby-scratch-buffer)))
+
+;; rspec-mode
+(reqpac 'rspec-mode)
+(reqpac 'rinari)
+(defadvice rspec-compile (around rspec-compile-around)
+  "Use BASH shell for running the specs because of ZSH issues."
+  (let ((shell-file-name "/bin/bash"))
+    ad-do-it))
+(ad-activate 'rspec-compile)
+(custom-set-variables
+ '(rspec-use-rake-flag nil)
+ '(rspec-use-bundler-when-possible t))
+(defun rspec-spring-p ()
+  (and rspec-use-spring-when-possible
+       (rinari-root) ; in rails project
+       (stringp (executable-find "spring"))))
+(defun rspec-find-spec-file ()
+  (interactive)
+  (find-file-other-window
+   (rspec-spec-file-for (buffer-file-name))))
+(defun rspec-find-target-file ()
+  (interactive)
+  (find-file-other-window
+   (rspec-target-file-for (buffer-file-name))))
+(defun rspec-find-spec-or-target-file ()
+  (interactive)
+  (if (rspec-spec-file-p (buffer-file-name))
+      (rspec-find-target-file)
+    (rspec-find-spec-file)))
+(define-key rspec-mode-verifiable-keymap (kbd "f") 'rspec-find-spec-or-target-file)

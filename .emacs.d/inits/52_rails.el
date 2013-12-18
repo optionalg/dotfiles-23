@@ -96,21 +96,6 @@
 ;; slim-mode
 (reqpac 'slim-mode)
 
-;; rspec-mode
-(reqpac 'rspec-mode)
-(defadvice rspec-compile (around rspec-compile-around)
-  "Use BASH shell for running the specs because of ZSH issues."
-  (let ((shell-file-name "/bin/bash"))
-    ad-do-it))
-(ad-activate 'rspec-compile)
-(custom-set-variables
- '(rspec-use-rake-flag nil)
- '(rspec-use-bundler-when-possible t))
-(defun rspec-spring-p ()
-  (and rspec-use-spring-when-possible
-       (rinari-root)
-       (stringp (executable-find "spring"))))
-
 ;; Web API Reference
 (define-key rinari-minor-mode-map (kbd "<f1> y")
   '(lambda ()
