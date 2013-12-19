@@ -351,7 +351,11 @@ Setting this variable directly does not take effect; use the command
 			  jaspace-advice-functions))
 	;; synch with `kill-all-local-variables'. `make-local-hook' is
 	;; necessary on Emacs 20.
-	(make-local-hook 'change-major-mode-hook)
+    ;; make-local-hook is not supported on emacs 24.4
+    ;; See: http://d.hatena.ne.jp/minazoko/20110307/1299516769
+	;; (make-local-hook 'change-major-mode-hook)
+    (if (fboundp 'make-local-hook)
+        (make-local-hook 'change-major-mode-hook))
 	(add-hook 'change-major-mode-hook 'jaspace-mode-quit nil t)
 	;; update the view.
 	(jaspace-fontify-buffer)
