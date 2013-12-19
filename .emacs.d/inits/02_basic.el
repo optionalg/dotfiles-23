@@ -36,7 +36,7 @@
       (setq initial-frame-alist
             (append
              (if (eq system-type 'darwin)
-                 (list '(width . 164) '(height . 48))
+                 (list '(width . 125) '(height . 76))
                (list '(width . 80) '(height . 48))
                )))
       (toggle-scroll-bar nil)))
