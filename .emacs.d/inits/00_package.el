@@ -1,14 +1,13 @@
 (require 'package)
 
-;;リポジトリにMarmaladeを追加
+;;リポジトリを追加
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives
              '("ELPA" . "http://tromey.com/elpa/"))
 (add-to-list 'package-archives
              '("gnu" . "http://elpa.gnu.org/packages/"))
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-;;リポジトリにMelpaを追加
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 ;;インストールするディレクトリを指定
 (setq package-user-dir (concat user-emacs-directory "vendor/elpa"))
