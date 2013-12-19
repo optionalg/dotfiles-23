@@ -1,9 +1,13 @@
 (require 'flymake)
 
+(defun my/flymake-current-line-no ()
+  "Return number of current line in current buffer."
+  (count-lines (point-min) (if (eobp) (point) (1+ (point)))))
+
 (defun credmp/flymake-display-err-minibuf ()
   "Displays the error/warning for the current line in the minibuffer"
   (interactive)
-  (let* ((line-no             (flymake-current-line-no))
+  (let* ((line-no             (my/flymake-current-line-no))
          (line-err-info-list  (nth 0 (flymake-find-err-info flymake-err-info line-no)))
          (count               (length line-err-info-list))
          )
@@ -92,7 +96,7 @@ Key bindings:
                                 fringe-lib-exclamation-mark
                               fringe-lib-question-mark))
            'left-fringe 'my-flymake-warning-face)
-           ;; 'left-fringe 'font-lock-warning-face)        
+           ;; 'left-fringe 'font-lock-warning-face)
         flymake-fringe-overlays))
 
 (defadvice flymake-delete-own-overlays (after remove-from-fringe activate
