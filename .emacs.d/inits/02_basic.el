@@ -21,8 +21,8 @@
 (tool-bar-mode -1)
 ;; Always Split Horizontally
 (setq split-height-threshold nil)
-(setq split-width-threshold 0)
-
+;; Don't split when window width is below 80
+(setq split-width-threshold 80)
 (setq vc-follow-symlinks t)
 ;; Avoid re-building of display buffer
 (setq gc-cons-threshold 40960000) ; 40M(default: 400K)
