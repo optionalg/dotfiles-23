@@ -78,7 +78,8 @@
 
 (if (eq system-type 'darwin)
     (progn
-      (global-set-key [C-f11] 'ns-toggle-fullscreen)
+      (setq ns-use-native-fullscreen nil)
+      (global-set-key [C-f11] 'toggle-fullscreen)
       )
   (progn
     ;; Make new frames fullscreen by default. Note: this hook doesn't do
