@@ -59,6 +59,6 @@
     (setq exec-path (append (list dir) exec-path))))
 
 ;; Exec inits
-(my/add-to-load-path user-emacs-directory)
+(load-file (expand-file-name  "init-loader.el" user-emacs-directory))
 (require 'init-loader)
 (init-loader-load (expand-file-name "inits" user-emacs-directory))
