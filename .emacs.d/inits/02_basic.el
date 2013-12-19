@@ -22,7 +22,7 @@
 ;; Always Split Horizontally
 (setq split-height-threshold nil)
 ;; Don't split when window width is below 80
-(setq split-width-threshold 80)
+(setq split-width-threshold 160)
 (setq vc-follow-symlinks t)
 ;; Avoid re-building of display buffer
 (setq gc-cons-threshold 40960000) ; 40M(default: 400K)
@@ -383,3 +383,7 @@
 ;; enable winner mode
 (when (fboundp 'winner-mode)
       (winner-mode 1))
+
+
+;; eww
+(setq eww-search-prefix "https://www.google.com/search?rls=en&q=")
