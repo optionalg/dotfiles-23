@@ -382,7 +382,8 @@
 
 ;; enable winner mode
 (when (fboundp 'winner-mode)
-      (winner-mode 1))
+  (global-set-key [f9] 'winner-undo)
+  (winner-mode 1))
 
 
 ;; eww
