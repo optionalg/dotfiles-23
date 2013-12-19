@@ -7,7 +7,7 @@ bind right:shift;cmd  push right bar-resize:screenSizeX/2
 bind left:shift;cmd   push left  bar-resize:screenSizeX/2
 bind right:ctrl;cmd  push right none
 bind left:ctrl;cmd   push left  none
-bind up:ctrl;cmd     move 410;20 1100;screenSizeY # start and end point of rect
+bind up:ctrl;cmd     move 320;20 1280;screenSizeY # start point and size of rect
 bind down:ctrl;cmd   resize 1280 screenSizeY
 
 # Nudge Bindings
