@@ -30,4 +30,7 @@
                   (plist-get lst :name))
               el-get-sources))
 
+;; Add packages in el-get default pakages
+(add-to-list 'my/el-get-source-names 'e2wm)
+
 (el-get 'sync my/el-get-source-names)
