@@ -30,6 +30,8 @@
 (setq user-vendor-directory
       (expand-file-name "vendor" user-emacs-directory))
 (my/add-subdir-to-load-path user-vendor-directory)
+;; el-get
+(my/add-to-load-path "~/.emacs.d/el-get/el-get")
 
 ;; path
 ;; When opened from Desktep entry, PATH won't be set to shell's value.
