@@ -23,3 +23,11 @@
     (eval-print-last-sexp)))
 
 (el-get 'sync)
+
+;; Force install packages listed on el-get-sources
+(setq my/el-get-source-names
+      (mapcar #'(lambda (lst)
+                  (plist-get lst :name))
+              el-get-sources))
+
+(el-get 'sync my/el-get-source-names)
