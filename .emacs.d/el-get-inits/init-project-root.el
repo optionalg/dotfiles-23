@@ -11,4 +11,17 @@
                                                   sh
                                                   ))
          )
+        ("Emacs Settings"
+         :root-contains-files ("init.el")
+         :filename-regex ,(regexify-ext-list '(el sh))
+         )
+        ("Git Repositry"
+         :root-contains-files (".git")
+         )
         ))
+
+(defmacro with-project-root-or-default (&rest body)
+  `(if (project-root-buffer-in-project (current-buffer))
+       (with-project-root ,@body)
+     ,@body
+  ))
