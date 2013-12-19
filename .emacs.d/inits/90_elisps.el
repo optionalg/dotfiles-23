@@ -160,12 +160,28 @@
 (ad-activate 'quit-window)
 (ad-activate 'windmove-do-window-select)
 
-;; ;; Needs more hooks to follow directory change smoothly
-;; (add-hook 'after-change-major-mode-hook
-;;           #'(lambda ()
-;;               (interactive)
-;;               (my/if-dirtree-window-exist window
-;;                                           (dirtree default-directory nil))))
+;; toggle with fullscreen state
+(defadvice toggle-frame-fullscreen (after dirtree-show-hide)
+  (if (frame-parameter nil 'fullscreen) ; if fullscreen, non-nil
+      (progn
+        (sit-for 1) ; wait resising
+        (dirtree default-directory nil)
+        (split-window-right))
+    (progn
+      (my/if-dirtree-window-exist window
+                                  (delete-window window))
+      (delete-other-windows)
+      )))
+(ad-activate 'toggle-frame-fullscreen)
+
+
+;; font-lock
+(defface my/face-u-1 '((t (:foreground "SteelBlue"))) nil)
+(defvar my/face-u-1 'my/face-u-1)
+(font-lock-add-keywords 'tree-mode
+                        '(
+                          ("^[^\s-]*" . 'my/face-u-1)
+                          ))
 
 ;; Sticky Windows
 ;; prevent dedicated windows from deleted

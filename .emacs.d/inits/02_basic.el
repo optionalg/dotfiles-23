@@ -66,27 +66,19 @@
 
 
 ;; Utilities
-(defun toggle-fullscreen (&optional f)
-  "toggle full screen or normal window"
-  (interactive)
-  (let ((current-value (frame-parameter nil 'fullscreen)))
-    (set-frame-parameter nil 'fullscreen
-                         (if (equal 'fullboth current-value)
-                             (if (boundp 'old-fullscreen) old-fullscreen nil)
-                           (progn (setq old-fullscreen current-value)
-                                  'fullboth)))))
 
+;; toggle fullscreen
 (if (eq system-type 'darwin)
     (progn
       (setq ns-use-native-fullscreen nil)
-      (global-set-key [C-f11] 'toggle-fullscreen)
+      (global-set-key [C-f11] 'toggle-frame-fullscreen)
       )
   (progn
     ;; Make new frames fullscreen by default. Note: this hook doesn't do
     ;; anything to the initial frame if it's in your .emacs, since that file is
     ;; read _after_ the initial frame is created.
     ;; (add-hook 'after-make-frame-functions 'toggle-fullscreen)
-    (global-set-key [f11] 'toggle-fullscreen)
+    (global-set-key [f11] 'toggle-frame-fullscreen)
     )
   )
 
