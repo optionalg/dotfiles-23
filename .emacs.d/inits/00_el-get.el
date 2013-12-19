@@ -1,6 +1,7 @@
 ;;
 ;; el-get
 
+(setq el-get-dir "~/.emacs.d/el-get/")
 (setq el-get-user-package-directory "~/.emacs.d/el-get-inits")
 
 ;; Define Custom Sources
