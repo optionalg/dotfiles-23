@@ -19,9 +19,10 @@
 (line-number-mode t)
 (column-number-mode t)
 (tool-bar-mode -1)
-(custom-set-variables
- '(split-width-threshold nil)
-)
+;; Always Split Horizontally
+(setq split-height-threshold nil)
+(setq split-width-threshold 0)
+
 (setq vc-follow-symlinks t)
 ;; Avoid re-building of display buffer
 (setq gc-cons-threshold 40960000) ; 40M(default: 400K)
