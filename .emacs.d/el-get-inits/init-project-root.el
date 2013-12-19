@@ -1,3 +1,5 @@
+(require 'project-root)
+
 (setq project-roots
       `(
         ("Django project"
