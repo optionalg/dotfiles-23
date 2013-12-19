@@ -345,7 +345,7 @@
 ;; Swap Window Buffers
 (defun my/next-undedicated-window ()
   (let ((win (next-window)))
-    (with-selected-window win 
+    (with-selected-window win
       (if (window-dedicated-p win)
           (my/next-undedicated-window)
         win)
