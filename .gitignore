@@ -2,6 +2,7 @@
 .ssh
 .zsh_history
 .vim/.netrwhist
+*.elc
 .emacs.d/auto-save-list
 .emacs.d/tramp
 .emacs.d/ac-comphist*
