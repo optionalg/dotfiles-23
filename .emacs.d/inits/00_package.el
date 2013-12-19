@@ -41,6 +41,7 @@
 
 ;; ag
 (reqpac 'ag)
+(require 'project-root)
 (custom-set-variables
  '(ag-highlight-search t)
  '(ag-reuse-window 'nil)
@@ -52,6 +53,7 @@
 (global-set-key [(super m)]
                 #'(lambda ()
                     (interactive)
-                    (call-interactively 'ag)
-                    (select-window ; select ag buffer
-                     (car (my/get-buffer-window-list-regexp "^\\*ag ")))))
+                    (with-project-root-or-default
+                        (call-interactively 'ag)
+                        (select-window ; select ag buffer
+                         (car (my/get-buffer-window-list-regexp "^\\*ag "))))))
