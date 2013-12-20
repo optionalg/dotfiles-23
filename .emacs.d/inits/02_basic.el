@@ -334,6 +334,7 @@
     (mapc 'kill-buffer buffers-to-kill)))
 (global-set-key (kbd "C-c C-b C-b") 'kill-other-buffers)
 
+
 ;; Swap Window Buffers
 (defun my/next-undedicated-window ()
   (let ((win (next-window)))
@@ -359,6 +360,13 @@
     (set-window-buffer (selected-window) thisbuf)))
 (global-set-key [f2] 'swap-screen)
 (global-set-key [S-f2] 'swap-screen-with-cursor)
+
+
+;; scroll-other-window shouldnt apply to dedicated-window
+(defadvice scroll-other-window (before dont-scroll-dedicated)
+  (setq other-window-scroll-buffer (window-buffer (my/next-undedicated-window))))
+(ad-activate 'scroll-other-window)
+
 
 ;; Enable Uniquify
 (require 'uniquify)

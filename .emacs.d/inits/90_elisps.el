@@ -178,7 +178,6 @@
       )))
 (ad-activate 'toggle-frame-fullscreen)
 
-
 ;; font-lock
 ;; TODO:
 (defface my/face-u-1 '((t (:foreground "SteelBlue"))) nil)
