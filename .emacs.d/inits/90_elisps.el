@@ -121,7 +121,7 @@
 ;;                          (select-window current-win)))))) ;select-window not working..
 
 ;; dirtree
-(setq  dirtree-windata '(frame left 0.16 nil))
+(setq  dirtree-windata '(frame left 0.2 nil))
 
 (require 'dirtree)
 
@@ -142,8 +142,12 @@
 
 (defun my/dirtree-update ()
   (my/if-dirtree-window-exist window
-                              (unless (equal (buffer-name) dirtree-buffer)
-                                (dirtree default-directory nil))))
+                              (progn
+                                        ; set window dedicated sometimes dedicated is cancelled somehow
+                                (set-window-dedicated-p window 1)
+                                        ; dont update when in dirtree-buffer
+                                (unless (equal (buffer-name) dirtree-buffer)
+                                  (dirtree default-directory nil)))))
 
 (defadvice switch-to-buffer (after dirtree-update (buffer-or-name
                                                    &optional
