@@ -347,7 +347,7 @@
   (interactive)
   (let ((thiswin (selected-window))
         (nextbuf (window-buffer (my/next-undedicated-window))))
-    (set-window-buffer (next-window) (window-buffer))
+    (set-window-buffer (my/next-undedicated-window) (window-buffer))
     (set-window-buffer thiswin nextbuf)))
 (defun swap-screen-with-cursor()
   "Swap two screen,with cursor in same buffer."
