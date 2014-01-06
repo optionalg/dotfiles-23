@@ -56,3 +56,7 @@
                         (call-interactively 'ag)
                         (select-window ; select ag buffer
                          (car (my/get-buffer-window-list-regexp "^\\*ag "))))))
+
+;; multiple-cursors
+(reqpac 'multiple-cursors)
+(mc/execute-command-for-all-fake-cursors 'backward-char)
