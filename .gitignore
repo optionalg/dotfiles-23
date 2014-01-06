@@ -32,3 +32,4 @@
 /.emacs.d/private.el
 /.emacs.d/el-get
 /.emacs.d/.project-roots
+/.emacs.d/.mc-lists.el
