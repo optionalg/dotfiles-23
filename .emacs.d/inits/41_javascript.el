@@ -143,6 +143,7 @@
          (let (result)
            (dolist (pattern (list
                              (format "\\b\\(%s\\) *= *function" javascript-identifier-regexp)
+                             (format "function \\*\\(%s\\)" javascript-identifier-regexp)
                              (format "function \\(%s\\)" javascript-identifier-regexp)))
              (goto-char (point-min))
              (while (re-search-forward pattern (point-max) t)
@@ -161,3 +162,27 @@
             (imenu-add-menubar-index)
             ))
 
+;; REPL
+;; (require 'js-comint)
+(require 'nodejs-repl)
+(custom-set-variables
+ '(nodejs-repl-default-args '("--harmony" "-i")))
+;; (setq inferior-js-program-command "node --harmony -i")
+
+(defun nodejs-repl-load-file-and-go (filename)
+  (interactive "f")
+  (let ((filename (expand-file-name filename)))
+    (nodejs-repl)
+    (nodejs-repl--send-string (concat ".load(\"" filename "\")\n"))
+    ))
+
+(add-hook 'js-mode-hook
+          '(lambda ()
+             ;; (local-set-key "\C-x\C-e" 'js-send-last-sexp)
+             ;; (local-set-key "\C-\M-x" 'js-send-last-sexp-and-go)
+             ;; (local-set-key "\C-cb" 'js-send-buffer)
+             ;; (local-set-key "\C-c\C-r" 'js-send-region-and-go)
+             ;; (local-set-key "\C-cl" 'js-load-file-and-go)
+             (local-set-key "\C-c\C-r" 'js-send-region-and-go)
+             (local-set-key "\C-cl" 'nodejs-repl-load-file-and-go)
+             ))
