@@ -33,7 +33,7 @@
 (autopair-global-mode)
 (dolist (hook '(term-mode-hook ruby-mode-hook))
   (add-hook hook
-            #'(lambda () 
+            #'(lambda ()
                 (setq autopair-dont-activate t) ;; for emacsen < 24
                 (autopair-mode -1))             ;; for emacsen >= 24
             ))
