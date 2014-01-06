@@ -5,11 +5,6 @@
 ;; (setq helm-split-window-in-side-p t)
 ;; (setq helm-split-window-default-side 'left)
 ;; (setq helm-always-two-windows nil)
-;; (require 'windata)
-;; (setq helm-windata '(frame left 0.3 nil))
-;; (defun my/helm-display-buffer (buffer)
-;;   (apply 'windata-display-buffer buffer helm-windata))
-;; (setq helm-display-function 'my/helm-display-buffer)
 
 (reqpac 'helm)
 (require 'helm-config)
@@ -33,6 +28,7 @@
 
 (define-key global-map [(super a)] 'my-helm)
 (define-key global-map [(super i)] 'helm-imenu)
+(define-key global-map [(super .)] 'helm-show-kill-ring)
 
 
 ;; List files in git repos
