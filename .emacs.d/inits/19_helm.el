@@ -6,7 +6,7 @@
 ;; (setq helm-split-window-default-side 'left)
 ;; (setq helm-always-two-windows nil)
 
-(reqpac 'helm)
+(require 'helm)
 (require 'helm-config)
 
 ;; See: https://github.com/emacs-helm/helm/issues/30

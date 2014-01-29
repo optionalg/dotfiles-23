@@ -12,7 +12,7 @@
 (setq system-uses-terminfo nil)
 
 
-(reqpac 'multi-term)
+(require 'multi-term)
 (require 'ucs-normalize)
 
 ;; Toggle
@@ -49,6 +49,8 @@
                          (delete-window term-win)
                        (my/multi-term-dedicated-open)))))
 
+;; (global-set-key [(super t)] 'my/multi-term-dedicated-open)
+
 (global-set-key (kbd "C-c t") 'multi-term)
 (global-set-key (kbd "C-c n") 'multi-term-next)
 (global-set-key (kbd "C-c p") 'multi-term-prev)
@@ -62,6 +64,8 @@
               '(lambda ()
                  (interactive)
                  (term-send-raw-string (kbd "C-r")))) ; bck-i-search
+            ;; (set-fill-column 60) ; no need?
+            ;; (toggle-truncate-lines nil)
             ))
 
 ;; Shell mode

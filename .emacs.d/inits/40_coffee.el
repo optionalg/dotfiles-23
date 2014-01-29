@@ -1,4 +1,4 @@
-(reqpac 'coffee-mode)
+(require 'coffee-mode)
 
 (defun coffee-custom ()
   "coffee-mode-hook"
@@ -12,7 +12,7 @@
 
 (define-key coffee-mode-map [(super r)] 'coffee-compile-buffer)
 
-(reqpac 'flymake-coffee)
+(require 'flymake-coffee)
 (add-hook 'coffee-mode-hook 'flymake-coffee-load)
 (add-hook 'coffee-mode-hook 'my-flymake-minor-mode) ;keybindings for flymake
 

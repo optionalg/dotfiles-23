@@ -71,11 +71,11 @@
 (global-set-key (kbd "C-c r") 'dash-at-point)
 
 ;; edit server
-(reqpac 'edit-server)
+(require 'edit-server)
 (edit-server-start)
 
 ;; git-messenger
-(reqpac 'popup)
+(require 'popup)
 (require 'git-messenger)
 (custom-set-variables
  '(git-messenger:show-detail t))

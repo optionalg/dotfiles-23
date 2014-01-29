@@ -22,7 +22,7 @@
 ;; (require 'ido)
 ;; (ido-mode t)
 
-(reqpac 'helm-gtags)
+(require 'helm-gtags)
 (defun rails-gems-root ()
   (replace-regexp-in-string
    "\n+$" "" (shell-command-to-string "gem env gemdir")))
@@ -53,7 +53,7 @@
       (helm-gtags-find-tag)))
 
 ;; Rinari
-(reqpac 'rinari)
+(require 'rinari)
 (global-rinari-mode t)
 (rinari-bind-key-to-func "]" (symbol-function 'rails-source-find-tag))
 
@@ -93,7 +93,7 @@
 ;; (add-to-list 'auto-mode-alist '("\\.erb$" . rhtml-mode))
 
 ;; slim-mode
-(reqpac 'slim-mode)
+(require 'slim-mode)
 
 ;; Web API Reference
 (define-key rinari-minor-mode-map (kbd "<f1> y")

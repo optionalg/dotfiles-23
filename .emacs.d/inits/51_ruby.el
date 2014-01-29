@@ -45,21 +45,21 @@
 ;; rbenv
 (setq rbenv-executable "/usr/local/bin/rbenv")
 (setq rbenv-show-active-ruby-in-modeline nil)
-(reqpac 'rbenv)
+(require 'rbenv)
 (global-rbenv-mode)
 
 ;; ruby-electric.el
-(reqpac 'ruby-electric)
+(require 'ruby-electric)
 
 
 ;; ruby-block.el
-(reqpac 'ruby-block)
+(require 'ruby-block)
 (ruby-block-mode t)
 (setq ruby-block-highlight-toggle 'overlay)
 
 
 ;; inf-ruby.el
-(reqpac 'inf-ruby)
+(require 'inf-ruby)
 (autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
 (autoload 'inf-ruby-setup-keybindings "inf-ruby" "" t)
 (eval-after-load 'ruby-mode
@@ -192,8 +192,8 @@ and source-file directory for your debugger." t)
 ;;   (pop-to-buffer (make-ruby-scratch-buffer)))
 
 ;; rspec-mode
-(reqpac 'rspec-mode)
-(reqpac 'rinari)
+(require 'rspec-mode)
+(require 'rinari)
 (defadvice rspec-compile (around rspec-compile-around)
   "Use BASH shell for running the specs because of ZSH issues."
   (let ((shell-file-name "/bin/bash"))

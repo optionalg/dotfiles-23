@@ -1,4 +1,4 @@
-(reqpac 'evil)
+(require 'evil)
 
 (setq-default evil-shift-width 2)
 (evil-mode 1)
@@ -71,7 +71,7 @@ Add additional BINDINGS if specified. For dvorak keyboard."
 
 
 ;; plugins
-(reqpac 'evil-numbers)
+(require 'evil-numbers)
 (define-key evil-normal-state-map "+" 'evil-numbers/inc-at-pt)
 (define-key evil-normal-state-map "-" 'evil-numbers/dec-at-pt)
 

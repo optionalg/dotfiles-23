@@ -1,2 +1,2 @@
-(reqpac 'haskell-mode)
+(require 'haskell-mode)
 (setq haskell-program-name "/usr/bin/ghci")

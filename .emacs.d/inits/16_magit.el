@@ -1,4 +1,5 @@
-(reqpac 'magit)
+(require 'magit)
+;; (require 'magithub)
 (define-key global-map [(super g)] 'magit-status)
 
 (require 'magit-flow)

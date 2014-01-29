@@ -10,9 +10,9 @@
 (require 'gtags)
 
 ;; Use with helm
-(reqpac 'helm)
+(require 'helm)
 (setq helm-gtags-read-only nil)
-(reqpac 'helm-gtags)
+(require 'helm-gtags)
 
 ;;; Enable helm-gtags-mode
 (dolist (hook '(asm-mode-hook c-mode-common-hook))
@@ -25,7 +25,7 @@
 (setq helm-gtags-read-only t)
 
 ;; key bindings (evil integration)
-(reqpac 'evil)
+(require 'evil)
 (define-key evil-normal-state-map (kbd "C-]") 'helm-gtags-find-tag)
 (define-key evil-normal-state-map (kbd "C-=") 'helm-gtags-find-rtag) ;reference
 (define-key evil-normal-state-map (kbd "C-/") 'helm-gtags-find-symbol)

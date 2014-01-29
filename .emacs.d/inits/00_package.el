@@ -13,23 +13,46 @@
 (setq package-user-dir (concat user-emacs-directory "vendor/elpa"))
 
 ;;インストールしたパッケージにロードパスを通してロードする
+;; fix magithub error
+(defvar magit-log-edit-confirm-cancellation t)
+(defun magit-find-buffer (mode &optional topdir)
+  (magit-mode-get-buffer-create magit-status-buffer-name
+                                'magit-status-mode
+                                topdir))
 (package-initialize)
 
 (defun reqpac (name)
   (progn (unless (package-installed-p name)
-           (package-install name))
-         (require name)))
+           (package-install name)
+           (require name))))
+
+(setq my/packages
+      '(scala-mode2 git-gutter yaml-mode
+        rainbow-mode autopair ag wgrep-ag
+        multiple-cursors zenburn-theme evil
+        evil-numbers magit helm
+        helm helm-gtags evil
+        multi-term sql-indent coffee-mode
+        flymake-coffee helm-gtags rinari
+        slim-mode rbenv ruby-electric
+        ruby-block inf-ruby rspec-mode
+        rinari sass-mode haskell-mode
+        edit-server popup ;magithub
+        ))
+
+(dolist (name my/packages)
+  (reqpac name))
 
 ;; no setting file
-(reqpac 'scala-mode2)
-(reqpac 'git-gutter)
-(reqpac 'yaml-mode)
-(reqpac 'rainbow-mode)
+(require 'scala-mode2)
+(require 'git-gutter)
+(require 'yaml-mode)
+(require 'rainbow-mode)
 (dolist (hook '(css-mode-hook stylus-mode-hook sass-mode-hook))
   (add-hook hook 'rainbow-mode))
 
 ;; autopair
-(reqpac 'autopair)
+(require 'autopair)
 (autopair-global-mode)
 (dolist (hook '(term-mode-hook ruby-mode-hook))
   (add-hook hook
@@ -39,13 +62,13 @@
             ))
 
 ;; ag
-(reqpac 'ag)
+(require 'ag)
 (require 'project-root)
 (custom-set-variables
  '(ag-highlight-search t)
  '(ag-reuse-window 'nil)
  '(ag-reuse-buffers 'nil))
-(reqpac 'wgrep-ag)
+(require 'wgrep-ag)
 (autoload 'wgrep-ag-setup "wgrep-ag")
 (add-hook 'ag-mode-hook 'wgrep-ag-setup)
 (define-key ag-mode-map (kbd "r") 'wgrep-change-to-wgrep-mode)
@@ -79,5 +102,6 @@
         evil-normal-state
         evil-previous-line
         ))
-(reqpac 'multiple-cursors)
+(require 'multiple-cursors)
 (mc/execute-command-for-all-fake-cursors 'backward-char)
+(global-set-key [(super c)] 'mc/mark-all-like-this)

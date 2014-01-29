@@ -11,7 +11,7 @@
 ;;        (color-theme-ld-dark)
 ;;        ))
 ;;   )
-(reqpac 'zenburn-theme)
+(require 'zenburn-theme)
 (load-theme 'zenburn t)
 
 ;; Buffer specific bg-color

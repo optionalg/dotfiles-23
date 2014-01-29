@@ -1,2 +1,2 @@
-(reqpac 'sass-mode)
+(require 'sass-mode)
 (add-to-list 'auto-mode-alist '("\\(scss\\|sass\\)$" . sass-mode))
