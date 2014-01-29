@@ -13,6 +13,7 @@
 
 /.emacs.d/auto-save-list
 /.emacs.d/tramp
+/.emacs.d/thumbs
 /.emacs.d/ac-comphist*
 /.emacs.d/session*
 /.emacs.d/inits-disabled*
