@@ -100,3 +100,13 @@
   '(lambda ()
      (interactive)
      (browse-url (concat "http://apidock.com/rails/search?query=" (my/region-string-or-current-word)))))
+
+
+;; Pow
+(require 'project-root)
+(defun pow-force-restart ()
+  (interactive)
+  (with-project-root
+      (shell-command "touch tmp/restart.txt")
+      (message "Pow: Restart App!")))
+(rinari-bind-key-to-func "w" (symbol-function 'pow-force-restart))
