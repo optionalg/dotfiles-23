@@ -1,8 +1,7 @@
-alias diff="diff -u"
-alias grep="grep --exclude='tags' --exclude='*.svn-*' --exclude='*.git*' --exclude='entries'"
-alias lv="lv -Ou8 -c"
-# alias g=hub
-alias g=git
+alias diff="diff -u" alias grep="grep --exclude='tags'
+--exclude='*.svn-*' --exclude='*.git*' --exclude='entries'" alias
+lv="lv -Ou8 -c" alias git=hub
+# alias g=git
 alias r=rails
 # below needs /usr/obj dir
 # $ mkdir /usr/obj
